@@ -3,3 +3,4 @@
 
 [functions]
   directory = "netlify/functions"
+  included_files = ["netlify/functions/logo.png"]

@@ -4,7 +4,7 @@ export default async (request) => {
     'cache-control': 'no-store'
   };
 
-  // Test API po wejściu w /api/send
+  // Test backendu po wejściu na /api/send
   if (request.method === 'GET') {
     return Response.json({
       ok: true,
@@ -15,6 +15,7 @@ export default async (request) => {
     });
   }
 
+  // Akceptujemy tylko POST z formularza
   if (request.method !== 'POST') {
     return Response.json({
       ok: false,
@@ -26,10 +27,9 @@ export default async (request) => {
   }
 
   try {
-
     const resendApiKey = process.env.RESEND_API_KEY;
 
-    // Na czas testów Resend
+    // Na czas testów Resend wiadomości lecą na adres właściciela konta
     const mailTo = 'kamileq51@gmail.com';
 
     if (!resendApiKey) {
@@ -52,6 +52,7 @@ export default async (request) => {
       message
     } = data || {};
 
+    // Pola wymagane
     if (
       !name ||
       !phone ||
@@ -68,6 +69,7 @@ export default async (request) => {
       });
     }
 
+    // Zabezpieczenie danych wpisanych przez użytkownika
     const safe = (value) =>
       String(value ?? '')
         .replace(/&/g, '&amp;')
@@ -76,12 +78,13 @@ export default async (request) => {
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
 
+    // Logo dostępne publicznie na Netlify
+    const logoUrl =
+      'https://timely-genie-574eed.netlify.app/assets/logo.png';
 
-    /*
-      ==================================================
-      TREŚĆ MAILA
-      ==================================================
-    */
+    // =====================================================
+    // HTML WIADOMOŚCI
+    // =====================================================
 
     const html = `
 <!doctype html>
@@ -89,14 +92,12 @@ export default async (request) => {
 <html lang="pl">
 
 <head>
+  <meta charset="utf-8">
 
-<meta charset="utf-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1"
->
-
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
 </head>
 
 
@@ -123,6 +124,7 @@ padding:30px 12px;
 "
 >
 
+
 <tr>
 
 <td align="center">
@@ -143,10 +145,7 @@ overflow:hidden;
 >
 
 
-<!-- ========================================= -->
-<!-- LOGO FIKADOO -->
-<!-- ========================================= -->
-
+<!-- LOGO -->
 
 <tr>
 
@@ -158,7 +157,7 @@ padding:28px 30px 12px;
 >
 
 <img
-src="cid:fikadoo-logo"
+src="${logoUrl}"
 alt="Fikadoo"
 width="240"
 style="
@@ -178,11 +177,7 @@ text-decoration:none;
 </tr>
 
 
-
-<!-- ========================================= -->
 <!-- NAGŁÓWEK -->
-<!-- ========================================= -->
-
 
 <tr>
 
@@ -235,11 +230,7 @@ Klient wysłał formularz ze strony internetowej.
 </tr>
 
 
-
-<!-- ========================================= -->
 <!-- DANE KLIENTA -->
-<!-- ========================================= -->
-
 
 <tr>
 
@@ -326,11 +317,7 @@ ${mailRow(
 </tr>
 
 
-
-<!-- ========================================= -->
 <!-- DODATKOWE INFORMACJE -->
-<!-- ========================================= -->
-
 
 <tr>
 
@@ -381,11 +368,7 @@ ${safe(message || '-').replace(/\n/g, '<br>')}
 </tr>
 
 
-
-<!-- ========================================= -->
 <!-- PRZYCISK ODPOWIEDZI -->
-<!-- ========================================= -->
-
 
 <tr>
 
@@ -416,11 +399,7 @@ Odpowiedz klientowi
 </tr>
 
 
-
-<!-- ========================================= -->
 <!-- KOLOROWY PASEK -->
-<!-- ========================================= -->
-
 
 <tr>
 
@@ -447,7 +426,6 @@ font-size:0;
 &nbsp;
 </td>
 
-
 <td
 width="34%"
 height="8"
@@ -458,7 +436,6 @@ font-size:0;
 >
 &nbsp;
 </td>
-
 
 <td
 width="33%"
@@ -480,11 +457,7 @@ font-size:0;
 </tr>
 
 
-
-<!-- ========================================= -->
 <!-- STOPKA -->
-<!-- ========================================= -->
-
 
 <tr>
 
@@ -520,31 +493,25 @@ Fikadoo • formularz kontaktowy
 `;
 
 
-    /*
-      ==================================================
-      WYSYŁANIE PRZEZ RESEND
-      ==================================================
-    */
+    // =====================================================
+    // WYSYŁKA PRZEZ RESEND
+    // =====================================================
 
     const resendResponse =
       await fetch(
         'https://api.resend.com/emails',
         {
-
           method: 'POST',
 
           headers: {
-
             'Authorization':
               `Bearer ${resendApiKey}`,
 
             'Content-Type':
               'application/json'
-
           },
 
           body: JSON.stringify({
-
             from:
               'Fikadoo <onboarding@resend.dev>',
 
@@ -552,48 +519,15 @@ Fikadoo • formularz kontaktowy
               mailTo
             ],
 
-            /*
-              Kliknięcie "Odpowiedz"
-              w Gmailu odpowie klientowi.
-            */
-
+            // Po kliknięciu "Odpowiedz" odpowiadasz klientowi
             reply_to:
               String(email),
 
             subject:
               `Nowe zapytanie Fikadoo - ${String(name)}`,
 
-            html,
-
-
-            /*
-              ==================================================
-              LOGO OSADZONE BEZPOŚREDNIO W MAILU
-              ==================================================
-            */
-
-            attachments: [
-
-              {
-
-                path:
-                  'https://timely-genie-574eed.netlify.app/assets/logo.png',
-
-                filename:
-                  'fikadoo-logo.png',
-
-                content_type:
-                  'image/png',
-
-                content_id:
-                  'fikadoo-logo'
-
-              }
-
-            ]
-
+            html
           })
-
         }
       );
 
@@ -604,37 +538,27 @@ Fikadoo • formularz kontaktowy
         .catch(() => ({}));
 
 
+    // Jeżeli Resend zwróci błąd
     if (!resendResponse.ok) {
-
       console.error(
         'Resend error:',
         result
       );
 
       throw new Error(
-
         result?.message ||
-
         `Resend zwrócił błąd HTTP ${resendResponse.status}.`
-
       );
-
     }
 
 
+    // Sukces
     return Response.json({
-
       ok: true,
-
-      message:
-        'Zapytanie zostało wysłane.'
-
+      message: 'Zapytanie zostało wysłane.'
     }, {
-
       status: 200,
-
       headers: jsonHeaders
-
     });
 
 
@@ -647,7 +571,6 @@ Fikadoo • formularz kontaktowy
 
 
     return Response.json({
-
       ok: false,
 
       message:
@@ -655,11 +578,8 @@ Fikadoo • formularz kontaktowy
         'Nie udało się wysłać wiadomości.'
 
     }, {
-
       status: 500,
-
       headers: jsonHeaders
-
     });
 
   }
@@ -667,33 +587,22 @@ Fikadoo • formularz kontaktowy
 };
 
 
-
-/*
-  ==================================================
-  NETLIFY FUNCTION URL
-  ==================================================
-*/
-
+// =====================================================
+// ADRES FUNKCJI NETLIFY
+// =====================================================
 
 export const config = {
-
   path: '/api/send'
-
 };
 
 
-
-/*
-  ==================================================
-  WIERSZE Z DANYMI KLIENTA
-  ==================================================
-*/
-
+// =====================================================
+// WIERSZE W MAILU
+// =====================================================
 
 function mailRow(label, value) {
 
   return `
-
 <tr>
 
 <td
@@ -707,9 +616,7 @@ font-size:13px;
 font-weight:700;
 "
 >
-
 ${label}
-
 </td>
 
 
@@ -722,13 +629,10 @@ color:#0b2b57;
 font-size:15px;
 "
 >
-
 ${value}
-
 </td>
 
 </tr>
-
 `;
 
 }

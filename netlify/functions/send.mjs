@@ -27,7 +27,7 @@ export default async (request) => {
 
   try {
     const resendApiKey = process.env.RESEND_API_KEY;
-    const mailTo = process.env.MAIL_TO || 'bartosz8cklak@gmail.com';
+    const mailTo = process.env.MAIL_TO || 'kamileq51@gmail.com';
 
     if (!resendApiKey) {
       throw new Error('Brakuje zmiennej RESEND_API_KEY w Netlify.');

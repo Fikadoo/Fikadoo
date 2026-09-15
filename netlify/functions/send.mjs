@@ -65,8 +65,7 @@ export default async (request) => {
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
 
-    const origin = new URL(request.url).origin;
-    const logoUrl = `${origin}/assets/logo.png`;
+const logoUrl = 'https://timely-genie-574eed.netlify.app/assets/logo.png';
 
     const html = `
 <!doctype html>

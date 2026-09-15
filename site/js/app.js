@@ -35,7 +35,7 @@ const packageData = {
 };
 
 // Nowoczesna Netlify Function ma własną prostą ścieżkę:
-const API_URL = '/.netlify/functions/send';
+const API_URL = '/api/send';
 
 const modals = [...document.querySelectorAll('.modal')];
 const bookingModal = document.getElementById('bookingModal');

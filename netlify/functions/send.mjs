@@ -28,7 +28,6 @@ export default async (request) => {
     });
   }
 
-
   try {
 
     // =====================================================
@@ -37,7 +36,7 @@ export default async (request) => {
 
     const resendApiKey = process.env.RESEND_API_KEY;
 
-    // Na czas testów Resend.
+    // Na czas testów Resend
     const mailTo = 'kamileq51@gmail.com';
 
     if (!resendApiKey) {
@@ -45,7 +44,6 @@ export default async (request) => {
         'Brakuje zmiennej RESEND_API_KEY w Netlify.'
       );
     }
-
 
     // =====================================================
     // DANE Z FORMULARZA
@@ -65,7 +63,6 @@ export default async (request) => {
       message
     } = data || {};
 
-
     if (
       !name ||
       !phone ||
@@ -73,7 +70,6 @@ export default async (request) => {
       !date ||
       !time
     ) {
-
       return Response.json({
         ok: false,
         message: 'Uzupełnij wszystkie wymagane pola.'
@@ -81,9 +77,7 @@ export default async (request) => {
         status: 400,
         headers: jsonHeaders
       });
-
     }
-
 
     // =====================================================
     // ZABEZPIECZENIE DANYCH
@@ -97,52 +91,22 @@ export default async (request) => {
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
 
+    // =====================================================
+    // AUTOMATYCZNY ADRES LOGO
+    // =====================================================
 
-    // Publiczny adres logo.
+    const origin = new URL(request.url).origin;
+
     const logoUrl =
-      'https://timely-genie-574eed.netlify.app/assets/logo.png';
+      `${origin}/assets/logo.png`;
 
+    console.log('Logo URL:', logoUrl);
 
     // =====================================================
-    // GENEROWANIE HTML MAILA
+    // HTML MAILA
     // =====================================================
 
-    const createHtml = (embeddedLogo = true) => {
-
-      const logoHtml = embeddedLogo
-        ? `
-          <img
-            src="cid:fikadoo-logo"
-            alt="Fikadoo"
-            width="240"
-            style="
-              display:block;
-              width:240px;
-              max-width:80%;
-              height:auto;
-              margin:0 auto;
-              border:0;
-              outline:none;
-              text-decoration:none;
-            "
-          >
-        `
-        : `
-          <div
-            style="
-              font-size:32px;
-              line-height:1.2;
-              font-weight:800;
-              color:#1685ef;
-              text-align:center;
-            "
-          >
-            Fikadoo
-          </div>
-        `;
-
-
-      return `
+    const html = `
 <!doctype html>
 
 <html lang="pl">
@@ -216,12 +180,25 @@ padding:28px 30px 12px;
 "
 >
 
-${logoHtml}
+<img
+src="${logoUrl}"
+alt="Fikadoo"
+width="240"
+style="
+display:block;
+width:240px;
+max-width:80%;
+height:auto;
+margin:0 auto;
+border:0;
+outline:none;
+text-decoration:none;
+"
+/>
 
 </td>
 
 </tr>
-
 
 
 <!-- ================================================= -->
@@ -279,7 +256,6 @@ Klient wysłał formularz ze strony internetowej.
 </td>
 
 </tr>
-
 
 
 <!-- ================================================= -->
@@ -382,7 +358,6 @@ ${mailRow(
 </tr>
 
 
-
 <!-- ================================================= -->
 <!-- DODATKOWE INFORMACJE -->
 <!-- ================================================= -->
@@ -440,9 +415,8 @@ ${safe(message || '-').replace(/\n/g, '<br>')}
 </tr>
 
 
-
 <!-- ================================================= -->
-<!-- PRZYCISK -->
+<!-- PRZYCISK ODPOWIEDZI -->
 <!-- ================================================= -->
 
 <tr>
@@ -474,7 +448,6 @@ Odpowiedz klientowi
 </td>
 
 </tr>
-
 
 
 <!-- ================================================= -->
@@ -543,7 +516,6 @@ font-size:0;
 </tr>
 
 
-
 <!-- ================================================= -->
 <!-- STOPKA -->
 <!-- ================================================= -->
@@ -573,7 +545,6 @@ Fikadoo • formularz kontaktowy
 
 </tr>
 
-
 </table>
 
 
@@ -582,145 +553,55 @@ Fikadoo • formularz kontaktowy
 </html>
 `;
 
-    };
-
-
     // =====================================================
-    // FUNKCJA WYSYŁAJĄCA MAIL
+    // WYSYŁKA PRZEZ RESEND
     // =====================================================
 
-    const sendEmail = async (withLogo = true) => {
+    const resendResponse =
+      await fetch(
+        'https://api.resend.com/emails',
+        {
+          method: 'POST',
 
-      const payload = {
+          headers: {
+            'Authorization':
+              `Bearer ${resendApiKey}`,
 
-        from:
-          'Fikadoo <onboarding@resend.dev>',
+            'Content-Type':
+              'application/json'
+          },
 
-        to: [
-          mailTo
-        ],
+          body: JSON.stringify({
 
-        // Odpowiedź w Gmailu trafi do klienta.
-        reply_to:
-          String(email),
+            from:
+              'Fikadoo <onboarding@resend.dev>',
 
-        subject:
-          `Nowe zapytanie Fikadoo - ${String(name)}`,
+            to: [
+              mailTo
+            ],
 
-        html:
-          createHtml(withLogo)
+            // Odpowiedź w Gmailu trafia do klienta
+            reply_to:
+              String(email),
 
-      };
+            subject:
+              `Nowe zapytanie Fikadoo - ${String(name)}`,
 
+            html
 
-      // ===================================================
-      // LOGO CID
-      // ===================================================
+          })
 
-      if (withLogo) {
-
-        payload.attachments = [
-          {
-            path: logoUrl,
-
-            filename:
-              'fikadoo-logo.png',
-
-            content_type:
-              'image/png',
-
-            content_id:
-              'fikadoo-logo'
-          }
-        ];
-
-      }
-
-
-      const response =
-        await fetch(
-          'https://api.resend.com/emails',
-          {
-
-            method: 'POST',
-
-            headers: {
-
-              'Authorization':
-                `Bearer ${resendApiKey}`,
-
-              'Content-Type':
-                'application/json'
-
-            },
-
-            body:
-              JSON.stringify(payload)
-
-          }
-        );
-
-
-      const result =
-        await response
-          .json()
-          .catch(() => ({}));
-
-
-      return {
-        response,
-        result
-      };
-
-    };
-
-
-    // =====================================================
-    // PIERWSZA PRÓBA — Z LOGO
-    // =====================================================
-
-    let {
-      response,
-      result
-    } = await sendEmail(true);
-
-
-    // =====================================================
-    // JEŚLI LOGO SPOWODUJE BŁĄD:
-    // MAIL WYSYŁAMY PONOWNIE BEZ OBRAZKA
-    // =====================================================
-
-    if (!response.ok) {
-
-      console.error(
-        'Wysyłka z logo nie powiodła się:',
-        result
+        }
       );
 
 
-      console.log(
-        'Ponowna próba bez logo...'
-      );
+    const result =
+      await resendResponse
+        .json()
+        .catch(() => ({}));
 
 
-      const fallback =
-        await sendEmail(false);
-
-
-      response =
-        fallback.response;
-
-      result =
-        fallback.result;
-
-    }
-
-
-    // =====================================================
-    // JEŚLI NAWET DRUGA PRÓBA SIĘ NIE UDA
-    // =====================================================
-
-    if (!response.ok) {
+    if (!resendResponse.ok) {
 
       console.error(
         'Resend error:',
@@ -732,7 +613,7 @@ Fikadoo • formularz kontaktowy
 
         result?.message ||
 
-        `Resend zwrócił błąd HTTP ${response.status}.`
+        `Resend zwrócił błąd HTTP ${resendResponse.status}.`
 
       );
 
@@ -790,7 +671,7 @@ Fikadoo • formularz kontaktowy
 
 
 // =====================================================
-// NETLIFY URL
+// NETLIFY FUNCTION
 // =====================================================
 
 export const config = {

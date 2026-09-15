@@ -4,7 +4,10 @@ export default async (request) => {
     'cache-control': 'no-store'
   };
 
-  // Test backendu po wejściu na /api/send
+  // =====================================================
+  // TEST API
+  // =====================================================
+
   if (request.method === 'GET') {
     return Response.json({
       ok: true,
@@ -15,7 +18,6 @@ export default async (request) => {
     });
   }
 
-  // Akceptujemy tylko POST z formularza
   if (request.method !== 'POST') {
     return Response.json({
       ok: false,
@@ -26,10 +28,16 @@ export default async (request) => {
     });
   }
 
+
   try {
+
+    // =====================================================
+    // KONFIGURACJA
+    // =====================================================
+
     const resendApiKey = process.env.RESEND_API_KEY;
 
-    // Na czas testów Resend wiadomości lecą na adres właściciela konta
+    // Na czas testów Resend.
     const mailTo = 'kamileq51@gmail.com';
 
     if (!resendApiKey) {
@@ -37,6 +45,11 @@ export default async (request) => {
         'Brakuje zmiennej RESEND_API_KEY w Netlify.'
       );
     }
+
+
+    // =====================================================
+    // DANE Z FORMULARZA
+    // =====================================================
 
     const data = await request.json();
 
@@ -52,7 +65,7 @@ export default async (request) => {
       message
     } = data || {};
 
-    // Pola wymagane
+
     if (
       !name ||
       !phone ||
@@ -60,6 +73,7 @@ export default async (request) => {
       !date ||
       !time
     ) {
+
       return Response.json({
         ok: false,
         message: 'Uzupełnij wszystkie wymagane pola.'
@@ -67,9 +81,14 @@ export default async (request) => {
         status: 400,
         headers: jsonHeaders
       });
+
     }
 
-    // Zabezpieczenie danych wpisanych przez użytkownika
+
+    // =====================================================
+    // ZABEZPIECZENIE DANYCH
+    // =====================================================
+
     const safe = (value) =>
       String(value ?? '')
         .replace(/&/g, '&amp;')
@@ -78,26 +97,65 @@ export default async (request) => {
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
 
-    // Logo dostępne publicznie na Netlify
+
+    // Publiczny adres logo.
     const logoUrl =
       'https://timely-genie-574eed.netlify.app/assets/logo.png';
 
+
     // =====================================================
-    // HTML WIADOMOŚCI
+    // GENEROWANIE HTML MAILA
     // =====================================================
 
-    const html = `
+    const createHtml = (embeddedLogo = true) => {
+
+      const logoHtml = embeddedLogo
+        ? `
+          <img
+            src="cid:fikadoo-logo"
+            alt="Fikadoo"
+            width="240"
+            style="
+              display:block;
+              width:240px;
+              max-width:80%;
+              height:auto;
+              margin:0 auto;
+              border:0;
+              outline:none;
+              text-decoration:none;
+            "
+          >
+        `
+        : `
+          <div
+            style="
+              font-size:32px;
+              line-height:1.2;
+              font-weight:800;
+              color:#1685ef;
+              text-align:center;
+            "
+          >
+            Fikadoo
+          </div>
+        `;
+
+
+      return `
 <!doctype html>
 
 <html lang="pl">
 
 <head>
+
   <meta charset="utf-8">
 
   <meta
     name="viewport"
     content="width=device-width,initial-scale=1"
   >
+
 </head>
 
 
@@ -145,7 +203,9 @@ overflow:hidden;
 >
 
 
+<!-- ================================================= -->
 <!-- LOGO -->
+<!-- ================================================= -->
 
 <tr>
 
@@ -156,28 +216,17 @@ padding:28px 30px 12px;
 "
 >
 
-<img
-src="${logoUrl}"
-alt="Fikadoo"
-width="240"
-style="
-display:block;
-width:240px;
-max-width:80%;
-height:auto;
-margin:0 auto;
-border:0;
-outline:none;
-text-decoration:none;
-"
-/>
+${logoHtml}
 
 </td>
 
 </tr>
 
 
+
+<!-- ================================================= -->
 <!-- NAGŁÓWEK -->
+<!-- ================================================= -->
 
 <tr>
 
@@ -187,6 +236,7 @@ style="
 padding:8px 30px 28px;
 "
 >
+
 
 <div
 style="
@@ -225,12 +275,16 @@ font-size:15px;
 Klient wysłał formularz ze strony internetowej.
 </p>
 
+
 </td>
 
 </tr>
 
 
+
+<!-- ================================================= -->
 <!-- DANE KLIENTA -->
+<!-- ================================================= -->
 
 <tr>
 
@@ -240,6 +294,7 @@ padding:0 30px 8px;
 "
 >
 
+
 <table
 role="presentation"
 width="100%"
@@ -248,10 +303,12 @@ cellpadding="0"
 border="0"
 >
 
+
 ${mailRow(
   'Imię i nazwisko',
   safe(name)
 )}
+
 
 ${mailRow(
   'Telefon',
@@ -259,9 +316,9 @@ ${mailRow(
   <a
     href="tel:${safe(phone)}"
     style="
-    color:#1685ef;
-    text-decoration:none;
-    font-weight:700;
+      color:#1685ef;
+      text-decoration:none;
+      font-weight:700;
     "
   >
     ${safe(phone)}
@@ -269,15 +326,16 @@ ${mailRow(
   `
 )}
 
+
 ${mailRow(
   'E-mail',
   `
   <a
     href="mailto:${safe(email)}"
     style="
-    color:#1685ef;
-    text-decoration:none;
-    font-weight:700;
+      color:#1685ef;
+      text-decoration:none;
+      font-weight:700;
     "
   >
     ${safe(email)}
@@ -285,39 +343,49 @@ ${mailRow(
   `
 )}
 
+
 ${mailRow(
   'Data imprezy',
   safe(date)
 )}
+
 
 ${mailRow(
   'Godzina',
   safe(time)
 )}
 
+
 ${mailRow(
   'Rodzaj imprezy',
   safe(eventType || '-')
 )}
+
 
 ${mailRow(
   'Liczba dzieci',
   safe(children || '-')
 )}
 
+
 ${mailRow(
   'Pakiet',
   safe(selectedPackage || '-')
 )}
 
+
 </table>
+
 
 </td>
 
 </tr>
 
 
+
+<!-- ================================================= -->
 <!-- DODATKOWE INFORMACJE -->
+<!-- ================================================= -->
 
 <tr>
 
@@ -327,6 +395,7 @@ padding:15px 30px 6px;
 "
 >
 
+
 <div
 style="
 background:#fff3f8;
@@ -335,6 +404,7 @@ border-radius:16px;
 padding:20px;
 "
 >
+
 
 <div
 style="
@@ -361,14 +431,19 @@ ${safe(message || '-').replace(/\n/g, '<br>')}
 
 </div>
 
+
 </div>
+
 
 </td>
 
 </tr>
 
 
-<!-- PRZYCISK ODPOWIEDZI -->
+
+<!-- ================================================= -->
+<!-- PRZYCISK -->
+<!-- ================================================= -->
 
 <tr>
 
@@ -378,6 +453,7 @@ style="
 padding:25px 30px 34px;
 "
 >
+
 
 <a
 href="mailto:${safe(email)}"
@@ -394,16 +470,21 @@ font-weight:800;
 Odpowiedz klientowi
 </a>
 
+
 </td>
 
 </tr>
 
 
+
+<!-- ================================================= -->
 <!-- KOLOROWY PASEK -->
+<!-- ================================================= -->
 
 <tr>
 
 <td>
+
 
 <table
 role="presentation"
@@ -414,6 +495,7 @@ border="0"
 >
 
 <tr>
+
 
 <td
 width="33%"
@@ -426,6 +508,7 @@ font-size:0;
 &nbsp;
 </td>
 
+
 <td
 width="34%"
 height="8"
@@ -436,6 +519,7 @@ font-size:0;
 >
 &nbsp;
 </td>
+
 
 <td
 width="33%"
@@ -448,16 +532,21 @@ font-size:0;
 &nbsp;
 </td>
 
+
 </tr>
 
 </table>
+
 
 </td>
 
 </tr>
 
 
+
+<!-- ================================================= -->
 <!-- STOPKA -->
+<!-- ================================================= -->
 
 <tr>
 
@@ -484,6 +573,7 @@ Fikadoo • formularz kontaktowy
 
 </tr>
 
+
 </table>
 
 
@@ -492,77 +582,185 @@ Fikadoo • formularz kontaktowy
 </html>
 `;
 
+    };
+
 
     // =====================================================
-    // WYSYŁKA PRZEZ RESEND
+    // FUNKCJA WYSYŁAJĄCA MAIL
     // =====================================================
 
-    const resendResponse =
-      await fetch(
-        'https://api.resend.com/emails',
-        {
-          method: 'POST',
+    const sendEmail = async (withLogo = true) => {
 
-          headers: {
-            'Authorization':
-              `Bearer ${resendApiKey}`,
+      const payload = {
 
-            'Content-Type':
-              'application/json'
-          },
+        from:
+          'Fikadoo <onboarding@resend.dev>',
 
-          body: JSON.stringify({
-            from:
-              'Fikadoo <onboarding@resend.dev>',
+        to: [
+          mailTo
+        ],
 
-            to: [
-              mailTo
-            ],
+        // Odpowiedź w Gmailu trafi do klienta.
+        reply_to:
+          String(email),
 
-            // Po kliknięciu "Odpowiedz" odpowiadasz klientowi
-            reply_to:
-              String(email),
+        subject:
+          `Nowe zapytanie Fikadoo - ${String(name)}`,
 
-            subject:
-              `Nowe zapytanie Fikadoo - ${String(name)}`,
+        html:
+          createHtml(withLogo)
 
-            html
-          })
-        }
+      };
+
+
+      // ===================================================
+      // LOGO CID
+      // ===================================================
+
+      if (withLogo) {
+
+        payload.attachments = [
+          {
+            path: logoUrl,
+
+            filename:
+              'fikadoo-logo.png',
+
+            content_type:
+              'image/png',
+
+            content_id:
+              'fikadoo-logo'
+          }
+        ];
+
+      }
+
+
+      const response =
+        await fetch(
+          'https://api.resend.com/emails',
+          {
+
+            method: 'POST',
+
+            headers: {
+
+              'Authorization':
+                `Bearer ${resendApiKey}`,
+
+              'Content-Type':
+                'application/json'
+
+            },
+
+            body:
+              JSON.stringify(payload)
+
+          }
+        );
+
+
+      const result =
+        await response
+          .json()
+          .catch(() => ({}));
+
+
+      return {
+        response,
+        result
+      };
+
+    };
+
+
+    // =====================================================
+    // PIERWSZA PRÓBA — Z LOGO
+    // =====================================================
+
+    let {
+      response,
+      result
+    } = await sendEmail(true);
+
+
+    // =====================================================
+    // JEŚLI LOGO SPOWODUJE BŁĄD:
+    // MAIL WYSYŁAMY PONOWNIE BEZ OBRAZKA
+    // =====================================================
+
+    if (!response.ok) {
+
+      console.error(
+        'Wysyłka z logo nie powiodła się:',
+        result
       );
 
 
-    const result =
-      await resendResponse
-        .json()
-        .catch(() => ({}));
+      console.log(
+        'Ponowna próba bez logo...'
+      );
 
 
-    // Jeżeli Resend zwróci błąd
-    if (!resendResponse.ok) {
+      const fallback =
+        await sendEmail(false);
+
+
+      response =
+        fallback.response;
+
+      result =
+        fallback.result;
+
+    }
+
+
+    // =====================================================
+    // JEŚLI NAWET DRUGA PRÓBA SIĘ NIE UDA
+    // =====================================================
+
+    if (!response.ok) {
+
       console.error(
         'Resend error:',
         result
       );
 
+
       throw new Error(
+
         result?.message ||
-        `Resend zwrócił błąd HTTP ${resendResponse.status}.`
+
+        `Resend zwrócił błąd HTTP ${response.status}.`
+
       );
+
     }
 
 
-    // Sukces
+    // =====================================================
+    // SUKCES
+    // =====================================================
+
     return Response.json({
+
       ok: true,
-      message: 'Zapytanie zostało wysłane.'
+
+      message:
+        'Zapytanie zostało wysłane.'
+
     }, {
+
       status: 200,
+
       headers: jsonHeaders
+
     });
 
 
   } catch (error) {
+
 
     console.error(
       'Fikadoo send error:',
@@ -571,6 +769,7 @@ Fikadoo • formularz kontaktowy
 
 
     return Response.json({
+
       ok: false,
 
       message:
@@ -578,8 +777,11 @@ Fikadoo • formularz kontaktowy
         'Nie udało się wysłać wiadomości.'
 
     }, {
+
       status: 500,
+
       headers: jsonHeaders
+
     });
 
   }
@@ -588,21 +790,24 @@ Fikadoo • formularz kontaktowy
 
 
 // =====================================================
-// ADRES FUNKCJI NETLIFY
+// NETLIFY URL
 // =====================================================
 
 export const config = {
+
   path: '/api/send'
+
 };
 
 
 // =====================================================
-// WIERSZE W MAILU
+// WIERSZE DANYCH
 // =====================================================
 
 function mailRow(label, value) {
 
   return `
+
 <tr>
 
 <td
@@ -616,7 +821,9 @@ font-size:13px;
 font-weight:700;
 "
 >
+
 ${label}
+
 </td>
 
 
@@ -629,10 +836,13 @@ color:#0b2b57;
 font-size:15px;
 "
 >
+
 ${value}
+
 </td>
 
 </tr>
+
 `;
 
 }

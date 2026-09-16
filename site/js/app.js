@@ -40,6 +40,17 @@ const API_URL = '/api/send';
 const modals = [...document.querySelectorAll('.modal')];
 const bookingModal = document.getElementById('bookingModal');
 const packageModal = document.getElementById('packageModal');
+const customEventModal =
+  document.getElementById('customEventModal');
+document
+  .querySelectorAll('.js-open-custom-event')
+  .forEach(button => {
+
+    button.addEventListener('click', () => {
+      openModal(customEventModal);
+    });
+
+  });
 
 function localToday() {
   const now = new Date();

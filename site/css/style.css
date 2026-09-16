@@ -1247,6 +1247,64 @@ body.modal-open {
 }
 
 
+
+/* =====================================================
+   KAFELEK "I WIELE INNYCH" / FORMULARZ INDYWIDUALNY
+===================================================== */
+
+.custom-event-card {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  color: var(--ink);
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.custom-event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(16, 42, 86, 0.12);
+}
+
+.custom-event-card:focus-visible {
+  border-color: var(--blue);
+  box-shadow:
+    0 0 0 4px rgba(25, 140, 255, 0.14),
+    0 16px 34px rgba(16, 42, 86, 0.12);
+}
+
+.custom-event-card .more-card-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 900;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.custom-event-card:hover .more-card-cta {
+  color: var(--pink);
+  transform: translateX(3px);
+}
+
+/* Drobne dopracowanie formularza "Inne wydarzenie" */
+#customEventModal .modal-dialog {
+  width: min(760px, 100%);
+}
+
+#customEventModal textarea {
+  min-height: 130px;
+}
+
+#customEventModal .form-status {
+  text-align: center;
+}
+
+
 /* =====================================================
    TABLET
 ===================================================== */
@@ -1492,24 +1550,4 @@ body.modal-open {
     font-size: 30px;
   }
 
-}
-.custom-event-card {
-  width: 100%;
-  font-family: inherit;
-  cursor: pointer;
-  color: var(--ink);
-}
-
-.more-card-cta {
-  display: inline-block;
-  margin-top: 14px;
-
-  color: var(--blue);
-
-  font-size: 14px;
-  font-weight: 900;
-}
-
-.custom-event-card:hover .more-card-cta {
-  color: var(--pink);
 }

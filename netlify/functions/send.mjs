@@ -37,7 +37,7 @@ export default async (request) => {
     const resendApiKey = process.env.RESEND_API_KEY;
 
     // Na czas testów Resend
-    const mailTo = 'gabahaba22@gmail.com';
+    const mailTo = 'kamileq51@gmail.com';
 
     if (!resendApiKey) {
       throw new Error(

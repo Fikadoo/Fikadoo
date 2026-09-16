@@ -1493,3 +1493,23 @@ body.modal-open {
   }
 
 }
+.custom-event-card {
+  width: 100%;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.more-card-cta {
+  display: inline-block;
+  margin-top: 14px;
+
+  color: var(--blue);
+
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.custom-event-card:hover .more-card-cta {
+  color: var(--pink);
+}

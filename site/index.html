@@ -18,7 +18,7 @@
         <img src="assets/logo.png" alt="Fikadoo" class="brand-logo" />
       </a>
 
-      <button class="nav-toggle" aria-label="Otwórz menu" aria-expanded="false">☰</button>
+      <button class="nav-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false">☰</button>
 
       <nav class="main-nav">
         <a href="#oferta">Oferta</a>
@@ -29,7 +29,7 @@
         <a href="#kontakt">Kontakt</a>
       </nav>
 
-      <button class="btn btn-pink js-open-booking" data-source="Nagłówek">📅 Zapytaj o termin</button>
+      <button class="btn btn-pink js-open-booking" type="button" data-source="Nagłówek">📅 Zapytaj o termin</button>
     </div>
   </header>
 
@@ -42,7 +42,7 @@
           <p>Urodziny, wesela, festyny i eventy firmowe – z energią, humorem i atrakcjami, które dzieci uwielbiają.</p>
           <div class="hero-actions">
             <a class="btn btn-blue" href="#oferta">Poznaj ofertę →</a>
-            <button class="btn btn-outline js-open-booking" data-source="Hero">Zapytaj o termin 📅</button>
+            <button class="btn btn-outline js-open-booking" type="button" data-source="Hero">Zapytaj o termin 📅</button>
           </div>
           <div class="hero-badges">
             <div><b>100+</b><span>zorganizowanych imprez</span></div>
@@ -186,6 +186,8 @@
 <button
   class="offer-card more-card custom-event-card js-open-custom-event"
   type="button"
+  aria-haspopup="dialog"
+  aria-controls="customEventModal"
 >
   <span>➕</span>
 
@@ -321,18 +323,18 @@
           <article class="package-card">
             <h3>Mini</h3><p class="package-sub">Idealny na kameralne spotkania</p><div class="price">750 zł</div><small>do 10 dzieci</small>
             <ul><li>2 godziny animacji</li><li>Podstawowe zabawy i gry</li><li>Muzyka i nagłośnienie</li></ul>
-            <button class="btn btn-outline js-package" data-package="Mini">Wybieram Mini</button>
+            <button class="btn btn-outline js-package" type="button" data-package="Mini">Wybieram Mini</button>
           </article>
           <article class="package-card featured">
             <span class="popular">Najpopularniejszy</span>
             <h3>Hopla</h3><p class="package-sub">Najczęściej wybierany pakiet</p><div class="price">1200 zł</div><small>do 20 dzieci</small>
             <ul><li>3 godziny animacji</li><li>Autorskie zabawy i konkursy</li><li>Malowanie twarzy</li><li>Bańki mydlane</li><li>Sprzęt, rekwizyty i muzyka</li></ul>
-            <button class="btn btn-pink js-package" data-package="Hopla">Wybieram Hopla</button>
+            <button class="btn btn-pink js-package" type="button" data-package="Hopla">Wybieram Hopla</button>
           </article>
           <article class="package-card">
             <h3>Mega Hopla</h3><p class="package-sub">Dla dużych imprez i wyjątkowych okazji</p><div class="price">1800 zł</div><small>do 30 dzieci</small>
             <ul><li>4 godziny animacji</li><li>Malowanie twarzy i brokaty</li><li>Wata cukrowa</li><li>Maskotka na żywo</li><li>Sprzęt, rekwizyty i muzyka</li></ul>
-            <button class="btn btn-outline js-package" data-package="Mega Hopla">Wybieram Mega Hopla</button>
+            <button class="btn btn-outline js-package" type="button" data-package="Mega Hopla">Wybieram Mega Hopla</button>
           </article>
         </div>
       </div>
@@ -355,7 +357,7 @@
           <span class="eyebrow light">Gotowi na zabawę?</span>
           <h2>Zorganizujmy razem niezapomnianą imprezę!</h2>
         </div>
-        <button class="btn btn-yellow js-open-booking" data-source="CTA">📅 Zapytaj o termin →</button>
+        <button class="btn btn-yellow js-open-booking" type="button" data-source="CTA">📅 Zapytaj o termin →</button>
       </div>
     </section>
   </main>
@@ -372,7 +374,7 @@
   <div class="modal" id="bookingModal" aria-hidden="true">
     <div class="modal-backdrop js-close-modal"></div>
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
-      <button class="modal-close js-close-modal" aria-label="Zamknij">×</button>
+      <button class="modal-close js-close-modal" type="button" aria-label="Zamknij">×</button>
       <span class="eyebrow">Sprawdź dostępność</span>
       <h2 id="bookingTitle">Zapytaj o termin</h2>
       <p class="modal-intro">Wpisz planowaną datę, godzinę i kilka szczegółów. Odpowiemy z dostępnością i propozycją.</p>
@@ -380,10 +382,10 @@
         <input type="hidden" name="source" value="Formularz terminu" />
         <input type="hidden" name="package" value="" />
         <div class="form-grid two">
-          <label>Imię i nazwisko<input type="text" name="name" required placeholder="Np. Anna Kowalska" /></label>
-          <label>Telefon<input type="tel" name="phone" required placeholder="Np. 600 123 456" /></label>
+          <label>Imię i nazwisko<input type="text" name="name" autocomplete="name" required placeholder="Np. Anna Kowalska" /></label>
+          <label>Telefon<input type="tel" name="phone" autocomplete="tel" required placeholder="Np. 600 123 456" /></label>
         </div>
-        <label>E-mail<input type="email" name="email" required placeholder="twoj@email.pl" /></label>
+        <label>E-mail<input type="email" name="email" autocomplete="email" required placeholder="twoj@email.pl" /></label>
         <div class="form-grid two">
           <label>Data imprezy<input type="date" name="date" required /></label>
           <label>Godzina<input type="time" name="time" required /></label>
@@ -391,7 +393,26 @@
         <div class="form-grid two">
           <label>Rodzaj imprezy
             <select name="event_type" required>
-              <option value="">Wybierz...</option><option>Urodziny</option><option>Wesele</option><option>Festyn</option><option>Event firmowy</option><option>Inne</option>
+              <option value="">Wybierz...</option>
+              <option>Urodziny</option>
+              <option>Wesele</option>
+              <option>Komunia</option>
+              <option>Chrzciny</option>
+              <option>Impreza rodzinna</option>
+              <option>Piknik</option>
+              <option>Festyn</option>
+              <option>Impreza firmowa</option>
+              <option>Dzień Dziecka</option>
+              <option>Bal lub zabawa szkolna</option>
+              <option>Mikołajki</option>
+              <option>Andrzejki</option>
+              <option>Halloween</option>
+              <option>Karnawał</option>
+              <option>Dożynki</option>
+              <option>Dni Miasta</option>
+              <option>Otwarcie lokalu</option>
+              <option>Event specjalny</option>
+              <option>Inne</option>
             </select>
           </label>
           <label>Liczba dzieci<input type="number" name="children" min="1" max="200" placeholder="Np. 15" /></label>
@@ -407,7 +428,7 @@
   <div class="modal" id="packageModal" aria-hidden="true">
     <div class="modal-backdrop js-close-modal"></div>
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="packageTitle">
-      <button class="modal-close js-close-modal" aria-label="Zamknij">×</button>
+      <button class="modal-close js-close-modal" type="button" aria-label="Zamknij">×</button>
       <span class="eyebrow">Wybrany pakiet</span>
       <h2 id="packageTitle">Pakiet <span id="selectedPackageName">Hopla</span></h2>
       <div id="packageDetails" class="package-details"></div>
@@ -430,9 +451,10 @@
       </form>
     </div>
   </div>
-<div
-  class="modal"
-  id="customEventModal"
+
+  <div
+    class="modal"
+    id="customEventModal"
   aria-hidden="true"
 >
 

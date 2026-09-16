@@ -34,202 +34,698 @@ const packageData = {
   }
 };
 
-// Nowoczesna Netlify Function ma własną prostą ścieżkę:
+
+// =====================================================
+// BACKEND
+// =====================================================
+
 const API_URL = '/api/send';
 
-const modals = [...document.querySelectorAll('.modal')];
-const bookingModal = document.getElementById('bookingModal');
-const packageModal = document.getElementById('packageModal');
+
+// =====================================================
+// MODALE
+// =====================================================
+
+const modals = [
+  ...document.querySelectorAll('.modal')
+];
+
+const bookingModal =
+  document.getElementById('bookingModal');
+
+const packageModal =
+  document.getElementById('packageModal');
+
 const customEventModal =
   document.getElementById('customEventModal');
-document
-  .querySelectorAll('.js-open-custom-event')
-  .forEach(button => {
 
-    button.addEventListener('click', () => {
-      openModal(customEventModal);
-    });
 
-  });
+// =====================================================
+// DATA MINIMALNA = DZISIAJ
+// =====================================================
 
 function localToday() {
   const now = new Date();
-  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-  return local.toISOString().slice(0, 10);
+
+  const local =
+    new Date(
+      now.getTime() -
+      now.getTimezoneOffset() * 60000
+    );
+
+  return local
+    .toISOString()
+    .slice(0, 10);
 }
 
-document.querySelectorAll('input[type="date"]').forEach(input => {
-  input.min = localToday();
-});
+
+document
+  .querySelectorAll('input[type="date"]')
+  .forEach(input => {
+
+    input.min = localToday();
+
+  });
+
+
+// =====================================================
+// OTWIERANIE MODALA
+// =====================================================
 
 function openModal(modal) {
+
   if (!modal) return;
 
-  modals.forEach(m => {
-    m.classList.remove('is-open');
-    m.setAttribute('aria-hidden', 'true');
+
+  // Zamknij inne modale
+  modals.forEach(item => {
+
+    item.classList.remove('is-open');
+
+    item.setAttribute(
+      'aria-hidden',
+      'true'
+    );
+
   });
 
-  modal.classList.add('is-open');
-  modal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal-open');
 
+  // Otwórz wybrany
+  modal.classList.add('is-open');
+
+  modal.setAttribute(
+    'aria-hidden',
+    'false'
+  );
+
+
+  document.body.classList.add(
+    'modal-open'
+  );
+
+
+  // Wyczyść stary komunikat formularza
+  const status =
+    modal.querySelector('.form-status');
+
+  if (status) {
+
+    status.className =
+      'form-status';
+
+    status.textContent = '';
+
+  }
+
+
+  // Ustaw fokus
   setTimeout(() => {
-    modal.querySelector('input, select, textarea, button')?.focus();
+
+    modal
+      .querySelector(
+        'input:not([type="hidden"]), select, textarea, button'
+      )
+      ?.focus();
+
   }, 50);
+
 }
+
+
+// =====================================================
+// ZAMYKANIE MODALA
+// =====================================================
 
 function closeModal(modal) {
+
   if (!modal) return;
 
-  modal.classList.remove('is-open');
-  modal.setAttribute('aria-hidden', 'true');
 
-  if (!document.querySelector('.modal.is-open')) {
-    document.body.classList.remove('modal-open');
+  modal.classList.remove(
+    'is-open'
+  );
+
+
+  modal.setAttribute(
+    'aria-hidden',
+    'true'
+  );
+
+
+  if (
+    !document.querySelector(
+      '.modal.is-open'
+    )
+  ) {
+
+    document.body.classList.remove(
+      'modal-open'
+    );
+
   }
+
 }
 
-// Zapytaj o termin
-document.querySelectorAll('.js-open-booking').forEach(button => {
-  button.addEventListener('click', () => {
-    if (!bookingModal) return;
 
-    const source = bookingModal.querySelector('[name="source"]');
-    const packageInput = bookingModal.querySelector('[name="package"]');
+// =====================================================
+// ZAPYTAJ O TERMIN
+// =====================================================
 
-    if (source) {
-      source.value = button.dataset.source || 'Zapytaj o termin';
+document
+  .querySelectorAll('.js-open-booking')
+  .forEach(button => {
+
+    button.addEventListener(
+      'click',
+      () => {
+
+        if (!bookingModal) return;
+
+
+        const source =
+          bookingModal.querySelector(
+            '[name="source"]'
+          );
+
+        const packageInput =
+          bookingModal.querySelector(
+            '[name="package"]'
+          );
+
+
+        if (source) {
+
+          source.value =
+            button.dataset.source ||
+            'Zapytaj o termin';
+
+        }
+
+
+        if (packageInput) {
+
+          packageInput.value = '';
+
+        }
+
+
+        openModal(bookingModal);
+
+      }
+    );
+
+  });
+
+
+// =====================================================
+// "I WIELE INNYCH"
+// INDYWIDUALNE WYDARZENIE
+// =====================================================
+
+document
+  .querySelectorAll(
+    '.js-open-custom-event'
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      'click',
+      () => {
+
+        if (!customEventModal) return;
+
+
+        const source =
+          customEventModal.querySelector(
+            '[name="source"]'
+          );
+
+        const packageInput =
+          customEventModal.querySelector(
+            '[name="package"]'
+          );
+
+
+        if (source) {
+
+          source.value =
+            'Inne wydarzenie';
+
+        }
+
+
+        if (packageInput) {
+
+          packageInput.value = '';
+
+        }
+
+
+        openModal(
+          customEventModal
+        );
+
+      }
+    );
+
+  });
+
+
+// =====================================================
+// WYBÓR PAKIETU
+// =====================================================
+
+document
+  .querySelectorAll('.js-package')
+  .forEach(button => {
+
+    button.addEventListener(
+      'click',
+      () => {
+
+        const name =
+          button.dataset.package;
+
+        const selectedPackage =
+          packageData[name];
+
+
+        if (
+          !selectedPackage ||
+          !packageModal
+        ) {
+          return;
+        }
+
+
+        const selectedName =
+          document.getElementById(
+            'selectedPackageName'
+          );
+
+        const packageInput =
+          document.getElementById(
+            'packageInput'
+          );
+
+        const details =
+          document.getElementById(
+            'packageDetails'
+          );
+
+
+        if (selectedName) {
+
+          selectedName.textContent =
+            name;
+
+        }
+
+
+        if (packageInput) {
+
+          packageInput.value =
+            name;
+
+        }
+
+
+        if (details) {
+
+          details.innerHTML = `
+            <h3>
+              ${selectedPackage.price}
+              <small>
+                • ${selectedPackage.audience}
+              </small>
+            </h3>
+
+            <ul>
+              ${
+                selectedPackage.items
+                  .map(
+                    item =>
+                      `<li>${item}</li>`
+                  )
+                  .join('')
+              }
+            </ul>
+          `;
+
+        }
+
+
+        openModal(packageModal);
+
+      }
+    );
+
+  });
+
+
+// =====================================================
+// ZAMYKANIE MODALI PRZYCISKIEM / TŁEM
+// =====================================================
+
+document
+  .querySelectorAll('.js-close-modal')
+  .forEach(element => {
+
+    element.addEventListener(
+      'click',
+      () => {
+
+        closeModal(
+          element.closest('.modal')
+        );
+
+      }
+    );
+
+  });
+
+
+// =====================================================
+// ESC = ZAMKNIJ MODAL
+// =====================================================
+
+document.addEventListener(
+  'keydown',
+  event => {
+
+    if (event.key !== 'Escape') {
+      return;
     }
 
-    if (packageInput) {
-      packageInput.value = '';
-    }
 
-    openModal(bookingModal);
-  });
-});
+    document
+      .querySelectorAll(
+        '.modal.is-open'
+      )
+      .forEach(modal => {
 
-// Wybór pakietu
-document.querySelectorAll('.js-package').forEach(button => {
-  button.addEventListener('click', () => {
-    const name = button.dataset.package;
-    const p = packageData[name];
+        closeModal(modal);
 
-    if (!p || !packageModal) return;
-
-    const selectedName = document.getElementById('selectedPackageName');
-    const packageInput = document.getElementById('packageInput');
-    const details = document.getElementById('packageDetails');
-
-    if (selectedName) selectedName.textContent = name;
-    if (packageInput) packageInput.value = name;
-
-    if (details) {
-      details.innerHTML = `
-        <h3>${p.price} <small>• ${p.audience}</small></h3>
-        <ul>${p.items.map(item => `<li>${item}</li>`).join('')}</ul>
-      `;
-    }
-
-    openModal(packageModal);
-  });
-});
-
-// Zamykanie modali
-document.querySelectorAll('.js-close-modal').forEach(element => {
-  element.addEventListener('click', () => {
-    closeModal(element.closest('.modal'));
-  });
-});
-
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape') {
-    document.querySelectorAll('.modal.is-open').forEach(closeModal);
-  }
-});
-
-// Menu mobilne
-const navToggle = document.querySelector('.nav-toggle');
-const mainNav = document.querySelector('.main-nav');
-
-if (navToggle && mainNav) {
-  navToggle.addEventListener('click', () => {
-    const open = mainNav.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(open));
-  });
-
-  mainNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mainNav.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-}
-
-// Formularze
-document.querySelectorAll('.inquiry-form').forEach(form => {
-  form.addEventListener('submit', async event => {
-    event.preventDefault();
-
-    const status = form.querySelector('.form-status');
-    const submit = form.querySelector('button[type="submit"]');
-
-    if (!status || !submit) return;
-
-    status.className = 'form-status';
-    status.textContent = 'Wysyłanie...';
-    submit.disabled = true;
-
-    const payload = Object.fromEntries(new FormData(form).entries());
-
-    try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(payload)
       });
 
-      const contentType = response.headers.get('content-type') || '';
-      const raw = await response.text();
+  }
+);
 
-      if (!contentType.includes('application/json')) {
-        throw new Error(
-          `Backend zwrócił odpowiedź HTTP ${response.status}, ale nie JSON.`
+
+// =====================================================
+// MENU MOBILNE
+// =====================================================
+
+const navToggle =
+  document.querySelector(
+    '.nav-toggle'
+  );
+
+const mainNav =
+  document.querySelector(
+    '.main-nav'
+  );
+
+
+if (
+  navToggle &&
+  mainNav
+) {
+
+  navToggle.addEventListener(
+    'click',
+    () => {
+
+      const open =
+        mainNav.classList.toggle(
+          'open'
         );
-      }
 
-      let data;
-      try {
-        data = raw ? JSON.parse(raw) : {};
-      } catch {
-        throw new Error('Nie udało się odczytać odpowiedzi backendu.');
-      }
 
-      if (!response.ok || data.ok !== true) {
-        throw new Error(data.message || `Błąd HTTP ${response.status}`);
-      }
+      navToggle.setAttribute(
+        'aria-expanded',
+        String(open)
+      );
 
-      status.classList.add('success');
-      status.textContent = data.message || 'Zapytanie zostało wysłane.';
-      form.reset();
-
-      setTimeout(() => {
-        closeModal(form.closest('.modal'));
-      }, 1500);
-
-    } catch (error) {
-      console.error('Błąd formularza:', error);
-      status.classList.add('error');
-      status.textContent = 'Nie udało się wysłać formularza: ' + error.message;
-
-    } finally {
-      submit.disabled = false;
     }
-  });
-});
+  );
 
-console.log('Fikadoo: app.js załadowany poprawnie.');
+
+  mainNav
+    .querySelectorAll('a')
+    .forEach(link => {
+
+      link.addEventListener(
+        'click',
+        () => {
+
+          mainNav.classList.remove(
+            'open'
+          );
+
+
+          navToggle.setAttribute(
+            'aria-expanded',
+            'false'
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+// =====================================================
+// FORMULARZE
+// =====================================================
+
+document
+  .querySelectorAll('.inquiry-form')
+  .forEach(form => {
+
+    form.addEventListener(
+      'submit',
+      async event => {
+
+        event.preventDefault();
+
+
+        const status =
+          form.querySelector(
+            '.form-status'
+          );
+
+        const submit =
+          form.querySelector(
+            'button[type="submit"]'
+          );
+
+
+        if (
+          !status ||
+          !submit
+        ) {
+          return;
+        }
+
+
+        // Komunikat wysyłania
+        status.className =
+          'form-status';
+
+        status.textContent =
+          'Wysyłanie...';
+
+
+        submit.disabled = true;
+
+
+        // Pobierz wszystkie pola formularza
+        // w tym:
+        // people
+        // location
+        // event_type
+        // children itd.
+        const payload =
+          Object.fromEntries(
+            new FormData(form)
+              .entries()
+          );
+
+
+        console.log(
+          'Wysyłane dane:',
+          payload
+        );
+
+
+        try {
+
+          const response =
+            await fetch(
+              API_URL,
+              {
+
+                method: 'POST',
+
+                headers: {
+
+                  'Content-Type':
+                    'application/json',
+
+                  'Accept':
+                    'application/json'
+
+                },
+
+                body:
+                  JSON.stringify(
+                    payload
+                  )
+
+              }
+            );
+
+
+          const contentType =
+            response.headers.get(
+              'content-type'
+            ) || '';
+
+
+          const raw =
+            await response.text();
+
+
+          // Backend powinien zwrócić JSON
+          if (
+            !contentType.includes(
+              'application/json'
+            )
+          ) {
+
+            throw new Error(
+              `Backend zwrócił odpowiedź HTTP ${response.status}, ale nie JSON.`
+            );
+
+          }
+
+
+          let data;
+
+
+          try {
+
+            data =
+              raw
+                ? JSON.parse(raw)
+                : {};
+
+          } catch {
+
+            throw new Error(
+              'Nie udało się odczytać odpowiedzi backendu.'
+            );
+
+          }
+
+
+          // Backend zwrócił błąd
+          if (
+            !response.ok ||
+            data.ok !== true
+          ) {
+
+            throw new Error(
+              data.message ||
+              `Błąd HTTP ${response.status}`
+            );
+
+          }
+
+
+          // =================================================
+          // SUKCES
+          // =================================================
+
+          status.classList.add(
+            'success'
+          );
+
+
+          status.textContent =
+            data.message ||
+            'Zapytanie zostało wysłane.';
+
+
+          form.reset();
+
+
+          // Po resecie ponownie ustaw minimalną datę
+          form
+            .querySelectorAll(
+              'input[type="date"]'
+            )
+            .forEach(input => {
+
+              input.min =
+                localToday();
+
+            });
+
+
+          // Zamknij modal po 1,5 sekundy
+          setTimeout(() => {
+
+            const modal =
+              form.closest('.modal');
+
+
+            if (modal) {
+
+              closeModal(modal);
+
+            }
+
+          }, 1500);
+
+
+        } catch (error) {
+
+          // =================================================
+          // BŁĄD
+          // =================================================
+
+          console.error(
+            'Błąd formularza:',
+            error
+          );
+
+
+          status.classList.add(
+            'error'
+          );
+
+
+          status.textContent =
+            'Nie udało się wysłać formularza: ' +
+            error.message;
+
+
+        } finally {
+
+          submit.disabled = false;
+
+        }
+
+      }
+    );
+
+  });
+
+
+console.log(
+  'Fikadoo: app.js załadowany poprawnie.'
+);

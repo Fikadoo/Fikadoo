@@ -9,34 +9,39 @@ export default async (request) => {
   // =====================================================
 
   if (request.method === 'GET') {
-    return Response.json({
-      ok: true,
-      message: 'Fikadoo mail API działa. Formularz wysyła dane metodą POST.'
-    }, {
-      status: 200,
-      headers: jsonHeaders
-    });
+    return Response.json(
+      {
+        ok: true,
+        message: 'Fikadoo mail API działa.'
+      },
+      {
+        status: 200,
+        headers: jsonHeaders
+      }
+    );
   }
 
   if (request.method !== 'POST') {
-    return Response.json({
-      ok: false,
-      message: `Metoda ${request.method} nie jest obsługiwana.`
-    }, {
-      status: 405,
-      headers: jsonHeaders
-    });
+    return Response.json(
+      {
+        ok: false,
+        message: `Metoda ${request.method} nie jest obsługiwana.`
+      },
+      {
+        status: 405,
+        headers: jsonHeaders
+      }
+    );
   }
 
   try {
-
     // =====================================================
     // KONFIGURACJA
     // =====================================================
 
     const resendApiKey = process.env.RESEND_API_KEY;
 
-    // Na czas testów Resend
+    // MAIL, NA KTÓRY MAJĄ PRZYCHODZIĆ FORMULARZE
     const mailTo = 'kamileq51@gmail.com';
 
     if (!resendApiKey) {
@@ -57,11 +62,20 @@ export default async (request) => {
       email,
       date,
       time,
+
       package: selectedPackage,
       event_type: eventType,
+
       children,
-      message
+      people,
+      location,
+      message,
+      source
     } = data || {};
+
+    // =====================================================
+    // WALIDACJA
+    // =====================================================
 
     if (
       !name ||
@@ -70,17 +84,20 @@ export default async (request) => {
       !date ||
       !time
     ) {
-      return Response.json({
-        ok: false,
-        message: 'Uzupełnij wszystkie wymagane pola.'
-      }, {
-        status: 400,
-        headers: jsonHeaders
-      });
+      return Response.json(
+        {
+          ok: false,
+          message: 'Uzupełnij wszystkie wymagane pola.'
+        },
+        {
+          status: 400,
+          headers: jsonHeaders
+        }
+      );
     }
 
     // =====================================================
-    // ZABEZPIECZENIE DANYCH
+    // ZABEZPIECZENIE HTML
     // =====================================================
 
     const safe = (value) =>
@@ -92,15 +109,13 @@ export default async (request) => {
         .replace(/'/g, '&#039;');
 
     // =====================================================
-    // AUTOMATYCZNY ADRES LOGO
+    // LOGO
     // =====================================================
 
     const origin = new URL(request.url).origin;
 
     const logoUrl =
       `${origin}/assets/logo.png`;
-
-    console.log('Logo URL:', logoUrl);
 
     // =====================================================
     // HTML MAILA
@@ -112,16 +127,13 @@ export default async (request) => {
 <html lang="pl">
 
 <head>
-
   <meta charset="utf-8">
 
   <meta
     name="viewport"
     content="width=device-width,initial-scale=1"
   >
-
 </head>
-
 
 <body
 style="
@@ -132,7 +144,6 @@ font-family:Arial,Helvetica,sans-serif;
 color:#0b2b57;
 "
 >
-
 
 <table
 role="presentation"
@@ -146,11 +157,9 @@ padding:30px 12px;
 "
 >
 
-
 <tr>
 
 <td align="center">
-
 
 <table
 role="presentation"
@@ -165,7 +174,6 @@ border-radius:22px;
 overflow:hidden;
 "
 >
-
 
 <!-- ================================================= -->
 <!-- LOGO -->
@@ -200,7 +208,6 @@ text-decoration:none;
 
 </tr>
 
-
 <!-- ================================================= -->
 <!-- NAGŁÓWEK -->
 <!-- ================================================= -->
@@ -213,7 +220,6 @@ style="
 padding:8px 30px 28px;
 "
 >
-
 
 <div
 style="
@@ -230,7 +236,6 @@ border-radius:999px;
 NOWE ZAPYTANIE
 </div>
 
-
 <h1
 style="
 margin:14px 0 8px;
@@ -240,7 +245,6 @@ color:#0b2b57;
 >
 Nowe zapytanie Fikadoo
 </h1>
-
 
 <p
 style="
@@ -252,11 +256,9 @@ font-size:15px;
 Klient wysłał formularz ze strony internetowej.
 </p>
 
-
 </td>
 
 </tr>
-
 
 <!-- ================================================= -->
 <!-- DANE KLIENTA -->
@@ -270,7 +272,6 @@ padding:0 30px 8px;
 "
 >
 
-
 <table
 role="presentation"
 width="100%"
@@ -279,12 +280,10 @@ cellpadding="0"
 border="0"
 >
 
-
 ${mailRow(
   'Imię i nazwisko',
   safe(name)
 )}
-
 
 ${mailRow(
   'Telefon',
@@ -302,7 +301,6 @@ ${mailRow(
   `
 )}
 
-
 ${mailRow(
   'E-mail',
   `
@@ -319,44 +317,51 @@ ${mailRow(
   `
 )}
 
-
 ${mailRow(
   'Data imprezy',
   safe(date)
 )}
-
 
 ${mailRow(
   'Godzina',
   safe(time)
 )}
 
-
 ${mailRow(
-  'Rodzaj imprezy',
+  'Rodzaj wydarzenia',
   safe(eventType || '-')
 )}
-
 
 ${mailRow(
   'Liczba dzieci',
   safe(children || '-')
 )}
 
+${mailRow(
+  'Liczba wszystkich osób',
+  safe(people || '-')
+)}
+
+${mailRow(
+  'Miejsce wydarzenia',
+  safe(location || '-')
+)}
 
 ${mailRow(
   'Pakiet',
   safe(selectedPackage || '-')
 )}
 
+${mailRow(
+  'Źródło zapytania',
+  safe(source || '-')
+)}
 
 </table>
-
 
 </td>
 
 </tr>
-
 
 <!-- ================================================= -->
 <!-- DODATKOWE INFORMACJE -->
@@ -370,7 +375,6 @@ padding:15px 30px 6px;
 "
 >
 
-
 <div
 style="
 background:#fff3f8;
@@ -379,7 +383,6 @@ border-radius:16px;
 padding:20px;
 "
 >
-
 
 <div
 style="
@@ -393,7 +396,6 @@ margin-bottom:9px;
 DODATKOWE INFORMACJE
 </div>
 
-
 <div
 style="
 font-size:15px;
@@ -406,14 +408,11 @@ ${safe(message || '-').replace(/\n/g, '<br>')}
 
 </div>
 
-
 </div>
-
 
 </td>
 
 </tr>
-
 
 <!-- ================================================= -->
 <!-- PRZYCISK ODPOWIEDZI -->
@@ -427,7 +426,6 @@ style="
 padding:25px 30px 34px;
 "
 >
-
 
 <a
 href="mailto:${safe(email)}"
@@ -444,11 +442,9 @@ font-weight:800;
 Odpowiedz klientowi
 </a>
 
-
 </td>
 
 </tr>
-
 
 <!-- ================================================= -->
 <!-- KOLOROWY PASEK -->
@@ -457,7 +453,6 @@ Odpowiedz klientowi
 <tr>
 
 <td>
-
 
 <table
 role="presentation"
@@ -468,7 +463,6 @@ border="0"
 >
 
 <tr>
-
 
 <td
 width="33%"
@@ -481,7 +475,6 @@ font-size:0;
 &nbsp;
 </td>
 
-
 <td
 width="34%"
 height="8"
@@ -492,7 +485,6 @@ font-size:0;
 >
 &nbsp;
 </td>
-
 
 <td
 width="33%"
@@ -505,16 +497,13 @@ font-size:0;
 &nbsp;
 </td>
 
-
 </tr>
 
 </table>
 
-
 </td>
 
 </tr>
-
 
 <!-- ================================================= -->
 <!-- STOPKA -->
@@ -537,16 +526,13 @@ Fikadoo • formularz kontaktowy
 
 </tr>
 
-
 </table>
-
 
 </td>
 
 </tr>
 
 </table>
-
 
 </body>
 
@@ -572,7 +558,6 @@ Fikadoo • formularz kontaktowy
           },
 
           body: JSON.stringify({
-
             from:
               'Fikadoo <onboarding@resend.dev>',
 
@@ -580,7 +565,6 @@ Fikadoo • formularz kontaktowy
               mailTo
             ],
 
-            // Odpowiedź w Gmailu trafia do klienta
             reply_to:
               String(email),
 
@@ -588,85 +572,61 @@ Fikadoo • formularz kontaktowy
               `Nowe zapytanie Fikadoo - ${String(name)}`,
 
             html
-
           })
-
         }
       );
-
 
     const result =
       await resendResponse
         .json()
         .catch(() => ({}));
 
-
     if (!resendResponse.ok) {
-
       console.error(
         'Resend error:',
         result
       );
 
-
       throw new Error(
-
         result?.message ||
-
         `Resend zwrócił błąd HTTP ${resendResponse.status}.`
-
       );
-
     }
-
 
     // =====================================================
     // SUKCES
     // =====================================================
 
-    return Response.json({
-
-      ok: true,
-
-      message:
-        'Zapytanie zostało wysłane.'
-
-    }, {
-
-      status: 200,
-
-      headers: jsonHeaders
-
-    });
-
+    return Response.json(
+      {
+        ok: true,
+        message: 'Zapytanie zostało wysłane.'
+      },
+      {
+        status: 200,
+        headers: jsonHeaders
+      }
+    );
 
   } catch (error) {
-
-
     console.error(
       'Fikadoo send error:',
       error
     );
 
-
-    return Response.json({
-
-      ok: false,
-
-      message:
-        error?.message ||
-        'Nie udało się wysłać wiadomości.'
-
-    }, {
-
-      status: 500,
-
-      headers: jsonHeaders
-
-    });
-
+    return Response.json(
+      {
+        ok: false,
+        message:
+          error?.message ||
+          'Nie udało się wysłać wiadomości.'
+      },
+      {
+        status: 500,
+        headers: jsonHeaders
+      }
+    );
   }
-
 };
 
 
@@ -675,20 +635,16 @@ Fikadoo • formularz kontaktowy
 // =====================================================
 
 export const config = {
-
   path: '/api/send'
-
 };
 
 
 // =====================================================
-// WIERSZE DANYCH
+// WIERSZE W MAILU
 // =====================================================
 
 function mailRow(label, value) {
-
   return `
-
 <tr>
 
 <td
@@ -702,11 +658,8 @@ font-size:13px;
 font-weight:700;
 "
 >
-
 ${label}
-
 </td>
-
 
 <td
 style="
@@ -717,13 +670,9 @@ color:#0b2b57;
 font-size:15px;
 "
 >
-
 ${value}
-
 </td>
 
 </tr>
-
 `;
-
 }

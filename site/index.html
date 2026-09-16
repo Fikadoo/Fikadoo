@@ -183,14 +183,23 @@
           <h3>Eventy specjalne</h3>
         </article>
 
-        <article class="offer-card more-card">
-          <span>➕</span>
-          <h3>I wiele innych!</h3>
-          <p>
-            Masz inny rodzaj wydarzenia? Napisz do nas — dopasujemy animacje
-            do Twojej imprezy.
-          </p>
-        </article>
+<button
+  class="offer-card more-card custom-event-card js-open-custom-event"
+  type="button"
+>
+  <span>➕</span>
+
+  <h3>I wiele innych!</h3>
+
+  <p>
+    Organizujesz inne wydarzenie?
+    Kliknij tutaj i opisz nam swój pomysł.
+  </p>
+
+  <strong class="more-card-cta">
+    Opisz wydarzenie →
+  </strong>
+</button>
 
       </div>
 
@@ -421,7 +430,224 @@
       </form>
     </div>
   </div>
+<div
+  class="modal"
+  id="customEventModal"
+  aria-hidden="true"
+>
 
+  <div class="modal-backdrop js-close-modal"></div>
+
+  <div
+    class="modal-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="customEventTitle"
+  >
+
+    <button
+      class="modal-close js-close-modal"
+      aria-label="Zamknij"
+      type="button"
+    >
+      ×
+    </button>
+
+
+    <span class="eyebrow">
+      🎉 Indywidualne wydarzenie
+    </span>
+
+    <h2 id="customEventTitle">
+      Opowiedz nam o swojej imprezie
+    </h2>
+
+    <p class="modal-intro">
+      Napisz kilka szczegółów, a przygotujemy propozycję
+      dopasowaną do Twojego wydarzenia.
+    </p>
+
+
+    <form
+      class="inquiry-form"
+      data-form-type="custom-event"
+    >
+
+      <input
+        type="hidden"
+        name="source"
+        value="Inne wydarzenie"
+      >
+
+      <input
+        type="hidden"
+        name="package"
+        value=""
+      >
+
+
+      <div class="form-grid two">
+
+        <label>
+          Imię i nazwisko
+
+          <input
+            type="text"
+            name="name"
+            required
+            placeholder="Np. Anna Kowalska"
+          >
+        </label>
+
+
+        <label>
+          Telefon
+
+          <input
+            type="tel"
+            name="phone"
+            required
+            placeholder="Np. 600 123 456"
+          >
+        </label>
+
+      </div>
+
+
+      <label>
+        E-mail
+
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="twoj@email.pl"
+        >
+      </label>
+
+
+      <label>
+        Jakie wydarzenie organizujesz?
+
+        <input
+          type="text"
+          name="event_type"
+          required
+          placeholder="Np. otwarcie lokalu, piknik osiedlowy..."
+        >
+      </label>
+
+
+      <div class="form-grid two">
+
+        <label>
+          Data wydarzenia
+
+          <input
+            type="date"
+            name="date"
+            required
+          >
+        </label>
+
+
+        <label>
+          Godzina
+
+          <input
+            type="time"
+            name="time"
+            required
+          >
+        </label>
+
+      </div>
+
+
+      <div class="form-grid two">
+
+        <label>
+          Liczba dzieci
+
+          <input
+            type="number"
+            name="children"
+            min="0"
+            max="1000"
+            placeholder="Np. 30"
+          >
+        </label>
+
+
+        <label>
+          Liczba wszystkich osób
+
+          <input
+            type="number"
+            name="people"
+            min="1"
+            max="5000"
+            placeholder="Np. 100"
+          >
+        </label>
+
+      </div>
+
+
+      <label>
+        Miejsce wydarzenia
+
+        <input
+          type="text"
+          name="location"
+          placeholder="Np. Rzeszów, sala / plener"
+        >
+      </label>
+
+
+      <label>
+        Opisz wydarzenie
+
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Napisz, jak wygląda wydarzenie, jaki jest wiek dzieci, jakie atrakcje Cię interesują i czego potrzebujesz..."
+        ></textarea>
+      </label>
+
+
+      <label class="checkbox">
+
+        <input
+          type="checkbox"
+          required
+        >
+
+        <span>
+          Wyrażam zgodę na kontakt w sprawie zapytania.
+        </span>
+
+      </label>
+
+
+      <button
+        class="btn btn-pink full"
+        type="submit"
+      >
+        Wyślij zapytanie
+      </button>
+
+
+      <p
+        class="form-status"
+        aria-live="polite"
+      ></p>
+
+    </form>
+
+  </div>
+
+</div>
   <script src="js/app.js"></script>
 </body>
 </html>

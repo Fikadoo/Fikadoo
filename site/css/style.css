@@ -1551,3 +1551,14 @@ body.modal-open {
   }
 
 }
+.bubble-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bubble-icon img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}

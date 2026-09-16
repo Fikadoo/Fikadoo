@@ -1552,9 +1552,9 @@ body.modal-open {
 
 }
 .bubble-icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .bubble-icon img {

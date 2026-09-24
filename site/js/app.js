@@ -283,11 +283,19 @@ document.querySelectorAll('.inquiry-form').forEach(form => {
 
 // Tryb jasny / ciemny.
 const themeToggle = document.getElementById('themeToggle');
+const heroThemeImage = document.getElementById('heroThemeImage');
 
 function applyTheme(theme) {
   const dark = theme === 'dark';
 
   document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+
+  // Zmieniamy kolaż razem z motywem strony.
+  if (heroThemeImage) {
+    heroThemeImage.src = dark
+      ? 'assets/hero-dark.png'
+      : 'assets/hero-light.png';
+  }
 
   if (!themeToggle) return;
 

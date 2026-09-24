@@ -281,4 +281,64 @@ document.querySelectorAll('.inquiry-form').forEach(form => {
   });
 });
 
+// Tryb jasny / ciemny.
+const themeToggle = document.getElementById('themeToggle');
+
+function applyTheme(theme) {
+  const dark = theme === 'dark';
+
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+
+  if (!themeToggle) return;
+
+  const icon = themeToggle.querySelector('.theme-toggle-icon');
+  themeToggle.setAttribute('aria-pressed', String(dark));
+  themeToggle.setAttribute(
+    'aria-label',
+    dark ? 'Włącz tryb jasny' : 'Włącz tryb ciemny'
+  );
+  themeToggle.title = dark ? 'Tryb jasny' : 'Tryb ciemny';
+
+  if (icon) {
+    icon.textContent = dark ? '☀️' : '🌙';
+  }
+}
+
+let savedTheme = null;
+
+try {
+  savedTheme = localStorage.getItem('fikadoo-theme');
+} catch (error) {
+  savedTheme = null;
+}
+
+const preferredTheme =
+  savedTheme === 'dark' || savedTheme === 'light'
+    ? savedTheme
+    : (
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
+      );
+
+applyTheme(preferredTheme);
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const nextTheme =
+      document.documentElement.dataset.theme === 'dark'
+        ? 'light'
+        : 'dark';
+
+    applyTheme(nextTheme);
+
+    try {
+      localStorage.setItem('fikadoo-theme', nextTheme);
+    } catch (error) {
+      // Strona działa również, gdy zapis ustawienia jest zablokowany.
+    }
+  });
+}
+
 console.log('Fikadoo: app.js załadowany poprawnie.');

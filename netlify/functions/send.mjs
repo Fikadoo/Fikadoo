@@ -1,150 +1,2101 @@
-export const config = {
-  path: '/api/send'
-};
+:root {
+  --blue: #198cff;
+  --blue-dark: #12356b;
+  --pink: #ff2e83;
+  --yellow: #ffc52b;
+  --mint: #43c9a5;
+  --purple: #8c59dc;
+  --ink: #102a56;
+  --muted: #66758f;
+  --line: #e8edf6;
+  --bg: #ffffff;
+  --soft: #f8fbff;
+  --radius: 22px;
+  --shadow: 0 18px 50px rgba(27, 72, 133, 0.12);
+}
 
-export default async (request) => {
-  const jsonHeaders = {
-    'content-type': 'application/json; charset=utf-8',
-    'cache-control': 'no-store'
-  };
 
-  if (request.method === 'GET') {
-    return Response.json(
-      { ok: true, message: 'Fikadoo mail API działa.' },
-      { status: 200, headers: jsonHeaders }
+/* =====================================================
+   PODSTAWY
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section-soft {
+  background: linear-gradient(
+    180deg,
+    #fbfdff 0%,
+    #f7fbff 100%
+  );
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(16, 42, 86, 0.06);
+}
+
+.nav-wrap {
+  height: 128px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 250px;
+  max-height: 114px;
+  object-fit: contain;
+}
+
+
+/* STARE LOGO TEKSTOWE - może zostać */
+
+.logo-main {
+  font-weight: 900;
+  font-size: 34px;
+  letter-spacing: -4px;
+}
+
+.logo-main span:nth-child(1) {
+  color: #0d8dff;
+}
+
+.logo-main span:nth-child(2) {
+  color: #ff2e83;
+}
+
+.logo-main span:nth-child(3) {
+  color: #ff9c20;
+}
+
+.logo-main span:nth-child(4) {
+  color: #38b7f0;
+}
+
+.logo-main span:nth-child(5) {
+  color: #ff4b8f;
+}
+
+.logo small {
+  color: #1c83d8;
+  font-weight: 900;
+  letter-spacing: 6px;
+  font-size: 10px;
+  margin-top: 8px;
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.main-nav {
+  margin-left: auto;
+  display: flex;
+  gap: 28px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.main-nav a:hover {
+  color: var(--pink);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  font-size: 28px;
+}
+
+
+/* =====================================================
+   PRZYCISKI
+===================================================== */
+
+.btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 24px;
+  font: 800 15px "Nunito", sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition:
+    0.2s transform,
+    0.2s box-shadow;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(16, 42, 86, 0.12);
+}
+
+.btn-blue {
+  background: var(--blue);
+  color: #fff;
+}
+
+.btn-pink {
+  background: linear-gradient(
+    90deg,
+    #ff3b8e,
+    #f31272
+  );
+  color: #fff;
+}
+
+.btn-yellow {
+  background: var(--yellow);
+  color: #613d00;
+}
+
+.btn-outline {
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid #ff79aa;
+}
+
+.full {
+  width: 100%;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+  padding-top: 64px;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--pink);
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 1.03;
+  letter-spacing: -2.5px;
+  margin: 0 0 22px;
+}
+
+.hero h1 span {
+  color: var(--pink);
+}
+
+.hero h1 strong {
+  color: var(--blue);
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.65;
+  max-width: 640px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 28px 0;
+}
+
+.hero-badges {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.hero-badges div {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+  background: #fff;
+}
+
+.hero-badges b {
+  display: block;
+  font-size: 14px;
+}
+
+.hero-badges span {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+
+/* =====================================================
+   HERO - ZDJĘCIA
+===================================================== */
+
+.hero-visual {
+  position: relative;
+  min-height: 520px;
+}
+
+.blob {
+  position: absolute;
+  inset: 45px 0 30px 30px;
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      #ffe9f2,
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #e3f3ff,
+      #d5eaff
     );
+  border-radius:
+    38% 62% 60% 40% /
+    43% 38% 62% 57%;
+  transform: rotate(-4deg);
+}
+
+.photo-card {
+  position: absolute;
+  background: #fff;
+  padding: 9px;
+  border-radius: 25px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.main-photo {
+  width: 76%;
+  height: 370px;
+  left: 4%;
+  top: 70px;
+  transform: rotate(-3deg);
+}
+
+.mini-photo {
+  width: 180px;
+  height: 150px;
+  right: 0;
+}
+
+.mini-one {
+  top: 80px;
+  transform: rotate(8deg);
+}
+
+.mini-two {
+  bottom: 40px;
+  transform: rotate(10deg);
+}
+
+.float-shape {
+  position: absolute;
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.s1 {
+  right: 6%;
+  top: 16px;
+  color: var(--pink);
+}
+
+.s2 {
+  left: 0;
+  bottom: 58px;
+  color: var(--blue);
+}
+
+.s3 {
+  left: 28%;
+  top: 10px;
+  color: var(--yellow);
+}
+
+
+/* =====================================================
+   NAGŁÓWKI SEKCJI
+===================================================== */
+
+.section-head {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 42px;
+}
+
+.section-head h2 {
+  font-size: clamp(30px, 4vw, 45px);
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.section-head p {
+  margin: 14px auto 0;
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+
+/* =====================================================
+   OFERTA
+===================================================== */
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.offer-card {
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 25px rgba(16, 42, 86, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.offer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(16, 42, 86, 0.10);
+}
+
+.offer-card span {
+  font-size: 36px;
+}
+
+.offer-card h3 {
+  margin: 12px 0 3px;
+}
+
+.offer-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.offer-card.pink {
+  background: #fff7fb;
+}
+
+.offer-card.yellow {
+  background: #fffaf0;
+}
+
+.offer-card.mint {
+  background: #f1fffb;
+}
+
+.offer-card.blue {
+  background: #f1f8ff;
+}
+
+.offer-card.purple {
+  background: #faf5ff;
+}
+
+
+/* =====================================================
+   GRUPY OFERTY
+   RODZAJE IMPREZ / ATRAKCJE
+===================================================== */
+
+.offer-group {
+  margin-top: 20px;
+}
+
+.offer-group + .offer-group {
+  margin-top: 70px;
+}
+
+
+/* Tytuł nad grupą */
+
+.offer-group-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.offer-group-title > span {
+  width: 62px;
+  height: 62px;
+
+  flex: 0 0 62px;
+
+  display: grid;
+  place-items: center;
+
+  background: #fff;
+
+  border: 1px solid var(--line);
+  border-radius: 19px;
+
+  font-size: 30px;
+
+  box-shadow:
+    0 10px 25px
+    rgba(16, 42, 86, 0.06);
+}
+
+.offer-group-title small {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--pink);
+
+  font-size: 12px;
+  font-weight: 900;
+
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.offer-group-title h3 {
+  margin: 0;
+
+  color: var(--ink);
+
+  font-size:
+    clamp(24px, 3vw, 32px);
+}
+
+
+/* =====================================================
+   RODZAJE IMPREZ
+===================================================== */
+
+.event-grid .offer-card {
+  min-height: 150px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.event-grid .offer-card span {
+  font-size: 38px;
+}
+
+.event-grid .offer-card h3 {
+  margin-top: 12px;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+
+/* =====================================================
+   I WIELE INNYCH
+===================================================== */
+
+.more-card {
+  grid-column: span 2;
+
+  background:
+    linear-gradient(
+      135deg,
+      #edf7ff 0%,
+      #fff1f7 100%
+    ) !important;
+
+  border:
+    2px dashed
+    #9dcaff;
+
+  min-height: 150px;
+}
+
+.more-card span {
+  color: var(--blue);
+}
+
+.more-card h3 {
+  color: var(--pink);
+  font-size: 22px !important;
+}
+
+.more-card p {
+  margin-top: 8px;
+
+  max-width: 390px;
+
+  font-size: 14px;
+
+  line-height: 1.55;
+}
+
+
+/* =====================================================
+   ATRAKCJE
+===================================================== */
+
+.attractions-group {
+  padding-top: 55px;
+
+  border-top:
+    1px solid
+    var(--line);
+}
+
+.attractions-group .offer-grid {
+  align-items: stretch;
+}
+
+.attractions-group .offer-card {
+  min-height: 205px;
+}
+
+.attractions-group .offer-card span {
+  font-size: 40px;
+}
+
+.attractions-group .offer-card h3 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+
+/* =====================================================
+   JAK TO DZIAŁA
+===================================================== */
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.step {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 28px;
+  position: relative;
+  text-align: center;
+}
+
+.step-no {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: var(--blue);
+  color: #fff;
+
+  display: grid;
+  place-items: center;
+
+  font-weight: 900;
+}
+
+.pink-bg {
+  background: var(--pink);
+}
+
+.yellow-bg {
+  background: var(--yellow);
+  color: #5b3d00;
+}
+
+.step-icon {
+  font-size: 48px;
+}
+
+.step p,
+.why-grid p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   DLACZEGO MY
+===================================================== */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.why-grid > div {
+  text-align: center;
+  background: #fff;
+  border-radius: 20px;
+  padding: 26px;
+  border: 1px solid var(--line);
+}
+
+.why-grid span {
+  font-size: 40px;
+}
+
+
+/* =====================================================
+   GALERIA
+===================================================== */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 180px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 26px
+    rgba(16, 42, 86, 0.08);
+}
+
+
+
+/* =====================================================
+   PAKIETY WEDŁUG RODZAJU IMPREZY
+===================================================== */
+
+.event-packages-section {
+  overflow: visible;
+}
+
+.package-section-head {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.package-section-head p {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.event-packages-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.event-package-card {
+  --package-accent: var(--pink);
+  --package-soft: #fff2f8;
+
+  position: relative;
+  overflow: visible;
+
+  min-width: 0;
+  min-height: 100%;
+  padding: 22px 18px 18px;
+  border: 1px solid rgba(16, 42, 86, 0.08);
+  border-radius: 24px;
+  background: linear-gradient(180deg, var(--package-soft) 0%, #ffffff 96%);
+  box-shadow: 0 14px 34px rgba(16, 42, 86, 0.07);
+  display: flex;
+  flex-direction: column;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.event-package-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 42px rgba(16, 42, 86, 0.12);
+}
+
+.package-pink {
+  --package-accent: #ff2e83;
+  --package-soft: #fff1f7;
+}
+
+.package-yellow,
+.package-gold {
+  --package-accent: #ffb000;
+  --package-soft: #fff8e8;
+}
+
+.package-mint {
+  --package-accent: #17c875;
+  --package-soft: #effcf7;
+}
+
+.package-purple,
+.package-lilac {
+  --package-accent: #9c3cff;
+  --package-soft: #f8f0ff;
+}
+
+.package-blue {
+  --package-accent: #218cff;
+  --package-soft: #eef7ff;
+}
+
+.package-custom {
+  --package-accent: #ff1680;
+  --package-soft: #fff1f7;
+  border: 2px dashed #ff8abd;
+}
+
+.package-emoji {
+  min-height: 74px;
+  display: grid;
+  place-items: center;
+  font-size: 52px;
+  line-height: 1;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 8px 8px rgba(16, 42, 86, 0.10));
+}
+
+.event-package-card h3 {
+  margin: 0 0 7px;
+  text-align: center;
+  color: var(--ink);
+  font-size: 21px;
+  line-height: 1.16;
+}
+
+.event-package-card.package-custom h3 {
+  color: var(--pink);
+}
+
+.event-package-card .package-sub {
+  min-height: 48px;
+  margin: 0 0 14px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.event-package-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  flex: 1;
+}
+
+.event-package-card li {
+  position: relative;
+  padding: 5px 0 5px 21px;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.event-package-card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  color: var(--pink);
+  font-weight: 900;
+}
+
+.duration-picker {
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.duration-label {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.duration-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.duration-option {
+  appearance: none;
+  border: 1px solid color-mix(in srgb, var(--package-accent) 38%, white);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 7px 2px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .16s ease, background .16s ease, color .16s ease, box-shadow .16s ease;
+}
+
+.duration-option:hover {
+  transform: translateY(-1px);
+}
+
+.duration-option.is-active {
+  background: var(--package-accent);
+  border-color: var(--package-accent);
+  color: #fff;
+  box-shadow: 0 7px 16px color-mix(in srgb, var(--package-accent) 26%, transparent);
+}
+
+.package-cta {
+  width: 100%;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 13px;
+  background: var(--package-accent);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 9px 20px color-mix(in srgb, var(--package-accent) 23%, transparent);
+  transition: transform .18s ease, filter .18s ease;
+}
+
+.package-cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+
+.package-custom-note {
+  margin-top: 24px;
+  padding: 20px 24px;
+  border: 2px dashed #9dccff;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #f6fbff 0%, #fffafd 100%);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.package-custom-note-icon {
+  font-size: 42px;
+  white-space: nowrap;
+}
+
+.package-custom-note-copy h3 {
+  margin: 0 0 5px;
+  color: var(--ink);
+  font-size: 22px;
+}
+
+.package-custom-note-copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+#packageModal .package-details {
+  margin-bottom: 18px;
+}
+
+#packageModal .package-details h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+
+#packageModal .package-details .selected-duration {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #eef7ff;
+  color: var(--blue-dark);
+  font-size: 13px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 1180px) {
+  .event-packages-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .event-packages-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  if (request.method !== 'POST') {
-    return Response.json(
-      { ok: false, message: `Metoda ${request.method} nie jest obsługiwana.` },
-      { status: 405, headers: jsonHeaders }
-    );
+  .package-custom-note {
+    grid-template-columns: auto 1fr;
   }
 
-  try {
-    const resendApiKey = process.env.RESEND_API_KEY;
-    const mailTo = 'kamileq51@gmail.com';
+  .package-custom-note .btn {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+  }
+}
 
-    if (!resendApiKey) {
-      throw new Error('Brakuje zmiennej RESEND_API_KEY w Netlify.');
-    }
+@media (max-width: 560px) {
+  .event-packages-grid {
+    grid-template-columns: 1fr;
+  }
 
-    const data = await request.json();
+  .event-package-card {
+    padding: 22px 20px 20px;
+  }
 
-    const {
-      name,
-      phone,
-      email,
-      date,
-      time,
-      package: selectedPackage,
-      duration,
-      event_type: eventType,
-      children,
-      people,
-      location,
-      message,
-      source
-    } = data || {};
+  .event-package-card .package-sub {
+    min-height: auto;
+  }
 
-    if (!name || !phone || !email || !date || !time) {
-      return Response.json(
-        { ok: false, message: 'Uzupełnij wszystkie wymagane pola.' },
-        { status: 400, headers: jsonHeaders }
+  .package-custom-note {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .package-custom-note-icon {
+    margin-bottom: -4px;
+  }
+}
+
+
+/* =====================================================
+   OPINIE
+===================================================== */
+
+.reviews-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+.reviews-grid blockquote {
+  margin: 0;
+
+  background: #fff;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius: 22px;
+
+  padding: 26px;
+
+  box-shadow:
+    0 10px 25px
+    rgba(16, 42, 86, 0.05);
+}
+
+.reviews-grid p {
+  color: var(--muted);
+
+  line-height: 1.65;
+}
+
+.reviews-grid footer {
+  font-weight: 900;
+}
+
+.stars {
+  color: #ffc107;
+
+  letter-spacing: 3px;
+}
+
+
+/* =====================================================
+   CTA
+===================================================== */
+
+.cta-box {
+  background:
+    linear-gradient(
+      100deg,
+      #168df4 0%,
+      #5f72f7 48%,
+      #ff2e83 100%
+    );
+
+  color: #fff;
+
+  border-radius: 34px;
+
+  padding: 40px 48px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 30px;
+
+  overflow: hidden;
+}
+
+.cta-box h2 {
+  margin: 0;
+
+  font-size:
+    clamp(28px, 4vw, 46px);
+
+  max-width: 700px;
+}
+
+.eyebrow.light {
+  color: #fff;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+  padding: 36px 0 50px;
+
+  border-top:
+    1px solid
+    var(--line);
+}
+
+.footer-grid {
+  display: grid;
+
+  grid-template-columns:
+    1.2fr 2fr 1fr 1fr;
+
+  gap: 30px;
+
+  align-items: start;
+}
+
+.footer p,
+.footer div {
+  color: var(--muted);
+
+  font-size: 14px;
+}
+
+.footer b {
+  color: var(--ink);
+}
+
+.footer-logo {
+  align-items: flex-start;
+}
+
+.footer-brand-logo {
+  width: 255px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* =====================================================
+   MODALE
+===================================================== */
+
+.modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100;
+
+  display: none;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+}
+
+.modal.is-open {
+  display: flex;
+}
+
+.modal-backdrop {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    rgba(10, 25, 52, 0.62);
+
+  backdrop-filter:
+    blur(6px);
+}
+
+.modal-dialog {
+  position: relative;
+
+  z-index: 1;
+
+  width:
+    min(720px, 100%);
+
+  max-height: 92vh;
+
+  overflow: auto;
+
+  background: #fff;
+
+  border-radius: 28px;
+
+  padding: 34px;
+
+  box-shadow:
+    0 30px 80px
+    rgba(0, 0, 0, 0.25);
+}
+
+.modal-dialog h2 {
+  font-size: 36px;
+
+  margin:
+    0 0 8px;
+}
+
+.modal-intro {
+  color: var(--muted);
+
+  margin-top: 0;
+}
+
+.modal-close {
+  position: absolute;
+
+  right: 18px;
+  top: 16px;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  border: 0;
+
+  background: #f1f5fb;
+
+  font-size: 24px;
+
+  cursor: pointer;
+}
+
+
+/* =====================================================
+   FORMULARZE
+===================================================== */
+
+.inquiry-form {
+  display: grid;
+
+  gap: 14px;
+
+  margin-top: 20px;
+}
+
+.form-grid.two {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 14px;
+}
+
+label {
+  display: grid;
+
+  gap: 7px;
+
+  font-weight: 800;
+
+  font-size: 14px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  border:
+    1px solid
+    #dfe6f1;
+
+  border-radius: 14px;
+
+  padding: 13px 14px;
+
+  font:
+    600 15px
+    "Nunito",
+    sans-serif;
+
+  color: var(--ink);
+
+  outline: none;
+
+  background: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--blue);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(25, 140, 255, 0.1);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.checkbox {
+  display: flex;
+
+  grid-template-columns:
+    20px 1fr;
+
+  align-items:
+    flex-start;
+
+  font-weight: 600;
+
+  color: var(--muted);
+}
+
+.checkbox input {
+  width: 18px;
+  height: 18px;
+
+  margin-top: 2px;
+}
+
+.form-status {
+  min-height: 22px;
+
+  margin: 0;
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+.form-status.success {
+  color: #1a9b69;
+}
+
+.form-status.error {
+  color: #d83253;
+}
+
+
+/* =====================================================
+   SZCZEGÓŁY PAKIETU W MODALU
+===================================================== */
+
+.package-details {
+  background: #f8fbff;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius: 18px;
+
+  padding: 18px;
+
+  margin-top: 16px;
+}
+
+.package-details h3 {
+  margin:
+    0 0 8px;
+}
+
+.package-details ul {
+  margin:
+    8px 0 0;
+
+  padding-left: 18px;
+
+  color: var(--muted);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+
+
+/* =====================================================
+   KAFELEK "I WIELE INNYCH" / FORMULARZ INDYWIDUALNY
+===================================================== */
+
+.custom-event-card {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  color: var(--ink);
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.custom-event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(16, 42, 86, 0.12);
+}
+
+.custom-event-card:focus-visible {
+  border-color: var(--blue);
+  box-shadow:
+    0 0 0 4px rgba(25, 140, 255, 0.14),
+    0 16px 34px rgba(16, 42, 86, 0.12);
+}
+
+.custom-event-card .more-card-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 900;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.custom-event-card:hover .more-card-cta {
+  color: var(--pink);
+  transform: translateX(3px);
+}
+
+/* Drobne dopracowanie formularza "Inne wydarzenie" */
+#customEventModal .modal-dialog {
+  width: min(760px, 100%);
+}
+
+#customEventModal textarea {
+  min-height: 130px;
+}
+
+#customEventModal .form-status {
+  text-align: center;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 980px) {
+
+  .nav-wrap {
+    height: 100px;
+  }
+
+  .brand-logo {
+    width: 190px;
+    max-height: 88px;
+  }
+
+  .main-nav {
+    display: none;
+
+    position: absolute;
+
+    left: 20px;
+    right: 20px;
+
+    top: 96px;
+
+    background: #fff;
+
+    border:
+      1px solid
+      var(--line);
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    flex-direction: column;
+
+    box-shadow:
+      var(--shadow);
+  }
+
+  .main-nav.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+
+    margin-left: auto;
+  }
+
+  .nav-wrap > .btn {
+    display: none;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    min-height: 430px;
+  }
+
+  .offer-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .more-card {
+    grid-column: span 2;
+  }
+
+  .why-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .gallery-grid {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+  .packages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .package-card.featured {
+    transform: none;
+  }
+
+  .footer-grid {
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .hero-badges {
+    grid-template-columns: 1fr;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =====================================================
+   TELEFON
+===================================================== */
+
+@media (max-width: 640px) {
+
+  .container {
+    width:
+      min(
+        100% - 24px,
+        1180px
       );
-    }
-
-    const safe = value =>
-      String(value ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-
-    const mailRow = (label, value) => `
-      <tr>
-        <td style="width:42%;padding:12px 14px;background:#f7f9fd;border-bottom:9px solid #fff;color:#718096;font-size:13px;font-weight:700;">${label}</td>
-        <td style="padding:12px 14px;background:#f7f9fd;border-bottom:9px solid #fff;color:#0b2b57;font-size:15px;">${value}</td>
-      </tr>`;
-
-    const origin = new URL(request.url).origin;
-    const logoUrl = `${origin}/assets/logo.png`;
-
-    const html = `<!doctype html>
-<html lang="pl">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f4f7fb;font-family:Arial,Helvetica,sans-serif;color:#0b2b57;">
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f4f7fb;padding:30px 12px;">
-    <tr><td align="center">
-      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:640px;background:#ffffff;border-radius:22px;overflow:hidden;">
-        <tr><td align="center" style="padding:28px 30px 12px;"><img src="${logoUrl}" alt="Fikadoo" style="display:block;width:240px;max-width:80%;height:auto;margin:0 auto;"></td></tr>
-        <tr><td align="center" style="padding:8px 30px 28px;">
-          <div style="display:inline-block;background:#fff0f7;color:#ff2f8b;font-size:12px;font-weight:700;letter-spacing:1px;padding:8px 14px;border-radius:999px;">NOWE ZAPYTANIE</div>
-          <h1 style="margin:14px 0 8px;font-size:28px;color:#0b2b57;">Nowe zapytanie Fikadoo</h1>
-          <p style="margin:0;color:#718096;font-size:15px;">Klient wysłał formularz ze strony internetowej.</p>
-        </td></tr>
-        <tr><td style="padding:0 30px 8px;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-          ${mailRow('Imię i nazwisko', safe(name))}
-          ${mailRow('Telefon', `<a href="tel:${safe(phone)}" style="color:#1685ef;text-decoration:none;font-weight:700;">${safe(phone)}</a>`)}
-          ${mailRow('E-mail', `<a href="mailto:${safe(email)}" style="color:#1685ef;text-decoration:none;font-weight:700;">${safe(email)}</a>`)}
-          ${mailRow('Data imprezy', safe(date))}
-          ${mailRow('Godzina', safe(time))}
-          ${mailRow('Rodzaj wydarzenia', safe(eventType || '-'))}
-          ${mailRow('Liczba dzieci', safe(children || '-'))}
-          ${mailRow('Liczba wszystkich osób', safe(people || '-'))}
-          ${mailRow('Miejsce wydarzenia', safe(location || '-'))}
-          ${mailRow('Pakiet', safe(selectedPackage || '-'))}
-          ${mailRow('Czas animacji', safe(duration || '-'))}
-          ${mailRow('Źródło zapytania', safe(source || '-'))}
-        </table></td></tr>
-        <tr><td style="padding:15px 30px 6px;">
-          <div style="background:#fff3f8;border:1px solid #ffd5e6;border-radius:16px;padding:20px;">
-            <div style="font-size:12px;font-weight:800;color:#ff2f8b;letter-spacing:1px;margin-bottom:9px;">DODATKOWE INFORMACJE</div>
-            <div style="font-size:15px;line-height:1.65;color:#37475a;">${safe(message || '-').replace(/\n/g, '<br>')}</div>
-          </div>
-        </td></tr>
-        <tr><td align="center" style="padding:25px 30px 34px;"><a href="mailto:${safe(email)}" style="display:inline-block;background:#ff2f8b;color:#fff;text-decoration:none;padding:14px 26px;border-radius:999px;font-weight:800;">Odpowiedz klientowi</a></td></tr>
-        <tr><td><table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td width="33%" height="8" style="background:#1685ef;font-size:0;">&nbsp;</td><td width="34%" height="8" style="background:#ff2f8b;font-size:0;">&nbsp;</td><td width="33%" height="8" style="background:#ffd21c;font-size:0;">&nbsp;</td></tr></table></td></tr>
-        <tr><td align="center" style="padding:18px 25px 22px;color:#9aa5b5;font-size:12px;">Fikadoo • formularz kontaktowy</td></tr>
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>`;
-
-    const resendResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${resendApiKey}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: 'Fikadoo <onboarding@resend.dev>',
-        to: [mailTo],
-        reply_to: String(email),
-        subject: `Nowe zapytanie Fikadoo - ${String(name)}`,
-        html
-      })
-    });
-
-    const result = await resendResponse.json().catch(() => ({}));
-
-    if (!resendResponse.ok) {
-      console.error('Resend error:', result);
-      throw new Error(result?.message || `Resend zwrócił błąd HTTP ${resendResponse.status}.`);
-    }
-
-    return Response.json(
-      { ok: true, message: 'Zapytanie zostało wysłane.' },
-      { status: 200, headers: jsonHeaders }
-    );
-  } catch (error) {
-    console.error('Fikadoo send error:', error);
-    return Response.json(
-      { ok: false, message: error?.message || 'Nie udało się wysłać wiadomości.' },
-      { status: 500, headers: jsonHeaders }
-    );
   }
-};
+
+  .section {
+    padding: 58px 0;
+  }
+
+  .nav-wrap {
+    height: 88px;
+  }
+
+  .brand-logo {
+    width: 165px;
+    max-height: 76px;
+  }
+
+  .main-nav {
+    top: 84px;
+  }
+
+  .hero {
+    padding-top: 40px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .hero-visual {
+    min-height: 340px;
+  }
+
+  .main-photo {
+    height: 260px;
+    width: 82%;
+  }
+
+  .mini-photo {
+    width: 120px;
+    height: 105px;
+  }
+
+  .offer-grid,
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .offer-group + .offer-group {
+    margin-top: 50px;
+  }
+
+  .offer-group-title {
+    align-items: flex-start;
+  }
+
+  .offer-group-title > span {
+    width: 52px;
+    height: 52px;
+
+    flex-basis: 52px;
+
+    font-size: 25px;
+
+    border-radius: 16px;
+  }
+
+  .offer-group-title h3 {
+    font-size: 24px;
+  }
+
+  .event-grid .offer-card {
+    min-height: 125px;
+  }
+
+  .more-card {
+    grid-column: auto;
+  }
+
+  .attractions-group {
+    padding-top: 42px;
+  }
+
+  .attractions-group .offer-card {
+    min-height: auto;
+  }
+
+  .gallery-grid {
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .gallery-grid img {
+    height: 140px;
+  }
+
+  .cta-box {
+    padding: 30px 24px;
+
+    align-items:
+      flex-start;
+
+    flex-direction: column;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand-logo {
+    width: 220px;
+  }
+
+  .form-grid.two {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-dialog {
+    padding: 28px 20px;
+  }
+
+  .modal-dialog h2 {
+    font-size: 30px;
+  }
+
+}
+
+/* ===== FIKADOO FIX: RÓWNE KAFELKI ===== */
+
+/* Imprezy firmowe / Eventy specjalne zajmują 2 kolumny,
+   dokładnie tak jak kafelek „I wiele innych!” */
+.event-grid .wide-event-card {
+  grid-column: span 2;
+}
+
+/* Wszystkie kafelki atrakcji mają identyczny rozmiar */
+.attractions-group .offer-grid {
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}
+
+.attractions-group .offer-card {
+  height: 215px;
+  min-height: 215px;
+  box-sizing: border-box;
+}
+
+/* Ikona baniek nie może rozciągać kafelka */
+.bubble-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 40px;
+  height: 40px;
+  line-height: 1;
+}
+
+.bubble-icon img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+  .event-grid .wide-event-card {
+    grid-column: span 2;
+  }
+
+  .attractions-group .offer-card {
+    height: 215px;
+    min-height: 215px;
+  }
+}
+
+/* Telefon */
+@media (max-width: 640px) {
+  .event-grid .wide-event-card {
+    grid-column: auto;
+  }
+
+  .attractions-group .offer-card {
+    height: auto;
+    min-height: 180px;
+  }
+}
+
+/* ===== FIKADOO HERO PANDA + MINI ZDJĘCIA ===== */
+
+.hero-panda-collage {
+  min-height: 560px;
+}
+
+.hero-panda-collage .blob {
+  inset: 55px 40px 55px 40px;
+}
+
+.panda-main-card {
+  width: 68%;
+  height: 330px;
+  left: 5%;
+  top: 90px;
+  transform: rotate(-2.5deg);
+}
+
+.hero-panda-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-panda-collage .mini-photo {
+  width: 185px;
+  height: 140px;
+}
+
+.hero-panda-collage .mini-one {
+  top: 32px;
+  right: 2%;
+  transform: rotate(6deg);
+}
+
+.hero-panda-collage .mini-two {
+  bottom: 26px;
+  right: 12%;
+  transform: rotate(8deg);
+}
+
+.hero-panda-collage .mini-three {
+  bottom: 145px;
+  right: -1%;
+  transform: rotate(-6deg);
+}
+
+@media (max-width: 980px) {
+  .hero-panda-collage {
+    min-height: 520px;
+    margin-top: 10px;
+  }
+
+  .panda-main-card {
+    width: 74%;
+    height: 320px;
+    left: 2%;
+    top: 90px;
+  }
+
+  .hero-panda-collage .mini-photo {
+    width: 150px;
+    height: 118px;
+  }
+
+  .hero-panda-collage .mini-one {
+    right: 0;
+  }
+
+  .hero-panda-collage .mini-two {
+    right: 10%;
+    bottom: 18px;
+  }
+
+  .hero-panda-collage .mini-three {
+    right: -2%;
+    bottom: 140px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-panda-collage {
+    min-height: 470px;
+  }
+
+  .hero-panda-collage .blob {
+    inset: 50px 20px 35px 20px;
+  }
+
+  .panda-main-card {
+    width: 80%;
+    height: 250px;
+    left: 4%;
+    top: 82px;
+  }
+
+  .hero-panda-collage .mini-photo {
+    width: 120px;
+    height: 95px;
+    padding: 7px;
+    border-radius: 18px;
+  }
+
+  .hero-panda-collage .mini-photo img {
+    border-radius: 12px;
+  }
+
+  .hero-panda-collage .mini-one {
+    top: 38px;
+    right: 2%;
+  }
+
+  .hero-panda-collage .mini-two {
+    right: 4%;
+    bottom: 22px;
+  }
+
+  .hero-panda-collage .mini-three {
+    right: 0;
+    bottom: 118px;
+  }
+
+  .hero-panda-collage .s1 {
+    right: 10%;
+    top: 8px;
+  }
+
+  .hero-panda-collage .s2 {
+    left: 3%;
+    bottom: 32px;
+  }
+
+  .hero-panda-collage .s3 {
+    left: 28%;
+    top: 18px;
+  }
+}
+
+
+/* ===== FIKADOO FINAL HERO COLLAGE ===== */
+.hero-final-collage {
+  min-height: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0;
+}
+
+.hero-final-collage-image {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 980px) {
+  .hero-final-collage {
+    min-height: 0 !important;
+    margin-top: 10px;
+  }
+
+  .hero-final-collage-image {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-final-collage {
+    min-height: 0 !important;
+    padding-top: 8px;
+  }
+
+  .hero-final-collage-image {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+/* ===== FIKADOO: INTERAKTYWNE KAFELKI IMPREZ ===== */
+
+.event-card-button {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  outline: none;
+}
+
+.event-card-button:focus-visible {
+  border-color: var(--blue);
+  box-shadow:
+    0 0 0 4px rgba(25, 140, 255, 0.14),
+    0 16px 34px rgba(16, 42, 86, 0.12);
+}
+
+.event-card-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(16, 42, 86, 0.12);
+}
+
+.custom-event-type-field[hidden] {
+  display: none !important;
+}
+
+/* ===== FIKADOO CENY ORIENTACYJNE ===== */
+
+.event-package-card {
+  position: relative;
+}
+
+.package-price-badge {
+  position: absolute;
+  top: -16px;
+  left: -16px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 16px;
+  border: 2px solid var(--package-accent);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--package-accent);
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 900;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px rgba(16, 42, 86, 0.12);
+}
+
+ (max-width: 640px) {
+  .package-price-badge {
+    top: -12px;
+    left: -12px;
+    padding: 9px 13px;
+    font-size: 14px;
+  }
+}
+
+/* ===== FIKADOO GALERIA 5 ZDJĘĆ ===== */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+.gallery-grid img {
+  display: block;
+  width: 100%;
+  height: 205px;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 10px 28px rgba(16, 42, 86, 0.10);
+}
+
+@media (max-width: 980px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery-grid img {
+    height: 190px;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .gallery-grid img {
+    height: 150px;
+    border-radius: 20px;
+  }
+}
+
+/* ===== FIKADOO INFO O CENACH ===== */
+
+.package-price-note {
+  max-width: 900px;
+  margin: 28px auto 26px;
+  padding: 14px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .package-price-note {
+    margin: 22px auto 22px;
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+}

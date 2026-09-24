@@ -1792,42 +1792,140 @@ body.modal-open {
   }
 }
 
-/* ===== FIKADOO HERO PANDA ===== */
+/* ===== FIKADOO HERO PANDA + MINI ZDJĘCIA ===== */
 
-.hero-panda-only {
-  min-height: 520px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.hero-panda-collage {
+  min-height: 560px;
+}
+
+.hero-panda-collage .blob {
+  inset: 55px 40px 55px 40px;
+}
+
+.panda-main-card {
+  width: 68%;
+  height: 330px;
+  left: 5%;
+  top: 90px;
+  transform: rotate(-2.5deg);
 }
 
 .hero-panda-image {
-  display: block;
   width: 100%;
-  max-width: 690px;
-  height: auto;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-panda-collage .mini-photo {
+  width: 185px;
+  height: 140px;
+}
+
+.hero-panda-collage .mini-one {
+  top: 32px;
+  right: 2%;
+  transform: rotate(6deg);
+}
+
+.hero-panda-collage .mini-two {
+  bottom: 26px;
+  right: 12%;
+  transform: rotate(8deg);
+}
+
+.hero-panda-collage .mini-three {
+  bottom: 145px;
+  right: -1%;
+  transform: rotate(-6deg);
 }
 
 @media (max-width: 980px) {
-  .hero-panda-only {
-    min-height: auto;
-    padding-top: 20px;
+  .hero-panda-collage {
+    min-height: 520px;
+    margin-top: 10px;
   }
 
-  .hero-panda-image {
-    max-width: 650px;
+  .panda-main-card {
+    width: 74%;
+    height: 320px;
+    left: 2%;
+    top: 90px;
+  }
+
+  .hero-panda-collage .mini-photo {
+    width: 150px;
+    height: 118px;
+  }
+
+  .hero-panda-collage .mini-one {
+    right: 0;
+  }
+
+  .hero-panda-collage .mini-two {
+    right: 10%;
+    bottom: 18px;
+  }
+
+  .hero-panda-collage .mini-three {
+    right: -2%;
+    bottom: 140px;
   }
 }
 
 @media (max-width: 640px) {
-  .hero-panda-only {
-    min-height: auto;
-    padding-top: 10px;
+  .hero-panda-collage {
+    min-height: 470px;
   }
 
-  .hero-panda-image {
-    width: 100%;
-    max-width: 100%;
+  .hero-panda-collage .blob {
+    inset: 50px 20px 35px 20px;
+  }
+
+  .panda-main-card {
+    width: 80%;
+    height: 250px;
+    left: 4%;
+    top: 82px;
+  }
+
+  .hero-panda-collage .mini-photo {
+    width: 120px;
+    height: 95px;
+    padding: 7px;
+    border-radius: 18px;
+  }
+
+  .hero-panda-collage .mini-photo img {
+    border-radius: 12px;
+  }
+
+  .hero-panda-collage .mini-one {
+    top: 38px;
+    right: 2%;
+  }
+
+  .hero-panda-collage .mini-two {
+    right: 4%;
+    bottom: 22px;
+  }
+
+  .hero-panda-collage .mini-three {
+    right: 0;
+    bottom: 118px;
+  }
+
+  .hero-panda-collage .s1 {
+    right: 10%;
+    top: 8px;
+  }
+
+  .hero-panda-collage .s2 {
+    left: 3%;
+    bottom: 32px;
+  }
+
+  .hero-panda-collage .s3 {
+    left: 28%;
+    top: 18px;
   }
 }

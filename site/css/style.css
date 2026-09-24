@@ -1791,3 +1791,43 @@ body.modal-open {
     min-height: 180px;
   }
 }
+
+/* ===== FIKADOO HERO PANDA ===== */
+
+.hero-panda-only {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-panda-image {
+  display: block;
+  width: 100%;
+  max-width: 690px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 980px) {
+  .hero-panda-only {
+    min-height: auto;
+    padding-top: 20px;
+  }
+
+  .hero-panda-image {
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-panda-only {
+    min-height: auto;
+    padding-top: 10px;
+  }
+
+  .hero-panda-image {
+    width: 100%;
+    max-width: 100%;
+  }
+}

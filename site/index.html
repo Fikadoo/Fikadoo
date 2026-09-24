@@ -70,60 +70,48 @@
 </div>
 </div>
 <div class="offer-grid event-grid">
-<article class="offer-card pink">
+<button class="offer-card pink event-card-button js-open-event" type="button" data-event="Urodziny">
 <span>🎂</span>
 <h3>Urodziny</h3>
-</article>
-<article class="offer-card yellow">
+</button>
+<button class="offer-card yellow event-card-button js-open-event" type="button" data-event="Wesela">
 <span>💍</span>
 <h3>Wesela</h3>
-</article>
-<article class="offer-card mint">
+</button>
+<button class="offer-card mint event-card-button js-open-event" type="button" data-event="Komunie / Chrzciny">
 <span>⛪</span>
 <h3>Komunie / Chrzciny</h3>
-</article>
-<article class="offer-card yellow">
+</button>
+<button class="offer-card yellow event-card-button js-open-event" type="button" data-event="Festyny">
 <span>🎪</span>
 <h3>Festyny</h3>
-</article>
-<article class="offer-card mint">
+</button>
+<button class="offer-card mint event-card-button js-open-event" type="button" data-event="Halloween">
 <span>🎃</span>
 <h3>Halloween</h3>
-</article>
-<article class="offer-card blue">
+</button>
+<button class="offer-card blue event-card-button js-open-event" type="button" data-event="Karnawały">
 <span>🎭</span>
 <h3>Karnawały</h3>
-</article>
-<article class="offer-card pink">
+</button>
+<button class="offer-card pink event-card-button js-open-event" type="button" data-event="Dni Dziecka">
 <span>🧒</span>
 <h3>Dni Dziecka</h3>
-</article>
-<article class="offer-card purple">
+</button>
+<button class="offer-card purple event-card-button js-open-event" type="button" data-event="Dożynki / Dni Miasta">
 <span>🌾</span>
 <h3>Dożynki / Dni Miasta</h3>
-</article>
-<!-- SZEROKI KAFELEK NA 2 MIEJSCA -->
-<article class="offer-card blue wide-event-card">
+</button>
+<button class="offer-card blue wide-event-card event-card-button js-open-event" type="button" data-event="Imprezy firmowe / Eventy specjalne">
 <span>💼</span>
-<h3>
-      Imprezy firmowe / Eventy specjalne
-    </h3>
-<p>
-      Animacje podczas wydarzeń firmowych,
-      plenerowych i specjalnych.
-    </p>
-</article>
-<!-- I WIELE INNYCH - TEŻ NA 2 MIEJSCA -->
+<h3>Imprezy firmowe / Eventy specjalne</h3>
+<p>Animacje podczas wydarzeń firmowych, plenerowych i specjalnych.</p>
+</button>
 <button class="offer-card more-card custom-event-card js-open-custom-event" type="button">
 <span>➕</span>
 <h3>I wiele innych!</h3>
-<p>
-      Organizujesz inne wydarzenie?
-      Kliknij tutaj i opisz nam swój pomysł.
-    </p>
-<strong class="more-card-cta">
-      Opisz wydarzenie →
-    </strong>
+<p>Organizujesz inne wydarzenie? Kliknij tutaj i opisz nam swój pomysł.</p>
+<strong class="more-card-cta">Opisz wydarzenie →</strong>
 </button>
 </div>
 </div>
@@ -239,6 +227,7 @@
 <article class="event-package-card package-pink" data-package="Urodziny" data-package-card="">
 <div class="package-emoji">🎂</div>
 <h3>Urodziny</h3>
+<p class="package-sub">Idealny pakiet na niezapomniane urodziny dla dzieci!</p>
 <ul>
 <li>Animacje i gry</li>
 <li>Malowanie twarzy / tatuaże</li>
@@ -259,6 +248,7 @@
 <article class="event-package-card package-yellow" data-package="Wesela" data-package-card="">
 <div class="package-emoji">💍</div>
 <h3>Wesela</h3>
+<p class="package-sub">Zabawa dla dzieci i więcej spokoju dla rodziców.</p>
 <ul>
 <li>Kącik animacji dla dzieci</li>
 <li>Gry i konkursy</li>
@@ -279,6 +269,7 @@
 <article class="event-package-card package-mint" data-package="Komunie / Chrzciny" data-package-card="">
 <div class="package-emoji">⛪</div>
 <h3>Komunie / Chrzciny</h3>
+<p class="package-sub">Delikatne i dopasowane animacje dla najmłodszych.</p>
 <ul>
 <li>Spokojne zabawy i gry</li>
 <li>Malowanie twarzy / tatuaże</li>
@@ -299,6 +290,7 @@
 <article class="event-package-card package-gold" data-package="Festyny" data-package-card="">
 <div class="package-emoji">🎪</div>
 <h3>Festyny</h3>
+<p class="package-sub">Duże wydarzenia, mnóstwo atrakcji i dobrej energii.</p>
 <ul>
 <li>Gry i konkursy</li>
 <li>Bańki mydlane</li>
@@ -319,6 +311,7 @@
 <article class="event-package-card package-purple" data-package="Halloween" data-package-card="">
 <div class="package-emoji">🎃</div>
 <h3>Halloween</h3>
+<p class="package-sub">Strasznie fajne animacje, zabawy i konkursy!</p>
 <ul>
 <li>Tematyczne zabawy</li>
 <li>Malowanie twarzy</li>
@@ -339,6 +332,7 @@
 <article class="event-package-card package-blue" data-package="Karnawały" data-package-card="">
 <div class="package-emoji">🎭</div>
 <h3>Karnawały</h3>
+<p class="package-sub">Kolorowe animacje pełne tańca i zabawy.</p>
 <ul>
 <li>Mini Disco</li>
 <li>Gry i konkursy</li>
@@ -359,6 +353,7 @@
 <article class="event-package-card package-pink" data-package="Dni Dziecka" data-package-card="">
 <div class="package-emoji">🧒</div>
 <h3>Dni Dziecka</h3>
+<p class="package-sub">Wyjątkowe atrakcje dla najmłodszych!</p>
 <ul>
 <li>Mini Disco</li>
 <li>Gry i konkursy</li>
@@ -379,6 +374,7 @@
 <article class="event-package-card package-lilac" data-package="Dożynki / Dni Miasta" data-package-card="">
 <div class="package-emoji">🌾</div>
 <h3>Dożynki / Dni Miasta</h3>
+<p class="package-sub">Animacje i atrakcje przygotowane na duże wydarzenia plenerowe.</p>
 <ul>
 <li>Gry i konkursy</li>
 <li>Bańki mydlane</li>
@@ -399,6 +395,7 @@
 <article class="event-package-card package-blue" data-package="Imprezy firmowe / Eventy specjalne" data-package-card="">
 <div class="package-emoji">💼</div>
 <h3>Imprezy firmowe / Eventy specjalne</h3>
+<p class="package-sub">Integracja i świetna zabawa dla pracowników i ich dzieci.</p>
 <ul>
 <li>Gry i konkursy</li>
 <li>Mini Disco</li>
@@ -631,7 +628,7 @@
 
         <input name="email" placeholder="twoj@email.pl" required="" type="email"/>
 </label>
-<label>
+<label class="custom-event-type-field">
         Jakie wydarzenie organizujesz?
 
         <input name="event_type" placeholder="Np. otwarcie lokalu, piknik osiedlowy..." required="" type="text"/>

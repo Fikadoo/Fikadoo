@@ -1728,3 +1728,66 @@ body.modal-open {
   }
 
 }
+
+/* ===== FIKADOO FIX: RÓWNE KAFELKI ===== */
+
+/* Imprezy firmowe / Eventy specjalne zajmują 2 kolumny,
+   dokładnie tak jak kafelek „I wiele innych!” */
+.event-grid .wide-event-card {
+  grid-column: span 2;
+}
+
+/* Wszystkie kafelki atrakcji mają identyczny rozmiar */
+.attractions-group .offer-grid {
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}
+
+.attractions-group .offer-card {
+  height: 215px;
+  min-height: 215px;
+  box-sizing: border-box;
+}
+
+/* Ikona baniek nie może rozciągać kafelka */
+.bubble-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 40px;
+  height: 40px;
+  line-height: 1;
+}
+
+.bubble-icon img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+  .event-grid .wide-event-card {
+    grid-column: span 2;
+  }
+
+  .attractions-group .offer-card {
+    height: 215px;
+    min-height: 215px;
+  }
+}
+
+/* Telefon */
+@media (max-width: 640px) {
+  .event-grid .wide-event-card {
+    grid-column: auto;
+  }
+
+  .attractions-group .offer-card {
+    height: auto;
+    min-height: 180px;
+  }
+}

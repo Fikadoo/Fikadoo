@@ -1,731 +1,246 @@
 const packageData = {
-  Mini: {
-    price: '750 zł',
-    audience: 'do 10 dzieci',
-    items: [
-      '2 godziny animacji',
-      'Podstawowe zabawy i gry',
-      'Muzyka i nagłośnienie'
-    ]
+  'Urodziny': {
+    items: ['Animacje i gry', 'Malowanie twarzy / tatuaże', 'Modelowanie balonów', 'Mini Disco']
   },
-
-  Hopla: {
-    price: '1200 zł',
-    audience: 'do 20 dzieci',
-    items: [
-      '3 godziny animacji',
-      'Autorskie zabawy i konkursy',
-      'Malowanie twarzy',
-      'Bańki mydlane',
-      'Sprzęt, rekwizyty i muzyka'
-    ]
+  'Wesela': {
+    items: ['Kącik animacji dla dzieci', 'Gry i konkursy', 'Mini Disco', 'Maskotki']
   },
-
-  'Mega Hopla': {
-    price: '1800 zł',
-    audience: 'do 30 dzieci',
-    items: [
-      '4 godziny animacji',
-      'Malowanie twarzy i brokaty',
-      'Wata cukrowa',
-      'Maskotka na żywo',
-      'Sprzęt, rekwizyty i muzyka'
-    ]
+  'Komunie / Chrzciny': {
+    items: ['Spokojne zabawy i gry', 'Malowanie twarzy / tatuaże', 'Modelowanie balonów', 'Bańki mydlane']
+  },
+  'Festyny': {
+    items: ['Gry i konkursy', 'Bańki mydlane', 'Piana Party', 'Maskotki']
+  },
+  'Halloween': {
+    items: ['Tematyczne zabawy', 'Malowanie twarzy', 'Gry i konkursy', 'Mini Disco']
+  },
+  'Karnawały': {
+    items: ['Mini Disco', 'Gry i konkursy', 'Modelowanie balonów', 'Maskotki']
+  },
+  'Dni Dziecka': {
+    items: ['Mini Disco', 'Gry i konkursy', 'Malowanie twarzy', 'Bańki mydlane']
+  },
+  'Dożynki / Dni Miasta': {
+    items: ['Gry i konkursy', 'Bańki mydlane', 'Piana Party', 'Maskotki']
+  },
+  'Imprezy firmowe / Eventy specjalne': {
+    items: ['Gry i konkursy', 'Mini Disco', 'Bańki mydlane', 'Piana Party']
   }
 };
 
-
-// =====================================================
-// BACKEND
-// =====================================================
-
 const API_URL = '/api/send';
 
-
-// =====================================================
-// MODALE
-// =====================================================
-
-const modals = [
-  ...document.querySelectorAll('.modal')
-];
-
-const bookingModal =
-  document.getElementById('bookingModal');
-
-const packageModal =
-  document.getElementById('packageModal');
-
-const customEventModal =
-  document.getElementById('customEventModal');
-
-
-// =====================================================
-// DATA MINIMALNA = DZISIAJ
-// =====================================================
+const modals = [...document.querySelectorAll('.modal')];
+const bookingModal = document.getElementById('bookingModal');
+const packageModal = document.getElementById('packageModal');
+const customEventModal = document.getElementById('customEventModal');
 
 function localToday() {
   const now = new Date();
-
-  const local =
-    new Date(
-      now.getTime() -
-      now.getTimezoneOffset() * 60000
-    );
-
-  return local
-    .toISOString()
-    .slice(0, 10);
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  return local.toISOString().slice(0, 10);
 }
 
-
-document
-  .querySelectorAll('input[type="date"]')
-  .forEach(input => {
-
-    input.min = localToday();
-
-  });
-
-
-// =====================================================
-// OTWIERANIE MODALA
-// =====================================================
+document.querySelectorAll('input[type="date"]').forEach(input => {
+  input.min = localToday();
+});
 
 function openModal(modal) {
-
   if (!modal) return;
 
-
-  // Zamknij inne modale
   modals.forEach(item => {
-
     item.classList.remove('is-open');
-
-    item.setAttribute(
-      'aria-hidden',
-      'true'
-    );
-
+    item.setAttribute('aria-hidden', 'true');
   });
 
-
-  // Otwórz wybrany
   modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
 
-  modal.setAttribute(
-    'aria-hidden',
-    'false'
-  );
-
-
-  document.body.classList.add(
-    'modal-open'
-  );
-
-
-  // Wyczyść stary komunikat formularza
-  const status =
-    modal.querySelector('.form-status');
-
-  if (status) {
-
-    status.className =
-      'form-status';
-
-    status.textContent = '';
-
+  const oldStatus = modal.querySelector('.form-status');
+  if (oldStatus) {
+    oldStatus.className = 'form-status';
+    oldStatus.textContent = '';
   }
 
-
-  // Ustaw fokus
   setTimeout(() => {
-
-    modal
-      .querySelector(
-        'input:not([type="hidden"]), select, textarea, button'
-      )
-      ?.focus();
-
+    modal.querySelector('input:not([type="hidden"]), select, textarea, button')?.focus();
   }, 50);
-
 }
-
-
-// =====================================================
-// ZAMYKANIE MODALA
-// =====================================================
 
 function closeModal(modal) {
-
   if (!modal) return;
 
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
 
-  modal.classList.remove(
-    'is-open'
-  );
-
-
-  modal.setAttribute(
-    'aria-hidden',
-    'true'
-  );
-
-
-  if (
-    !document.querySelector(
-      '.modal.is-open'
-    )
-  ) {
-
-    document.body.classList.remove(
-      'modal-open'
-    );
-
+  if (!document.querySelector('.modal.is-open')) {
+    document.body.classList.remove('modal-open');
   }
-
 }
 
+// Wybór czasu na każdej karcie pakietu.
+document.querySelectorAll('[data-package-card]').forEach(card => {
+  const options = [...card.querySelectorAll('.duration-option')];
 
-// =====================================================
-// ZAPYTAJ O TERMIN
-// =====================================================
-
-document
-  .querySelectorAll('.js-open-booking')
-  .forEach(button => {
-
-    button.addEventListener(
-      'click',
-      () => {
-
-        if (!bookingModal) return;
-
-
-        const source =
-          bookingModal.querySelector(
-            '[name="source"]'
-          );
-
-        const packageInput =
-          bookingModal.querySelector(
-            '[name="package"]'
-          );
-
-
-        if (source) {
-
-          source.value =
-            button.dataset.source ||
-            'Zapytaj o termin';
-
-        }
-
-
-        if (packageInput) {
-
-          packageInput.value = '';
-
-        }
-
-
-        openModal(bookingModal);
-
-      }
-    );
-
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      options.forEach(item => item.classList.remove('is-active'));
+      option.classList.add('is-active');
+      card.dataset.selectedHours = option.dataset.hours || '2';
+    });
   });
 
+  const active = card.querySelector('.duration-option.is-active');
+  card.dataset.selectedHours = active?.dataset.hours || '2';
+});
 
-// =====================================================
-// "I WIELE INNYCH"
-// INDYWIDUALNE WYDARZENIE
-// =====================================================
+// Zapytaj o termin / personalizacja.
+document.querySelectorAll('.js-open-booking').forEach(button => {
+  button.addEventListener('click', () => {
+    if (!bookingModal) return;
 
-document
-  .querySelectorAll(
-    '.js-open-custom-event'
-  )
-  .forEach(button => {
+    const source = bookingModal.querySelector('[name="source"]');
+    const packageInput = bookingModal.querySelector('[name="package"]');
 
-    button.addEventListener(
-      'click',
-      () => {
+    if (source) source.value = button.dataset.source || 'Zapytaj o termin';
+    if (packageInput) packageInput.value = '';
 
-        if (!customEventModal) return;
-
-
-        const source =
-          customEventModal.querySelector(
-            '[name="source"]'
-          );
-
-        const packageInput =
-          customEventModal.querySelector(
-            '[name="package"]'
-          );
-
-
-        if (source) {
-
-          source.value =
-            'Inne wydarzenie';
-
-        }
-
-
-        if (packageInput) {
-
-          packageInput.value = '';
-
-        }
-
-
-        openModal(
-          customEventModal
-        );
-
-      }
-    );
-
+    openModal(bookingModal);
   });
+});
 
+// Wybranie konkretnego pakietu wydarzenia.
+document.querySelectorAll('.js-event-package').forEach(button => {
+  button.addEventListener('click', () => {
+    const card = button.closest('[data-package-card]');
+    const name = button.dataset.package || card?.dataset.package;
+    const hours = card?.dataset.selectedHours || '2';
+    const selected = packageData[name];
 
-// =====================================================
-// WYBÓR PAKIETU
-// =====================================================
+    if (!selected || !packageModal) return;
 
-document
-  .querySelectorAll('.js-package')
-  .forEach(button => {
+    const selectedName = document.getElementById('selectedPackageName');
+    const packageInput = document.getElementById('packageInput');
+    const durationInput = document.getElementById('packageDurationInput');
+    const details = document.getElementById('packageDetails');
 
-    button.addEventListener(
-      'click',
-      () => {
+    if (selectedName) selectedName.textContent = name;
+    if (packageInput) packageInput.value = name;
+    if (durationInput) durationInput.value = `${hours} ${hours === '1' ? 'godzina' : hours === '2' || hours === '3' || hours === '4' ? 'godziny' : 'godzin'}`;
 
-        const name =
-          button.dataset.package;
-
-        const selectedPackage =
-          packageData[name];
-
-
-        if (
-          !selectedPackage ||
-          !packageModal
-        ) {
-          return;
-        }
-
-
-        const selectedName =
-          document.getElementById(
-            'selectedPackageName'
-          );
-
-        const packageInput =
-          document.getElementById(
-            'packageInput'
-          );
-
-        const details =
-          document.getElementById(
-            'packageDetails'
-          );
-
-
-        if (selectedName) {
-
-          selectedName.textContent =
-            name;
-
-        }
-
-
-        if (packageInput) {
-
-          packageInput.value =
-            name;
-
-        }
-
-
-        if (details) {
-
-          details.innerHTML = `
-            <h3>
-              ${selectedPackage.price}
-              <small>
-                • ${selectedPackage.audience}
-              </small>
-            </h3>
-
-            <ul>
-              ${
-                selectedPackage.items
-                  .map(
-                    item =>
-                      `<li>${item}</li>`
-                  )
-                  .join('')
-              }
-            </ul>
-          `;
-
-        }
-
-
-        openModal(packageModal);
-
-      }
-    );
-
-  });
-
-
-// =====================================================
-// ZAMYKANIE MODALI PRZYCISKIEM / TŁEM
-// =====================================================
-
-document
-  .querySelectorAll('.js-close-modal')
-  .forEach(element => {
-
-    element.addEventListener(
-      'click',
-      () => {
-
-        closeModal(
-          element.closest('.modal')
-        );
-
-      }
-    );
-
-  });
-
-
-// =====================================================
-// ESC = ZAMKNIJ MODAL
-// =====================================================
-
-document.addEventListener(
-  'keydown',
-  event => {
-
-    if (event.key !== 'Escape') {
-      return;
+    if (details) {
+      details.innerHTML = `
+        <div class="selected-duration">🕒 Wybrany czas: ${hours}h</div>
+        <h3>Proponowany plan animacji</h3>
+        <ul>${selected.items.map(item => `<li>${item}</li>`).join('')}</ul>
+        <p>Plan możemy zmienić i dopasować do Twoich oczekiwań.</p>
+      `;
     }
 
+    openModal(packageModal);
+  });
+});
 
-    document
-      .querySelectorAll(
-        '.modal.is-open'
-      )
-      .forEach(modal => {
+// „I wiele innych!” — otwarcie formularza indywidualnego z wybraną liczbą godzin.
+document.querySelectorAll('.js-custom-package, .js-open-custom-event').forEach(button => {
+  button.addEventListener('click', () => {
+    if (!customEventModal) return;
 
-        closeModal(modal);
+    const card = button.closest('[data-package-card]');
+    const hours = card?.dataset.selectedHours || '2';
+    const source = customEventModal.querySelector('[name="source"]');
+    const packageInput = customEventModal.querySelector('[name="package"]');
+    const durationInput = customEventModal.querySelector('[name="duration"]');
 
+    if (source) source.value = 'Inne wydarzenie';
+    if (packageInput) packageInput.value = '';
+    if (durationInput) durationInput.value = `${hours} ${hours === '1' ? 'godzina' : 'godziny'}`;
+
+    openModal(customEventModal);
+  });
+});
+
+// Zamykanie modali.
+document.querySelectorAll('.js-close-modal').forEach(element => {
+  element.addEventListener('click', () => closeModal(element.closest('.modal')));
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    document.querySelectorAll('.modal.is-open').forEach(closeModal);
+  }
+});
+
+// Menu mobilne.
+const navToggle = document.querySelector('.nav-toggle');
+const mainNav = document.querySelector('.main-nav');
+
+if (navToggle && mainNav) {
+  navToggle.addEventListener('click', () => {
+    const open = mainNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(open));
+  });
+
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+// Formularze.
+document.querySelectorAll('.inquiry-form').forEach(form => {
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+
+    const status = form.querySelector('.form-status');
+    const submit = form.querySelector('button[type="submit"]');
+    if (!status || !submit) return;
+
+    status.className = 'form-status';
+    status.textContent = 'Wysyłanie...';
+    submit.disabled = true;
+
+    const payload = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
       });
 
-  }
-);
-
-
-// =====================================================
-// MENU MOBILNE
-// =====================================================
-
-const navToggle =
-  document.querySelector(
-    '.nav-toggle'
-  );
-
-const mainNav =
-  document.querySelector(
-    '.main-nav'
-  );
-
-
-if (
-  navToggle &&
-  mainNav
-) {
-
-  navToggle.addEventListener(
-    'click',
-    () => {
-
-      const open =
-        mainNav.classList.toggle(
-          'open'
-        );
-
-
-      navToggle.setAttribute(
-        'aria-expanded',
-        String(open)
-      );
-
-    }
-  );
-
-
-  mainNav
-    .querySelectorAll('a')
-    .forEach(link => {
-
-      link.addEventListener(
-        'click',
-        () => {
-
-          mainNav.classList.remove(
-            'open'
-          );
-
-
-          navToggle.setAttribute(
-            'aria-expanded',
-            'false'
-          );
-
-        }
-      );
-
-    });
-
-}
-
-
-// =====================================================
-// FORMULARZE
-// =====================================================
-
-document
-  .querySelectorAll('.inquiry-form')
-  .forEach(form => {
-
-    form.addEventListener(
-      'submit',
-      async event => {
-
-        event.preventDefault();
-
-
-        const status =
-          form.querySelector(
-            '.form-status'
-          );
-
-        const submit =
-          form.querySelector(
-            'button[type="submit"]'
-          );
-
-
-        if (
-          !status ||
-          !submit
-        ) {
-          return;
-        }
-
-
-        // Komunikat wysyłania
-        status.className =
-          'form-status';
-
-        status.textContent =
-          'Wysyłanie...';
-
-
-        submit.disabled = true;
-
-
-        // Pobierz wszystkie pola formularza
-        // w tym:
-        // people
-        // location
-        // event_type
-        // children itd.
-        const payload =
-          Object.fromEntries(
-            new FormData(form)
-              .entries()
-          );
-
-
-        console.log(
-          'Wysyłane dane:',
-          payload
-        );
-
-
-        try {
-
-          const response =
-            await fetch(
-              API_URL,
-              {
-
-                method: 'POST',
-
-                headers: {
-
-                  'Content-Type':
-                    'application/json',
-
-                  'Accept':
-                    'application/json'
-
-                },
-
-                body:
-                  JSON.stringify(
-                    payload
-                  )
-
-              }
-            );
-
-
-          const contentType =
-            response.headers.get(
-              'content-type'
-            ) || '';
-
-
-          const raw =
-            await response.text();
-
-
-          // Backend powinien zwrócić JSON
-          if (
-            !contentType.includes(
-              'application/json'
-            )
-          ) {
-
-            throw new Error(
-              `Backend zwrócił odpowiedź HTTP ${response.status}, ale nie JSON.`
-            );
-
-          }
-
-
-          let data;
-
-
-          try {
-
-            data =
-              raw
-                ? JSON.parse(raw)
-                : {};
-
-          } catch {
-
-            throw new Error(
-              'Nie udało się odczytać odpowiedzi backendu.'
-            );
-
-          }
-
-
-          // Backend zwrócił błąd
-          if (
-            !response.ok ||
-            data.ok !== true
-          ) {
-
-            throw new Error(
-              data.message ||
-              `Błąd HTTP ${response.status}`
-            );
-
-          }
-
-
-          // =================================================
-          // SUKCES
-          // =================================================
-
-          status.classList.add(
-            'success'
-          );
-
-
-          status.textContent =
-            data.message ||
-            'Zapytanie zostało wysłane.';
-
-
-          form.reset();
-
-
-          // Po resecie ponownie ustaw minimalną datę
-          form
-            .querySelectorAll(
-              'input[type="date"]'
-            )
-            .forEach(input => {
-
-              input.min =
-                localToday();
-
-            });
-
-
-          // Zamknij modal po 1,5 sekundy
-          setTimeout(() => {
-
-            const modal =
-              form.closest('.modal');
-
-
-            if (modal) {
-
-              closeModal(modal);
-
-            }
-
-          }, 1500);
-
-
-        } catch (error) {
-
-          // =================================================
-          // BŁĄD
-          // =================================================
-
-          console.error(
-            'Błąd formularza:',
-            error
-          );
-
-
-          status.classList.add(
-            'error'
-          );
-
-
-          status.textContent =
-            'Nie udało się wysłać formularza: ' +
-            error.message;
-
-
-        } finally {
-
-          submit.disabled = false;
-
-        }
-
+      const contentType = response.headers.get('content-type') || '';
+      const raw = await response.text();
+
+      if (!contentType.includes('application/json')) {
+        throw new Error(`Backend zwrócił odpowiedź HTTP ${response.status}, ale nie JSON.`);
       }
-    );
 
+      const data = raw ? JSON.parse(raw) : {};
+
+      if (!response.ok || data.ok !== true) {
+        throw new Error(data.message || `Błąd HTTP ${response.status}`);
+      }
+
+      status.classList.add('success');
+      status.textContent = data.message || 'Zapytanie zostało wysłane.';
+      form.reset();
+
+      setTimeout(() => closeModal(form.closest('.modal')), 1500);
+    } catch (error) {
+      console.error('Błąd formularza:', error);
+      status.classList.add('error');
+      status.textContent = 'Nie udało się wysłać formularza: ' + error.message;
+    } finally {
+      submit.disabled = false;
+    }
   });
+});
 
-
-console.log(
-  'Fikadoo: app.js załadowany poprawnie.'
-);
+console.log('Fikadoo: app.js załadowany poprawnie.');

@@ -220,8 +220,8 @@ if (navToggle && mainNav) {
     navToggle.setAttribute('aria-expanded', String(open));
   });
 
-  mainNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
+  mainNav.querySelectorAll('a, .nav-mobile-cta').forEach(item => {
+    item.addEventListener('click', () => {
       mainNav.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
     });

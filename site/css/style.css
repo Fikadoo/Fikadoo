@@ -753,7 +753,7 @@ img {
 ===================================================== */
 
 .event-packages-section {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .package-section-head {
@@ -778,6 +778,9 @@ img {
 .event-package-card {
   --package-accent: var(--pink);
   --package-soft: #fff2f8;
+
+  position: relative;
+  overflow: visible;
 
   min-width: 0;
   min-height: 100%;
@@ -2009,27 +2012,30 @@ body.modal-open {
 
 .package-price-badge {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 2;
-  padding: 7px 11px;
-  border: 1.5px solid var(--package-accent);
+  top: -16px;
+  left: -16px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 16px;
+  border: 2px solid var(--package-accent);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
+  background: #ffffff;
   color: var(--package-accent);
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1;
   font-weight: 900;
   white-space: nowrap;
-  box-shadow: 0 6px 15px rgba(16, 42, 86, 0.08);
+  box-shadow: 0 10px 24px rgba(16, 42, 86, 0.12);
 }
 
-@media (max-width: 640px) {
+ (max-width: 640px) {
   .package-price-badge {
-    top: 12px;
-    right: 12px;
-    padding: 6px 10px;
-    font-size: 11px;
+    top: -12px;
+    left: -12px;
+    padding: 9px 13px;
+    font-size: 14px;
   }
 }
 

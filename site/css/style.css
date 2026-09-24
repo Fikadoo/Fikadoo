@@ -3092,3 +3092,23 @@ body,
     font-size: 19px;
   }
 }
+
+/* ===== FIKADOO — CIEMNIEJSZY BLOK PERSONALIZACJI W DARK MODE ===== */
+
+html[data-theme="dark"] .package-custom-note {
+  background: linear-gradient(135deg, #0a1220 0%, #101a2b 100%) !important;
+  border-color: #355073 !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+}
+
+html[data-theme="dark"] .package-custom-note-copy h3 {
+  color: #f5f8ff !important;
+}
+
+html[data-theme="dark"] .package-custom-note-copy p {
+  color: #9fb0c9 !important;
+}
+
+html[data-theme="dark"] .package-custom-note-icon {
+  filter: brightness(0.92) saturate(0.9);
+}

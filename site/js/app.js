@@ -142,20 +142,58 @@ document.querySelectorAll('.js-event-package').forEach(button => {
   });
 });
 
-// „I wiele innych!” — otwarcie formularza indywidualnego z wybraną liczbą godzin.
+// Kafelki „Obsługujemy m.in.” — otwierają formularz z gotowym typem imprezy.
+document.querySelectorAll('.js-open-event').forEach(button => {
+  button.addEventListener('click', () => {
+    if (!customEventModal) return;
+
+    const eventName = button.dataset.event || '';
+    const source = customEventModal.querySelector('[name="source"]');
+    const packageInput = customEventModal.querySelector('[name="package"]');
+    const durationInput = customEventModal.querySelector('[name="duration"]');
+    const eventTypeInput = customEventModal.querySelector('[name="event_type"]');
+    const eventTypeField = customEventModal.querySelector('.custom-event-type-field');
+    const title = customEventModal.querySelector('#customEventTitle');
+    const eyebrow = customEventModal.querySelector('.eyebrow');
+    const intro = customEventModal.querySelector('.modal-intro');
+
+    if (source) source.value = `Kafelek: ${eventName}`;
+    if (packageInput) packageInput.value = '';
+    if (durationInput) durationInput.value = 'Do ustalenia';
+    if (eventTypeInput) eventTypeInput.value = eventName;
+    if (eventTypeField) eventTypeField.hidden = true;
+    if (title) title.textContent = `Zapytaj o: ${eventName}`;
+    if (eyebrow) eyebrow.textContent = `🎉 ${eventName}`;
+    if (intro) intro.textContent = 'Podaj kilka szczegółów, a przygotujemy propozycję dopasowaną do Twojej imprezy.';
+
+    openModal(customEventModal);
+  });
+});
+
+// „I wiele innych!” oraz indywidualny pakiet — pole rodzaju wydarzenia zostaje widoczne.
 document.querySelectorAll('.js-custom-package, .js-open-custom-event').forEach(button => {
   button.addEventListener('click', () => {
     if (!customEventModal) return;
 
     const card = button.closest('[data-package-card]');
-    const hours = card?.dataset.selectedHours || '2';
+    const hours = card?.dataset.selectedHours || '';
     const source = customEventModal.querySelector('[name="source"]');
     const packageInput = customEventModal.querySelector('[name="package"]');
     const durationInput = customEventModal.querySelector('[name="duration"]');
+    const eventTypeInput = customEventModal.querySelector('[name="event_type"]');
+    const eventTypeField = customEventModal.querySelector('.custom-event-type-field');
+    const title = customEventModal.querySelector('#customEventTitle');
+    const eyebrow = customEventModal.querySelector('.eyebrow');
+    const intro = customEventModal.querySelector('.modal-intro');
 
     if (source) source.value = 'Inne wydarzenie';
     if (packageInput) packageInput.value = '';
-    if (durationInput) durationInput.value = `${hours} ${hours === '1' ? 'godzina' : 'godziny'}`;
+    if (durationInput) durationInput.value = hours ? `${hours} ${hours === '1' ? 'godzina' : 'godziny'}` : 'Do ustalenia';
+    if (eventTypeInput) eventTypeInput.value = '';
+    if (eventTypeField) eventTypeField.hidden = false;
+    if (title) title.textContent = 'Opowiedz nam o swojej imprezie';
+    if (eyebrow) eyebrow.textContent = '🎉 Indywidualne wydarzenie';
+    if (intro) intro.textContent = 'Napisz kilka szczegółów, a przygotujemy propozycję dopasowaną do Twojego wydarzenia.';
 
     openModal(customEventModal);
   });

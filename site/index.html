@@ -1,953 +1,697 @@
 <!DOCTYPE html>
+
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Fikadoo – animacje dla dzieci, urodziny, wesela, festyny i eventy firmowe." />
-  <link rel="icon" type="image/png" href="assets/logo.png" />
-  <title>Fikadoo – animacje, które robią różnicę</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Fikadoo – animacje dla dzieci, urodziny, wesela, festyny i eventy firmowe." name="description"/>
+<link href="assets/logo.png" rel="icon" type="image/png"/>
+<title>Fikadoo – animacje, które robią różnicę</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet">
+</link></head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="#start" class="logo" aria-label="Fikadoo – strona główna">
-        <img src="assets/logo.png" alt="Fikadoo" class="brand-logo" />
-      </a>
-
-      <button class="nav-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false">☰</button>
-
-      <nav class="main-nav">
-        <a href="#oferta">Oferta</a>
-        <a href="#pakiety">Pakiety</a>
-        <a href="#galeria">Galeria</a>
-        <a href="#onas">O nas</a>
-        <a href="#opinie">Opinie</a>
-        <a href="#kontakt">Kontakt</a>
-      </nav>
-
-      <button class="btn btn-pink js-open-booking" type="button" data-source="Nagłówek">📅 Zapytaj o termin</button>
-    </div>
-  </header>
-
-  <main>
-    <section id="start" class="hero section">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">🎉 Animacje dla dzieci • Rzeszów, Wrocław, Poznań i okolice</span>
-          <h1>Animacje, które <span>zamieniają zwykłą</span> imprezę w wielką <strong>przygodę!</strong></h1>
-          <p>Urodziny, wesela, festyny i eventy firmowe – z energią, humorem i atrakcjami, które dzieci uwielbiają.</p>
-          <div class="hero-actions">
-            <a class="btn btn-blue" href="#oferta">Poznaj ofertę →</a>
-            <button class="btn btn-outline js-open-booking" type="button" data-source="Hero">Zapytaj o termin 📅</button>
-          </div>
-          <div class="hero-badges">
-            <div><b>100+</b><span>zorganizowanych imprez</span></div>
-            <div><b>Animatorzy z pasją</b><span>do dzieci i dobrej zabawy</span></div>
-            <div><b>Mobilnie</b><span>dojeżdżamy na miejsce</span></div>
-          </div>
-        </div>
-
-        <div class="hero-visual hero-panda-collage" aria-label="Kolorowy kolaż atrakcji Fikadoo">
-          <div class="blob"></div>
-
-          <div class="photo-card main-photo panda-main-card">
-            <img
-              src="assets/hero-panda.png"
-              alt="Dziewczynka z pomalowaną twarzą w pandę"
-              class="hero-panda-image"
-            />
-          </div>
-
-          <div class="photo-card mini-photo mini-one">
-            <img
-              src="assets/hero-mini-facepaint.jpg"
-              alt="Chłopiec z malowaniem twarzy"
-            />
-          </div>
-
-          <div class="photo-card mini-photo mini-two">
-            <img
-              src="assets/hero-mini-balloons.jpg"
-              alt="Dzieci z balonowymi zwierzątkami"
-            />
-          </div>
-
-          <div class="photo-card mini-photo mini-three">
-            <img
-              src="assets/hero-mini-cotton-candy.jpg"
-              alt="Dziewczynka z watą cukrową"
-            />
-          </div>
-
-          <span class="float-shape s1">★</span>
-          <span class="float-shape s2">〰</span>
-          <span class="float-shape s3">●</span>
-        </div>
-      </div>
-    </section>
-
-<section id="oferta" class="section section-soft">
-  <div class="container">
-
-    <div class="section-head">
-      <span class="eyebrow">Nasza oferta</span>
-      <h2>Obsługujemy różne rodzaje imprez i wydarzeń</h2>
-      <p>
+<header class="site-header">
+<div class="container nav-wrap">
+<a aria-label="Fikadoo – strona główna" class="logo" href="#start">
+<img alt="Fikadoo" class="brand-logo" src="assets/logo.png"/>
+</a>
+<button aria-expanded="false" aria-label="Otwórz menu" class="nav-toggle" type="button">☰</button>
+<nav class="main-nav">
+<a href="#oferta">Oferta</a>
+<a href="#pakiety">Pakiety</a>
+<a href="#galeria">Galeria</a>
+<a href="#onas">O nas</a>
+<a href="#opinie">Opinie</a>
+<a href="#kontakt">Kontakt</a>
+</nav>
+<button class="btn btn-pink js-open-booking" data-source="Nagłówek" type="button">📅 Zapytaj o termin</button>
+</div>
+</header>
+<main>
+<section class="hero section" id="start">
+<div class="container hero-grid">
+<div class="hero-copy">
+<span class="eyebrow">🎉 Animacje dla dzieci • Rzeszów, Wrocław, Poznań i okolice</span>
+<h1>Animacje, które <span>zamieniają zwykłą</span> imprezę w wielką <strong>przygodę!</strong></h1>
+<p>Urodziny, wesela, festyny i eventy firmowe – z energią, humorem i atrakcjami, które dzieci uwielbiają.</p>
+<div class="hero-actions">
+<a class="btn btn-blue" href="#oferta">Poznaj ofertę →</a>
+<button class="btn btn-outline js-open-booking" data-source="Hero" type="button">Zapytaj o termin 📅</button>
+</div>
+<div class="hero-badges">
+<div><b>100+</b><span>zorganizowanych imprez</span></div>
+<div><b>Animatorzy z pasją</b><span>do dzieci i dobrej zabawy</span></div>
+<div><b>Mobilnie</b><span>dojeżdżamy na miejsce</span></div>
+</div>
+</div>
+<div aria-label="Kolaż atrakcji Fikadoo: malowanie twarzy, balony i wata cukrowa" class="hero-visual hero-final-collage"><img alt="Kolaż atrakcji Fikadoo z malowaniem twarzy, balonami i watą cukrową" class="hero-final-collage-image" src="assets/hero-collage-final.png"/></div>
+</div>
+</section>
+<section class="section section-soft" id="oferta">
+<div class="container">
+<div class="section-head">
+<span class="eyebrow">Nasza oferta</span>
+<h2>Obsługujemy różne rodzaje imprez i wydarzeń</h2>
+<p>
         Zapewniamy animacje dla dzieci podczas małych rodzinnych uroczystości,
         dużych wydarzeń plenerowych i eventów firmowych.
       </p>
-    </div>
-
-    <!-- RODZAJE IMPREZ -->
-
-    <div class="offer-group">
-
-      <div class="offer-group-title">
-        <span>🎉</span>
-        <div>
-          <small>Gdzie możecie nas zaprosić?</small>
-          <h3>Obsługujemy m.in.</h3>
-        </div>
-      </div>
+</div>
+<!-- RODZAJE IMPREZ -->
+<div class="offer-group">
+<div class="offer-group-title">
+<span>🎉</span>
+<div>
+<small>Gdzie możecie nas zaprosić?</small>
+<h3>Obsługujemy m.in.</h3>
+</div>
+</div>
 <div class="offer-grid event-grid">
-
-  <article class="offer-card pink">
-    <span>🎂</span>
-    <h3>Urodziny</h3>
-  </article>
-
-  <article class="offer-card yellow">
-    <span>💍</span>
-    <h3>Wesela</h3>
-  </article>
-
-  <article class="offer-card mint">
-    <span>⛪</span>
-    <h3>Komunie / Chrzciny</h3>
-  </article>
-
-  <article class="offer-card yellow">
-    <span>🎪</span>
-    <h3>Festyny</h3>
-  </article>
-
-  <article class="offer-card mint">
-    <span>🎃</span>
-    <h3>Halloween</h3>
-  </article>
-
-  <article class="offer-card blue">
-    <span>🎭</span>
-    <h3>Karnawały</h3>
-  </article>
-
-  <article class="offer-card pink">
-    <span>🧒</span>
-    <h3>Dni Dziecka</h3>
-  </article>
-
-  <article class="offer-card purple">
-    <span>🌾</span>
-    <h3>Dożynki / Dni Miasta</h3>
-  </article>
-
-
-  <!-- SZEROKI KAFELEK NA 2 MIEJSCA -->
-
-  <article class="offer-card blue wide-event-card">
-    <span>💼</span>
-
-    <h3>
+<article class="offer-card pink">
+<span>🎂</span>
+<h3>Urodziny</h3>
+</article>
+<article class="offer-card yellow">
+<span>💍</span>
+<h3>Wesela</h3>
+</article>
+<article class="offer-card mint">
+<span>⛪</span>
+<h3>Komunie / Chrzciny</h3>
+</article>
+<article class="offer-card yellow">
+<span>🎪</span>
+<h3>Festyny</h3>
+</article>
+<article class="offer-card mint">
+<span>🎃</span>
+<h3>Halloween</h3>
+</article>
+<article class="offer-card blue">
+<span>🎭</span>
+<h3>Karnawały</h3>
+</article>
+<article class="offer-card pink">
+<span>🧒</span>
+<h3>Dni Dziecka</h3>
+</article>
+<article class="offer-card purple">
+<span>🌾</span>
+<h3>Dożynki / Dni Miasta</h3>
+</article>
+<!-- SZEROKI KAFELEK NA 2 MIEJSCA -->
+<article class="offer-card blue wide-event-card">
+<span>💼</span>
+<h3>
       Imprezy firmowe / Eventy specjalne
     </h3>
-
-    <p>
+<p>
       Animacje podczas wydarzeń firmowych,
       plenerowych i specjalnych.
     </p>
-  </article>
-
-
-  <!-- I WIELE INNYCH - TEŻ NA 2 MIEJSCA -->
-
-  <button
-    class="offer-card more-card custom-event-card js-open-custom-event"
-    type="button"
-  >
-    <span>➕</span>
-
-    <h3>I wiele innych!</h3>
-
-    <p>
+</article>
+<!-- I WIELE INNYCH - TEŻ NA 2 MIEJSCA -->
+<button class="offer-card more-card custom-event-card js-open-custom-event" type="button">
+<span>➕</span>
+<h3>I wiele innych!</h3>
+<p>
       Organizujesz inne wydarzenie?
       Kliknij tutaj i opisz nam swój pomysł.
     </p>
-
-    <strong class="more-card-cta">
+<strong class="more-card-cta">
       Opisz wydarzenie →
     </strong>
-  </button>
-
+</button>
 </div>
-    </div>
-
-
-    <!-- ATRAKCJE -->
-
-    <div class="offer-group attractions-group">
-
-      <div class="offer-group-title">
-        <span>🎈</span>
-        <div>
-          <small>Co przygotujemy dla dzieci oraz dorosłych?</small>
-          <h3>Jakie zabawy oferujemy m.in.</h3>
-        </div>
-      </div>
-
-     <div class="offer-grid">
-
-  <article class="offer-card purple">
-    <span>🎨</span>
-    <h3>Malowanie twarzy / Tatuaże</h3>
-    <p>Kolorowe wzory, brokatowe tatuaże i dużo kreatywnej zabawy.</p>
-  </article>
-
-  <article class="offer-card yellow">
-    <span>🎈</span>
-    <h3>Modelowanie balonów</h3>
-    <p>Zwierzątka, miecze, kwiatki i inne balonowe cuda.</p>
-  </article>
-
-  <article class="offer-card pink">
-    <span>🍭</span>
-    <h3>Wata cukrowa</h3>
-    <p>Słodka atrakcja, którą dzieci uwielbiają.</p>
-  </article>
-
-  <article class="offer-card blue">
-    <span class="bubble-icon">
-      <img
-        src="https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1fae7.svg"
-        alt="Bańki mydlane"
-      >
-    </span>
-    <h3>Bańki mydlane</h3>
-    <p>Duże bańki, zabawy bańkowe i mnóstwo frajdy.</p>
-  </article>
-
-  <article class="offer-card mint">
-    <span>☁️</span>
-    <h3>Piana Party</h3>
-    <p>Mnóstwo piany, muzyki i szalonej zabawy.</p>
-  </article>
-
-  <article class="offer-card blue">
-    <span>💃</span>
-    <h3>Mini Disco</h3>
-    <p>Tańce, muzyka i wspólna zabawa dla dzieci.</p>
-  </article>
-
-  <article class="offer-card pink">
-    <span>🧸</span>
-    <h3>Maskotki</h3>
-    <p>Spotkanie i zabawa z dużą żywą maskotką.</p>
-  </article>
-
-  <article class="offer-card mint">
-    <span>🎯</span>
-    <h3>Gry i konkursy</h3>
-    <p>Zabawy ruchowe, integracyjne i drużynowe.</p>
-  </article>
-
 </div>
-
-    </div>
-
-  </div>
+<!-- ATRAKCJE -->
+<div class="offer-group attractions-group">
+<div class="offer-group-title">
+<span>🎈</span>
+<div>
+<small>Co przygotujemy dla dzieci oraz dorosłych?</small>
+<h3>Jakie zabawy oferujemy m.in.</h3>
+</div>
+</div>
+<div class="offer-grid">
+<article class="offer-card purple">
+<span>🎨</span>
+<h3>Malowanie twarzy / Tatuaże</h3>
+<p>Kolorowe wzory, brokatowe tatuaże i dużo kreatywnej zabawy.</p>
+</article>
+<article class="offer-card yellow">
+<span>🎈</span>
+<h3>Modelowanie balonów</h3>
+<p>Zwierzątka, miecze, kwiatki i inne balonowe cuda.</p>
+</article>
+<article class="offer-card pink">
+<span>🍭</span>
+<h3>Wata cukrowa</h3>
+<p>Słodka atrakcja, którą dzieci uwielbiają.</p>
+</article>
+<article class="offer-card blue">
+<span class="bubble-icon">
+<img alt="Bańki mydlane" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1fae7.svg"/>
+</span>
+<h3>Bańki mydlane</h3>
+<p>Duże bańki, zabawy bańkowe i mnóstwo frajdy.</p>
+</article>
+<article class="offer-card mint">
+<span>☁️</span>
+<h3>Piana Party</h3>
+<p>Mnóstwo piany, muzyki i szalonej zabawy.</p>
+</article>
+<article class="offer-card blue">
+<span>💃</span>
+<h3>Mini Disco</h3>
+<p>Tańce, muzyka i wspólna zabawa dla dzieci.</p>
+</article>
+<article class="offer-card pink">
+<span>🧸</span>
+<h3>Maskotki</h3>
+<p>Spotkanie i zabawa z dużą żywą maskotką.</p>
+</article>
+<article class="offer-card mint">
+<span>🎯</span>
+<h3>Gry i konkursy</h3>
+<p>Zabawy ruchowe, integracyjne i drużynowe.</p>
+</article>
+</div>
+</div>
+</div>
 </section>
-
-
-
-
-    <section class="section quiz-section">
-      <div class="container">
-
-        <div class="section-head">
-          <span class="eyebrow">🎤 Teleturnieje</span>
-          <h2>Teleturnieje, które znacie z telewizji!</h2>
-          <p>
+<section class="section quiz-section">
+<div class="container">
+<div class="section-head">
+<span class="eyebrow">🎤 Teleturnieje</span>
+<h2>Teleturnieje, które znacie z telewizji!</h2>
+<p>
             Znane formaty, dużo emocji, rywalizacji i świetnej zabawy
             dla dzieci oraz dorosłych.
           </p>
-        </div>
-
-        <div class="offer-grid quiz-grid">
-
-          <article class="offer-card pink">
-            <span>👨‍👩‍👧‍👦</span>
-            <h3>Familiada</h3>
-            <p>
+</div>
+<div class="offer-grid quiz-grid">
+<article class="offer-card pink">
+<span>👨‍👩‍👧‍👦</span>
+<h3>Familiada</h3>
+<p>
               Drużynowa rywalizacja, szybkie odpowiedzi
               i mnóstwo śmiechu.
             </p>
-          </article>
-
-          <article class="offer-card yellow">
-            <span>🎵</span>
-            <h3>Jaka to melodia?</h3>
-            <p>
+</article>
+<article class="offer-card yellow">
+<span>🎵</span>
+<h3>Jaka to melodia?</h3>
+<p>
               Rozpoznawanie piosenek, muzyczne zagadki
               i świetna zabawa przy muzyce.
             </p>
-          </article>
-
-          <article class="offer-card blue">
-            <span>🔟</span>
-            <h3>1 z 10</h3>
-            <p>
+</article>
+<article class="offer-card blue">
+<span>🔟</span>
+<h3>1 z 10</h3>
+<p>
               Pytania z różnych kategorii i rywalizacja
               o tytuł najlepszego zawodnika.
             </p>
-          </article>
-
-          <article class="offer-card mint">
-            <span>⏱️</span>
-            <h3>5 Sekund</h3>
-            <p>
+</article>
+<article class="offer-card mint">
+<span>⏱️</span>
+<h3>5 Sekund</h3>
+<p>
               Tylko kilka sekund na odpowiedź,
               szybkie tempo i mnóstwo zabawnych sytuacji.
             </p>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section steps-section">
-      <div class="container">
-        <div class="section-head"><h2>Jak to działa?</h2></div>
-        <div class="steps-grid">
-          <div class="step"><span class="step-no">1</span><div class="step-icon">☎️</div><h3>Kontakt</h3><p>Napisz lub zadzwoń. Poznamy Twoje potrzeby i termin.</p></div>
-          <div class="step"><span class="step-no pink-bg">2</span><div class="step-icon">📋</div><h3>Wybór pakietu</h3><p>Wybierasz rodzaj wydarzenia, atrakcje i czas trwania animacji.</p></div>
-          <div class="step"><span class="step-no yellow-bg">3</span><div class="step-icon">🎉</div><h3>Świetna zabawa</h3><p>Przyjeżdżamy, bawimy, angażujemy i tworzymy niezapomniane chwile.</p></div>
-        </div>
-      </div>
-    </section>
-    <section id="onas" class="section section-soft">
-      <div class="container">
-        <div class="section-head"><h2>Dlaczego my?</h2></div>
-        <div class="why-grid">
-          <div><span>⭐</span><h3>Doświadczenie</h3><p>Setki uśmiechów i dziesiątki udanych realizacji.</p></div>
-          <div><span>💗</span><h3>Indywidualne podejście</h3><p>Dopasowujemy program do wieku i potrzeb dzieci.</p></div>
-          <div><span>🛡️</span><h3>Bezpieczeństwo</h3><p>Sprawdzony sprzęt, opieka i odpowiedzialna organizacja.</p></div>
-          <div><span>😊</span><h3>Gwarancja uśmiechu</h3><p>Energia, humor i atrakcje, które dzieci kochają.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="galeria" class="section gallery-section">
-      <div class="container">
-        <div class="section-head"><h2>Zobacz, jak bawimy!</h2></div>
-        <div class="gallery-grid">
-          <img src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=700&q=80" alt="Animacje z dziećmi" />
-          <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=700&q=80" alt="Zabawa dzieci" />
-          <img src="https://images.unsplash.com/photo-1535572290543-960a8046f5af?auto=format&fit=crop&w=700&q=80" alt="Kolorowa zabawa" />
-          <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=700&q=80" alt="Urodziny dzieci" />
-          <img src="https://images.unsplash.com/photo-1526634332515-d56c5fd16991?auto=format&fit=crop&w=700&q=80" alt="Dzieci na imprezie" />
-        </div>
-      </div>
-    </section>
-
-    <section id="pakiety" class="section section-soft event-packages-section">
-      <div class="container">
-        <div class="section-head package-section-head">
-          <span class="eyebrow">Wybierz pakiet</span>
-          <h2>Pakiety dopasowane do Twojej imprezy</h2>
-          <p>Wybierz rodzaj wydarzenia i czas trwania animacji. Każdy pakiet możemy dopasować do Twoich potrzeb.</p>
-        </div>
-
-        <div class="event-packages-grid">
-
-          <article class="event-package-card package-pink" data-package-card data-package="Urodziny">
-            <div class="package-emoji">🎂</div>
-            <h3>Urodziny</h3>
-            <p class="package-sub">Idealny pakiet na niezapomniane urodziny dla dzieci!</p>
-            <ul>
-              <li>Animacje i gry</li>
-              <li>Malowanie twarzy / tatuaże</li>
-              <li>Modelowanie balonów</li>
-              <li>Mini Disco</li>
-            </ul>
-            <div class="duration-picker" aria-label="Wybierz czas animacji">
-              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
-              <div class="duration-options">
-                <button type="button" class="duration-option" data-hours="1">1h</button>
-                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
-                <button type="button" class="duration-option" data-hours="3">3h</button>
-                <button type="button" class="duration-option" data-hours="4">4h</button>
-              </div>
-            </div>
-            <button class="package-cta js-event-package" type="button" data-package="Urodziny">Wybieram pakiet →</button>
-          </article>
-
-          <article class="event-package-card package-yellow" data-package-card data-package="Wesela">
-            <div class="package-emoji">💍</div>
-            <h3>Wesela</h3>
-            <p class="package-sub">Zabawa dla dzieci i więcej spokoju dla rodziców.</p>
-            <ul>
-              <li>Kącik animacji dla dzieci</li>
-              <li>Gry i konkursy</li>
-              <li>Mini Disco</li>
-              <li>Maskotki</li>
-            </ul>
-            <div class="duration-picker" aria-label="Wybierz czas animacji">
-              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
-              <div class="duration-options">
-                <button type="button" class="duration-option" data-hours="1">1h</button>
-                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
-                <button type="button" class="duration-option" data-hours="3">3h</button>
-                <button type="button" class="duration-option" data-hours="4">4h</button>
-              </div>
-            </div>
-            <button class="package-cta js-event-package" type="button" data-package="Wesela">Wybieram pakiet →</button>
-          </article>
-
-          <article class="event-package-card package-mint" data-package-card data-package="Komunie / Chrzciny">
-            <div class="package-emoji">⛪</div>
-            <h3>Komunie / Chrzciny</h3>
-            <p class="package-sub">Delikatne i dopasowane animacje dla najmłodszych.</p>
-            <ul>
-              <li>Spokojne zabawy i gry</li>
-              <li>Malowanie twarzy / tatuaże</li>
-              <li>Modelowanie balonów</li>
-              <li>Bańki mydlane</li>
-            </ul>
-            <div class="duration-picker" aria-label="Wybierz czas animacji">
-              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
-              <div class="duration-options">
-                <button type="button" class="duration-option" data-hours="1">1h</button>
-                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
-                <button type="button" class="duration-option" data-hours="3">3h</button>
-                <button type="button" class="duration-option" data-hours="4">4h</button>
-              </div>
-            </div>
-            <button class="package-cta js-event-package" type="button" data-package="Komunie / Chrzciny">Wybieram pakiet →</button>
-          </article>
-
-          <article class="event-package-card package-gold" data-package-card data-package="Festyny">
-            <div class="package-emoji">🎪</div>
-            <h3>Festyny</h3>
-            <p class="package-sub">Duże wydarzenia, mnóstwo atrakcji i dobrej energii.</p>
-            <ul>
-              <li>Gry i konkursy</li>
-              <li>Bańki mydlane</li>
-              <li>Piana Party</li>
-              <li>Maskotki</li>
-            </ul>
-            <div class="duration-picker" aria-label="Wybierz czas animacji">
-              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
-              <div class="duration-options">
-                <button type="button" class="duration-option" data-hours="1">1h</button>
-                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
-                <button type="button" class="duration-option" data-hours="3">3h</button>
-                <button type="button" class="duration-option" data-hours="4">4h</button>
-              </div>
-            </div>
-            <button class="package-cta js-event-package" type="button" data-package="Festyny">Wybieram pakiet →</button>
-          </article>
-
-          <article class="event-package-card package-purple" data-package-card data-package="Halloween">
-            <div class="package-emoji">🎃</div>
-            <h3>Halloween</h3>
-            <p class="package-sub">Strasznie fajne animacje, zabawy i konkursy!</p>
-            <ul>
-              <li>Tematyczne zabawy</li>
-              <li>Malowanie twarzy</li>
-              <li>Gry i konkursy</li>
-              <li>Mini Disco</li>
-            </ul>
-            <div class="duration-picker" aria-label="Wybierz czas animacji">
-              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
-              <div class="duration-options">
-                <button type="button" class="duration-option" data-hours="1">1h</button>
-                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
-                <button type="button" class="duration-option" data-hours="3">3h</button>
-                <button type="button" class="duration-option" data-hours="4">4h</button>
-              </div>
-            </div>
-            <button class="package-cta js-event-package" type="button" data-package="Halloween">Wybieram pakiet →</button>
-          </article>
-
-          <article class="event-package-card package-blue" data-package-card data-package="Karnawały">
-            <div class="package-emoji">🎭</div>
-            <h3>Karnawały</h3>
-            <p class="package-sub">Kolorowe animacje pełne tańca i zabawy.</p>
-            <ul>
-              <li>Mini Disco</li>
-              <li>Gry i konkursy</li>
-              <li>Modelowanie balonów</li>
-              <li>Maskotki</li>
-            </ul>
-            <div class="duration-picker" aria-label="Wybierz czas animacji">
-              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
-              <div class="duration-options">
-                <button type="button" class="duration-option" data-hours="1">1h</button>
-                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
-                <button type="button" class="duration-option" data-hours="3">3h</button>
-                <button type="button" class="duration-option" data-hours="4">4h</button>
-              </div>
-            </div>
-            <button class="package-cta js-event-package" type="button" data-package="Karnawały">Wybieram pakiet →</button>
-          </article>
-
-          <article class="event-package-card package-pink" data-package-card data-package="Dni Dziecka">
-            <div class="package-emoji">🧒</div>
-            <h3>Dni Dziecka</h3>
-            <p class="package-sub">Wyjątkowe atrakcje dla najmłodszych!</p>
-            <ul>
-              <li>Mini Disco</li>
-              <li>Gry i konkursy</li>
-              <li>Malowanie twarzy</li>
-              <li>Bańki mydlane</li>
-            </ul>
-            <div class="duration-picker" aria-label="Wybierz czas animacji">
-              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
-              <div class="duration-options">
-                <button type="button" class="duration-option" data-hours="1">1h</button>
-                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
-                <button type="button" class="duration-option" data-hours="3">3h</button>
-                <button type="button" class="duration-option" data-hours="4">4h</button>
-              </div>
-            </div>
-            <button class="package-cta js-event-package" type="button" data-package="Dni Dziecka">Wybieram pakiet →</button>
-          </article>
-
-          <article class="event-package-card package-lilac" data-package-card data-package="Dożynki / Dni Miasta">
-            <div class="package-emoji">🌾</div>
-            <h3>Dożynki / Dni Miasta</h3>
-            <p class="package-sub">Animacje i atrakcje przygotowane na duże wydarzenia plenerowe.</p>
-            <ul>
-              <li>Gry i konkursy</li>
-              <li>Bańki mydlane</li>
-              <li>Piana Party</li>
-              <li>Maskotki</li>
-            </ul>
-            <div class="duration-picker" aria-label="Wybierz czas animacji">
-              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
-              <div class="duration-options">
-                <button type="button" class="duration-option" data-hours="1">1h</button>
-                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
-                <button type="button" class="duration-option" data-hours="3">3h</button>
-                <button type="button" class="duration-option" data-hours="4">4h</button>
-              </div>
-            </div>
-            <button class="package-cta js-event-package" type="button" data-package="Dożynki / Dni Miasta">Wybieram pakiet →</button>
-          </article>
-
-          <article class="event-package-card package-blue" data-package-card data-package="Imprezy firmowe / Eventy specjalne">
-            <div class="package-emoji">💼</div>
-            <h3>Imprezy firmowe / Eventy specjalne</h3>
-            <p class="package-sub">Integracja i świetna zabawa dla pracowników i ich dzieci.</p>
-            <ul>
-              <li>Gry i konkursy</li>
-              <li>Mini Disco</li>
-              <li>Bańki mydlane</li>
-              <li>Piana Party</li>
-            </ul>
-            <div class="duration-picker" aria-label="Wybierz czas animacji">
-              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
-              <div class="duration-options">
-                <button type="button" class="duration-option" data-hours="1">1h</button>
-                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
-                <button type="button" class="duration-option" data-hours="3">3h</button>
-                <button type="button" class="duration-option" data-hours="4">4h</button>
-              </div>
-            </div>
-            <button class="package-cta js-event-package" type="button" data-package="Imprezy firmowe / Eventy specjalne">Wybieram pakiet →</button>
-          </article>
-
-          <article class="event-package-card package-custom" data-package-card data-package="Inne wydarzenie">
-            <div class="package-emoji">➕</div>
-            <h3>I wiele innych!</h3>
-            <p class="package-sub">Organizujesz inne wydarzenie? Dopasujemy ofertę do Twoich potrzeb.</p>
-            <ul>
-              <li>Indywidualny scenariusz</li>
-              <li>Atrakcje do wyboru</li>
-              <li>Dostosowanie do wieku</li>
-              <li>Elastyczna oferta</li>
-            </ul>
-            <div class="duration-picker" aria-label="Wybierz czas animacji">
-              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
-              <div class="duration-options">
-                <button type="button" class="duration-option" data-hours="1">1h</button>
-                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
-                <button type="button" class="duration-option" data-hours="3">3h</button>
-                <button type="button" class="duration-option" data-hours="4">4h</button>
-              </div>
-            </div>
-            <button class="package-cta js-custom-package" type="button">Zapytaj o wycenę →</button>
-          </article>
-
-        </div>
-
-        <div class="package-custom-note">
-          <div class="package-custom-note-icon">🗓️⚙️</div>
-          <div class="package-custom-note-copy">
-            <h3>Plan animacji możemy dowolnie zmienić!</h3>
-            <p>
+</article>
+</div>
+</div>
+</section><section class="section section-soft event-packages-section" id="pakiety">
+<div class="container">
+<div class="section-head package-section-head">
+<span class="eyebrow">Wybierz pakiet</span>
+<h2>Pakiety dopasowane do Twojej imprezy</h2>
+<p>Wybierz rodzaj wydarzenia i czas trwania animacji. Każdy pakiet możemy dopasować do Twoich potrzeb.</p>
+</div>
+<div class="event-packages-grid">
+<article class="event-package-card package-pink" data-package="Urodziny" data-package-card="">
+<div class="package-emoji">🎂</div>
+<h3>Urodziny</h3>
+<p class="package-sub">Idealny pakiet na niezapomniane urodziny dla dzieci!</p>
+<ul>
+<li>Animacje i gry</li>
+<li>Malowanie twarzy / tatuaże</li>
+<li>Modelowanie balonów</li>
+<li>Mini Disco</li>
+</ul>
+<div aria-label="Wybierz czas animacji" class="duration-picker">
+<span class="duration-label">🕒 Wybierz ilość godzin:</span>
+<div class="duration-options">
+<button class="duration-option" data-hours="1" type="button">1h</button>
+<button class="duration-option is-active" data-hours="2" type="button">2h</button>
+<button class="duration-option" data-hours="3" type="button">3h</button>
+<button class="duration-option" data-hours="4" type="button">4h</button>
+</div>
+</div>
+<button class="package-cta js-event-package" data-package="Urodziny" type="button">Wybieram pakiet →</button>
+</article>
+<article class="event-package-card package-yellow" data-package="Wesela" data-package-card="">
+<div class="package-emoji">💍</div>
+<h3>Wesela</h3>
+<p class="package-sub">Zabawa dla dzieci i więcej spokoju dla rodziców.</p>
+<ul>
+<li>Kącik animacji dla dzieci</li>
+<li>Gry i konkursy</li>
+<li>Mini Disco</li>
+<li>Maskotki</li>
+</ul>
+<div aria-label="Wybierz czas animacji" class="duration-picker">
+<span class="duration-label">🕒 Wybierz ilość godzin:</span>
+<div class="duration-options">
+<button class="duration-option" data-hours="1" type="button">1h</button>
+<button class="duration-option is-active" data-hours="2" type="button">2h</button>
+<button class="duration-option" data-hours="3" type="button">3h</button>
+<button class="duration-option" data-hours="4" type="button">4h</button>
+</div>
+</div>
+<button class="package-cta js-event-package" data-package="Wesela" type="button">Wybieram pakiet →</button>
+</article>
+<article class="event-package-card package-mint" data-package="Komunie / Chrzciny" data-package-card="">
+<div class="package-emoji">⛪</div>
+<h3>Komunie / Chrzciny</h3>
+<p class="package-sub">Delikatne i dopasowane animacje dla najmłodszych.</p>
+<ul>
+<li>Spokojne zabawy i gry</li>
+<li>Malowanie twarzy / tatuaże</li>
+<li>Modelowanie balonów</li>
+<li>Bańki mydlane</li>
+</ul>
+<div aria-label="Wybierz czas animacji" class="duration-picker">
+<span class="duration-label">🕒 Wybierz ilość godzin:</span>
+<div class="duration-options">
+<button class="duration-option" data-hours="1" type="button">1h</button>
+<button class="duration-option is-active" data-hours="2" type="button">2h</button>
+<button class="duration-option" data-hours="3" type="button">3h</button>
+<button class="duration-option" data-hours="4" type="button">4h</button>
+</div>
+</div>
+<button class="package-cta js-event-package" data-package="Komunie / Chrzciny" type="button">Wybieram pakiet →</button>
+</article>
+<article class="event-package-card package-gold" data-package="Festyny" data-package-card="">
+<div class="package-emoji">🎪</div>
+<h3>Festyny</h3>
+<p class="package-sub">Duże wydarzenia, mnóstwo atrakcji i dobrej energii.</p>
+<ul>
+<li>Gry i konkursy</li>
+<li>Bańki mydlane</li>
+<li>Piana Party</li>
+<li>Maskotki</li>
+</ul>
+<div aria-label="Wybierz czas animacji" class="duration-picker">
+<span class="duration-label">🕒 Wybierz ilość godzin:</span>
+<div class="duration-options">
+<button class="duration-option" data-hours="1" type="button">1h</button>
+<button class="duration-option is-active" data-hours="2" type="button">2h</button>
+<button class="duration-option" data-hours="3" type="button">3h</button>
+<button class="duration-option" data-hours="4" type="button">4h</button>
+</div>
+</div>
+<button class="package-cta js-event-package" data-package="Festyny" type="button">Wybieram pakiet →</button>
+</article>
+<article class="event-package-card package-purple" data-package="Halloween" data-package-card="">
+<div class="package-emoji">🎃</div>
+<h3>Halloween</h3>
+<p class="package-sub">Strasznie fajne animacje, zabawy i konkursy!</p>
+<ul>
+<li>Tematyczne zabawy</li>
+<li>Malowanie twarzy</li>
+<li>Gry i konkursy</li>
+<li>Mini Disco</li>
+</ul>
+<div aria-label="Wybierz czas animacji" class="duration-picker">
+<span class="duration-label">🕒 Wybierz ilość godzin:</span>
+<div class="duration-options">
+<button class="duration-option" data-hours="1" type="button">1h</button>
+<button class="duration-option is-active" data-hours="2" type="button">2h</button>
+<button class="duration-option" data-hours="3" type="button">3h</button>
+<button class="duration-option" data-hours="4" type="button">4h</button>
+</div>
+</div>
+<button class="package-cta js-event-package" data-package="Halloween" type="button">Wybieram pakiet →</button>
+</article>
+<article class="event-package-card package-blue" data-package="Karnawały" data-package-card="">
+<div class="package-emoji">🎭</div>
+<h3>Karnawały</h3>
+<p class="package-sub">Kolorowe animacje pełne tańca i zabawy.</p>
+<ul>
+<li>Mini Disco</li>
+<li>Gry i konkursy</li>
+<li>Modelowanie balonów</li>
+<li>Maskotki</li>
+</ul>
+<div aria-label="Wybierz czas animacji" class="duration-picker">
+<span class="duration-label">🕒 Wybierz ilość godzin:</span>
+<div class="duration-options">
+<button class="duration-option" data-hours="1" type="button">1h</button>
+<button class="duration-option is-active" data-hours="2" type="button">2h</button>
+<button class="duration-option" data-hours="3" type="button">3h</button>
+<button class="duration-option" data-hours="4" type="button">4h</button>
+</div>
+</div>
+<button class="package-cta js-event-package" data-package="Karnawały" type="button">Wybieram pakiet →</button>
+</article>
+<article class="event-package-card package-pink" data-package="Dni Dziecka" data-package-card="">
+<div class="package-emoji">🧒</div>
+<h3>Dni Dziecka</h3>
+<p class="package-sub">Wyjątkowe atrakcje dla najmłodszych!</p>
+<ul>
+<li>Mini Disco</li>
+<li>Gry i konkursy</li>
+<li>Malowanie twarzy</li>
+<li>Bańki mydlane</li>
+</ul>
+<div aria-label="Wybierz czas animacji" class="duration-picker">
+<span class="duration-label">🕒 Wybierz ilość godzin:</span>
+<div class="duration-options">
+<button class="duration-option" data-hours="1" type="button">1h</button>
+<button class="duration-option is-active" data-hours="2" type="button">2h</button>
+<button class="duration-option" data-hours="3" type="button">3h</button>
+<button class="duration-option" data-hours="4" type="button">4h</button>
+</div>
+</div>
+<button class="package-cta js-event-package" data-package="Dni Dziecka" type="button">Wybieram pakiet →</button>
+</article>
+<article class="event-package-card package-lilac" data-package="Dożynki / Dni Miasta" data-package-card="">
+<div class="package-emoji">🌾</div>
+<h3>Dożynki / Dni Miasta</h3>
+<p class="package-sub">Animacje i atrakcje przygotowane na duże wydarzenia plenerowe.</p>
+<ul>
+<li>Gry i konkursy</li>
+<li>Bańki mydlane</li>
+<li>Piana Party</li>
+<li>Maskotki</li>
+</ul>
+<div aria-label="Wybierz czas animacji" class="duration-picker">
+<span class="duration-label">🕒 Wybierz ilość godzin:</span>
+<div class="duration-options">
+<button class="duration-option" data-hours="1" type="button">1h</button>
+<button class="duration-option is-active" data-hours="2" type="button">2h</button>
+<button class="duration-option" data-hours="3" type="button">3h</button>
+<button class="duration-option" data-hours="4" type="button">4h</button>
+</div>
+</div>
+<button class="package-cta js-event-package" data-package="Dożynki / Dni Miasta" type="button">Wybieram pakiet →</button>
+</article>
+<article class="event-package-card package-blue" data-package="Imprezy firmowe / Eventy specjalne" data-package-card="">
+<div class="package-emoji">💼</div>
+<h3>Imprezy firmowe / Eventy specjalne</h3>
+<p class="package-sub">Integracja i świetna zabawa dla pracowników i ich dzieci.</p>
+<ul>
+<li>Gry i konkursy</li>
+<li>Mini Disco</li>
+<li>Bańki mydlane</li>
+<li>Piana Party</li>
+</ul>
+<div aria-label="Wybierz czas animacji" class="duration-picker">
+<span class="duration-label">🕒 Wybierz ilość godzin:</span>
+<div class="duration-options">
+<button class="duration-option" data-hours="1" type="button">1h</button>
+<button class="duration-option is-active" data-hours="2" type="button">2h</button>
+<button class="duration-option" data-hours="3" type="button">3h</button>
+<button class="duration-option" data-hours="4" type="button">4h</button>
+</div>
+</div>
+<button class="package-cta js-event-package" data-package="Imprezy firmowe / Eventy specjalne" type="button">Wybieram pakiet →</button>
+</article>
+<article class="event-package-card package-custom" data-package="Inne wydarzenie" data-package-card="">
+<div class="package-emoji">➕</div>
+<h3>I wiele innych!</h3>
+<p class="package-sub">Organizujesz inne wydarzenie? Dopasujemy ofertę do Twoich potrzeb.</p>
+<ul>
+<li>Indywidualny scenariusz</li>
+<li>Atrakcje do wyboru</li>
+<li>Dostosowanie do wieku</li>
+<li>Elastyczna oferta</li>
+</ul>
+<div aria-label="Wybierz czas animacji" class="duration-picker">
+<span class="duration-label">🕒 Wybierz ilość godzin:</span>
+<div class="duration-options">
+<button class="duration-option" data-hours="1" type="button">1h</button>
+<button class="duration-option is-active" data-hours="2" type="button">2h</button>
+<button class="duration-option" data-hours="3" type="button">3h</button>
+<button class="duration-option" data-hours="4" type="button">4h</button>
+</div>
+</div>
+<button class="package-cta js-custom-package" type="button">Zapytaj o wycenę →</button>
+</article>
+</div>
+<div class="package-custom-note">
+<div class="package-custom-note-icon">🗓️⚙️</div>
+<div class="package-custom-note-copy">
+<h3>Plan animacji możemy dowolnie zmienić!</h3>
+<p>
               Każdy pakiet to propozycja — możemy dodać lub usunąć atrakcje, zmienić czas trwania animacji
               albo ustalić indywidualny plan dopasowany do Twoich oczekiwań. Skontaktuj się z nami,
               a przygotujemy ofertę specjalnie dla Ciebie.
             </p>
-          </div>
-          <button class="btn btn-blue js-open-booking" type="button" data-source="Personalizacja pakietu">Skontaktuj się z nami →</button>
-        </div>
-      </div>
-    </section>
+</div>
+<button class="btn btn-blue js-open-booking" data-source="Personalizacja pakietu" type="button">Skontaktuj się z nami →</button>
+</div>
+</div>
+</section>
+<section class="section steps-section">
+<div class="container">
+<div class="section-head"><h2>Jak to działa?</h2></div>
+<div class="steps-grid">
+<div class="step"><span class="step-no">1</span><div class="step-icon">☎️</div><h3>Kontakt</h3><p>Napisz lub zadzwoń. Poznamy Twoje potrzeby i termin.</p></div>
+<div class="step"><span class="step-no pink-bg">2</span><div class="step-icon">📋</div><h3>Wybór pakietu</h3><p>Wybierasz rodzaj wydarzenia, atrakcje i czas trwania animacji.</p></div>
+<div class="step"><span class="step-no yellow-bg">3</span><div class="step-icon">🎉</div><h3>Świetna zabawa</h3><p>Przyjeżdżamy, bawimy, angażujemy i tworzymy niezapomniane chwile.</p></div>
+</div>
+</div>
+</section>
+<section class="section section-soft" id="onas">
+<div class="container">
+<div class="section-head"><h2>Dlaczego my?</h2></div>
+<div class="why-grid">
+<div><span>⭐</span><h3>Doświadczenie</h3><p>Setki uśmiechów i dziesiątki udanych realizacji.</p></div>
+<div><span>💗</span><h3>Indywidualne podejście</h3><p>Dopasowujemy program do wieku i potrzeb dzieci.</p></div>
+<div><span>🛡️</span><h3>Bezpieczeństwo</h3><p>Sprawdzony sprzęt, opieka i odpowiedzialna organizacja.</p></div>
+<div><span>😊</span><h3>Gwarancja uśmiechu</h3><p>Energia, humor i atrakcje, które dzieci kochają.</p></div>
+</div>
+</div>
+</section>
+<section class="section gallery-section" id="galeria">
+<div class="container">
+<div class="section-head"><h2>Zobacz, jak bawimy!</h2></div>
+<div class="gallery-grid">
+<img alt="Animacje z dziećmi" src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&amp;fit=crop&amp;w=700&amp;q=80">
+<img alt="Zabawa dzieci" src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&amp;fit=crop&amp;w=700&amp;q=80"/>
+<img alt="Kolorowa zabawa" src="https://images.unsplash.com/photo-1535572290543-960a8046f5af?auto=format&amp;fit=crop&amp;w=700&amp;q=80"/>
+<img alt="Urodziny dzieci" src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&amp;fit=crop&amp;w=700&amp;q=80"/>
+<img alt="Dzieci na imprezie" src="https://images.unsplash.com/photo-1526634332515-d56c5fd16991?auto=format&amp;fit=crop&amp;w=700&amp;q=80"/>
+</img></div>
+</div>
+</section>
 
-    <section id="opinie" class="section reviews-section">
-      <div class="container">
-        <div class="section-head"><h2>Co mówią rodzice?</h2></div>
-        <div class="reviews-grid">
-          <blockquote><div class="stars">★★★★★</div><p>„Cudowna ekipa! Dzieci zachwycone, a rodzice mogli chwilę odpocząć.”</p><footer>Kasia M.</footer></blockquote>
-          <blockquote><div class="stars">★★★★★</div><p>„Profesjonalizm od pierwszego kontaktu po ostatnią zabawę. Super energia!”</p><footer>Tomek R.</footer></blockquote>
-          <blockquote><div class="stars">★★★★★</div><p>„Najlepsze urodziny naszego syna. Malowanie twarzy i bańki były hitem.”</p><footer>Magda L.</footer></blockquote>
-        </div>
-      </div>
-    </section>
-
-    <section id="kontakt" class="section cta-section">
-      <div class="container cta-box">
-        <div>
-          <span class="eyebrow light">Gotowi na zabawę?</span>
-          <h2>Zorganizujmy razem niezapomnianą imprezę!</h2>
-        </div>
-        <button class="btn btn-yellow js-open-booking" type="button" data-source="CTA">📅 Zapytaj o termin →</button>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div class="logo footer-logo"><img src="assets/logo.png" alt="Fikadoo" class="brand-logo footer-brand-logo" /></div>
-      <p>Tworzymy niezapomniane chwile pełne energii, śmiechu i dziecięcej radości.</p>
-      <div><b>Kontakt</b><br>📞 791 839 120<br>✉️ klakbartosz@wp.pl</div>
-      <div><b>Obsługujemy</b><br>Rzeszów, Wrocław, Poznań i okolice</div>
-    </div>
-  </footer>
-
-  <div class="modal" id="bookingModal" aria-hidden="true">
-    <div class="modal-backdrop js-close-modal"></div>
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
-      <button class="modal-close js-close-modal" type="button" aria-label="Zamknij">×</button>
-      <span class="eyebrow">Sprawdź dostępność</span>
-      <h2 id="bookingTitle">Zapytaj o termin</h2>
-      <p class="modal-intro">Wpisz planowaną datę, godzinę i kilka szczegółów. Odpowiemy z dostępnością i propozycją.</p>
-      <form class="inquiry-form" data-form-type="booking">
-        <input type="hidden" name="source" value="Formularz terminu" />
-        <input type="hidden" name="package" value="" />
-        <div class="form-grid two">
-          <label>Imię i nazwisko<input type="text" name="name" autocomplete="name" required placeholder="Np. Anna Kowalska" /></label>
-          <label>Telefon<input type="tel" name="phone" autocomplete="tel" required placeholder="Np. 600 123 456" /></label>
-        </div>
-        <label>E-mail<input type="email" name="email" autocomplete="email" required placeholder="twoj@email.pl" /></label>
-        <div class="form-grid two">
-          <label>Data imprezy<input type="date" name="date" required /></label>
-          <label>Godzina<input type="time" name="time" required /></label>
-        </div>
-        <div class="form-grid two">
-          <label>Rodzaj imprezy
-            <select name="event_type" required>
-              <option value="">Wybierz...</option>
-              <option>Urodziny</option>
-              <option>Wesele</option>
-              <option>Komunia</option>
-              <option>Chrzciny</option>
-              <option>Impreza rodzinna</option>
-              <option>Piknik</option>
-              <option>Festyn</option>
-              <option>Impreza firmowa</option>
-              <option>Dzień Dziecka</option>
-              <option>Bal lub zabawa szkolna</option>
-              <option>Mikołajki</option>
-              <option>Andrzejki</option>
-              <option>Halloween</option>
-              <option>Karnawał</option>
-              <option>Dożynki</option>
-              <option>Dni Miasta</option>
-              <option>Otwarcie lokalu</option>
-              <option>Event specjalny</option>
-              <option>Inne</option>
-            </select>
-          </label>
-          <label>Liczba dzieci<input type="number" name="children" min="1" max="200" placeholder="Np. 15" /></label>
-        </div>
-        <label>Dodatkowe pytanie / informacje<textarea name="message" rows="4" placeholder="Np. miejsce imprezy, wiek dzieci, interesujące atrakcje..."></textarea></label>
-        <label class="checkbox"><input type="checkbox" required /> <span>Wyrażam zgodę na kontakt w sprawie zapytania.</span></label>
-        <button class="btn btn-pink full" type="submit">Wyślij zapytanie</button>
-        <p class="form-status" aria-live="polite"></p>
-      </form>
-    </div>
-  </div>
-
-  <div class="modal" id="packageModal" aria-hidden="true">
-    <div class="modal-backdrop js-close-modal"></div>
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="packageTitle">
-      <button class="modal-close js-close-modal" type="button" aria-label="Zamknij">×</button>
-      <span class="eyebrow">Wybrany pakiet</span>
-      <h2 id="packageTitle"><span id="selectedPackageName">Urodziny</span></h2>
-      <div id="packageDetails" class="package-details"></div>
-      <form class="inquiry-form" data-form-type="package">
-        <input type="hidden" name="source" value="Wybór pakietu wydarzenia" />
-        <input type="hidden" name="package" id="packageInput" value="Urodziny" />
-        <input type="hidden" name="duration" id="packageDurationInput" value="2 godziny" />
-        <div class="form-grid two">
-          <label>Imię i nazwisko<input type="text" name="name" required /></label>
-          <label>Telefon<input type="tel" name="phone" required /></label>
-        </div>
-        <label>E-mail<input type="email" name="email" required /></label>
-        <div class="form-grid two">
-          <label>Data imprezy<input type="date" name="date" required /></label>
-          <label>Godzina<input type="time" name="time" required /></label>
-        </div>
-        <label>Dodatkowe pytanie<textarea name="message" rows="4" placeholder="Możesz dopytać np. o dojazd, dodatkowe atrakcje lub czas trwania..."></textarea></label>
-        <label class="checkbox"><input type="checkbox" required /> <span>Wyrażam zgodę na kontakt w sprawie zapytania.</span></label>
-        <button class="btn btn-pink full" type="submit">Zapytaj o ten pakiet</button>
-        <p class="form-status" aria-live="polite"></p>
-      </form>
-    </div>
-  </div>
-
-  <div
-    class="modal"
-    id="customEventModal"
-  aria-hidden="true"
->
-
-  <div class="modal-backdrop js-close-modal"></div>
-
-  <div
-    class="modal-dialog"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="customEventTitle"
-  >
-
-    <button
-      class="modal-close js-close-modal"
-      aria-label="Zamknij"
-      type="button"
-    >
+<section class="section reviews-section" id="opinie">
+<div class="container">
+<div class="section-head"><h2>Co mówią rodzice?</h2></div>
+<div class="reviews-grid">
+<blockquote><div class="stars">★★★★★</div><p>„Cudowna ekipa! Dzieci zachwycone, a rodzice mogli chwilę odpocząć.”</p><footer>Kasia M.</footer></blockquote>
+<blockquote><div class="stars">★★★★★</div><p>„Profesjonalizm od pierwszego kontaktu po ostatnią zabawę. Super energia!”</p><footer>Tomek R.</footer></blockquote>
+<blockquote><div class="stars">★★★★★</div><p>„Najlepsze urodziny naszego syna. Malowanie twarzy i bańki były hitem.”</p><footer>Magda L.</footer></blockquote>
+</div>
+</div>
+</section>
+<section class="section cta-section" id="kontakt">
+<div class="container cta-box">
+<div>
+<span class="eyebrow light">Gotowi na zabawę?</span>
+<h2>Zorganizujmy razem niezapomnianą imprezę!</h2>
+</div>
+<button class="btn btn-yellow js-open-booking" data-source="CTA" type="button">📅 Zapytaj o termin →</button>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="container footer-grid">
+<div class="logo footer-logo"><img alt="Fikadoo" class="brand-logo footer-brand-logo" src="assets/logo.png"/></div>
+<p>Tworzymy niezapomniane chwile pełne energii, śmiechu i dziecięcej radości.</p>
+<div><b>Kontakt</b><br/>📞 791 839 120<br/>✉️ klakbartosz@wp.pl</div>
+<div><b>Obsługujemy</b><br/>Rzeszów, Wrocław, Poznań i okolice</div>
+</div>
+</footer>
+<div aria-hidden="true" class="modal" id="bookingModal">
+<div class="modal-backdrop js-close-modal"></div>
+<div aria-labelledby="bookingTitle" aria-modal="true" class="modal-dialog" role="dialog">
+<button aria-label="Zamknij" class="modal-close js-close-modal" type="button">×</button>
+<span class="eyebrow">Sprawdź dostępność</span>
+<h2 id="bookingTitle">Zapytaj o termin</h2>
+<p class="modal-intro">Wpisz planowaną datę, godzinę i kilka szczegółów. Odpowiemy z dostępnością i propozycją.</p>
+<form class="inquiry-form" data-form-type="booking">
+<input name="source" type="hidden" value="Formularz terminu"/>
+<input name="package" type="hidden" value=""/>
+<div class="form-grid two">
+<label>Imię i nazwisko<input autocomplete="name" name="name" placeholder="Np. Anna Kowalska" required="" type="text"/></label>
+<label>Telefon<input autocomplete="tel" name="phone" placeholder="Np. 600 123 456" required="" type="tel"/></label>
+</div>
+<label>E-mail<input autocomplete="email" name="email" placeholder="twoj@email.pl" required="" type="email"/></label>
+<div class="form-grid two">
+<label>Data imprezy<input name="date" required="" type="date"/></label>
+<label>Godzina<input name="time" required="" type="time"/></label>
+</div>
+<div class="form-grid two">
+<label>Rodzaj imprezy
+            <select name="event_type" required="">
+<option value="">Wybierz...</option>
+<option>Urodziny</option>
+<option>Wesele</option>
+<option>Komunia</option>
+<option>Chrzciny</option>
+<option>Impreza rodzinna</option>
+<option>Piknik</option>
+<option>Festyn</option>
+<option>Impreza firmowa</option>
+<option>Dzień Dziecka</option>
+<option>Bal lub zabawa szkolna</option>
+<option>Mikołajki</option>
+<option>Andrzejki</option>
+<option>Halloween</option>
+<option>Karnawał</option>
+<option>Dożynki</option>
+<option>Dni Miasta</option>
+<option>Otwarcie lokalu</option>
+<option>Event specjalny</option>
+<option>Inne</option>
+</select>
+</label>
+<label>Liczba dzieci<input max="200" min="1" name="children" placeholder="Np. 15" type="number"/></label>
+</div>
+<label>Dodatkowe pytanie / informacje<textarea name="message" placeholder="Np. miejsce imprezy, wiek dzieci, interesujące atrakcje..." rows="4"></textarea></label>
+<label class="checkbox"><input required="" type="checkbox"/> <span>Wyrażam zgodę na kontakt w sprawie zapytania.</span></label>
+<button class="btn btn-pink full" type="submit">Wyślij zapytanie</button>
+<p aria-live="polite" class="form-status"></p>
+</form>
+</div>
+</div>
+<div aria-hidden="true" class="modal" id="packageModal">
+<div class="modal-backdrop js-close-modal"></div>
+<div aria-labelledby="packageTitle" aria-modal="true" class="modal-dialog" role="dialog">
+<button aria-label="Zamknij" class="modal-close js-close-modal" type="button">×</button>
+<span class="eyebrow">Wybrany pakiet</span>
+<h2 id="packageTitle"><span id="selectedPackageName">Urodziny</span></h2>
+<div class="package-details" id="packageDetails"></div>
+<form class="inquiry-form" data-form-type="package">
+<input name="source" type="hidden" value="Wybór pakietu wydarzenia"/>
+<input id="packageInput" name="package" type="hidden" value="Urodziny"/>
+<input id="packageDurationInput" name="duration" type="hidden" value="2 godziny"/>
+<div class="form-grid two">
+<label>Imię i nazwisko<input name="name" required="" type="text"/></label>
+<label>Telefon<input name="phone" required="" type="tel"/></label>
+</div>
+<label>E-mail<input name="email" required="" type="email"/></label>
+<div class="form-grid two">
+<label>Data imprezy<input name="date" required="" type="date"/></label>
+<label>Godzina<input name="time" required="" type="time"/></label>
+</div>
+<label>Dodatkowe pytanie<textarea name="message" placeholder="Możesz dopytać np. o dojazd, dodatkowe atrakcje lub czas trwania..." rows="4"></textarea></label>
+<label class="checkbox"><input required="" type="checkbox"/> <span>Wyrażam zgodę na kontakt w sprawie zapytania.</span></label>
+<button class="btn btn-pink full" type="submit">Zapytaj o ten pakiet</button>
+<p aria-live="polite" class="form-status"></p>
+</form>
+</div>
+</div>
+<div aria-hidden="true" class="modal" id="customEventModal">
+<div class="modal-backdrop js-close-modal"></div>
+<div aria-labelledby="customEventTitle" aria-modal="true" class="modal-dialog" role="dialog">
+<button aria-label="Zamknij" class="modal-close js-close-modal" type="button">
       ×
     </button>
-
-
-    <span class="eyebrow">
+<span class="eyebrow">
       🎉 Indywidualne wydarzenie
     </span>
-
-    <h2 id="customEventTitle">
+<h2 id="customEventTitle">
       Opowiedz nam o swojej imprezie
     </h2>
-
-    <p class="modal-intro">
+<p class="modal-intro">
       Napisz kilka szczegółów, a przygotujemy propozycję
       dopasowaną do Twojego wydarzenia.
     </p>
-
-
-    <form
-      class="inquiry-form"
-      data-form-type="custom-event"
-    >
-
-      <input
-        type="hidden"
-        name="source"
-        value="Inne wydarzenie"
-      >
-
-      <input
-        type="hidden"
-        name="package"
-        value=""
-      >
-
-      <input
-        type="hidden"
-        name="duration"
-        id="customDurationInput"
-        value="2 godziny"
-      >
-
-
-      <div class="form-grid two">
-
-        <label>
+<form class="inquiry-form" data-form-type="custom-event">
+<input name="source" type="hidden" value="Inne wydarzenie"/>
+<input name="package" type="hidden" value=""/>
+<input id="customDurationInput" name="duration" type="hidden" value="2 godziny"/>
+<div class="form-grid two">
+<label>
           Imię i nazwisko
 
-          <input
-            type="text"
-            name="name"
-            required
-            placeholder="Np. Anna Kowalska"
-          >
-        </label>
-
-
-        <label>
+          <input name="name" placeholder="Np. Anna Kowalska" required="" type="text"/>
+</label>
+<label>
           Telefon
 
-          <input
-            type="tel"
-            name="phone"
-            required
-            placeholder="Np. 600 123 456"
-          >
-        </label>
-
-      </div>
-
-
-      <label>
+          <input name="phone" placeholder="Np. 600 123 456" required="" type="tel"/>
+</label>
+</div>
+<label>
         E-mail
 
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="twoj@email.pl"
-        >
-      </label>
-
-
-      <label>
+        <input name="email" placeholder="twoj@email.pl" required="" type="email"/>
+</label>
+<label>
         Jakie wydarzenie organizujesz?
 
-        <input
-          type="text"
-          name="event_type"
-          required
-          placeholder="Np. otwarcie lokalu, piknik osiedlowy..."
-        >
-      </label>
-
-
-      <div class="form-grid two">
-
-        <label>
+        <input name="event_type" placeholder="Np. otwarcie lokalu, piknik osiedlowy..." required="" type="text"/>
+</label>
+<div class="form-grid two">
+<label>
           Data wydarzenia
 
-          <input
-            type="date"
-            name="date"
-            required
-          >
-        </label>
-
-
-        <label>
+          <input name="date" required="" type="date"/>
+</label>
+<label>
           Godzina
 
-          <input
-            type="time"
-            name="time"
-            required
-          >
-        </label>
-
-      </div>
-
-
-      <div class="form-grid two">
-
-        <label>
+          <input name="time" required="" type="time"/>
+</label>
+</div>
+<div class="form-grid two">
+<label>
           Liczba dzieci
 
-          <input
-            type="number"
-            name="children"
-            min="0"
-            max="1000"
-            placeholder="Np. 30"
-          >
-        </label>
-
-
-        <label>
+          <input max="1000" min="0" name="children" placeholder="Np. 30" type="number"/>
+</label>
+<label>
           Liczba wszystkich osób
 
-          <input
-            type="number"
-            name="people"
-            min="1"
-            max="5000"
-            placeholder="Np. 100"
-          >
-        </label>
-
-      </div>
-
-
-      <label>
+          <input max="5000" min="1" name="people" placeholder="Np. 100" type="number"/>
+</label>
+</div>
+<label>
         Miejsce wydarzenia
 
-        <input
-          type="text"
-          name="location"
-          placeholder="Np. Rzeszów, sala / plener"
-        >
-      </label>
-
-
-      <label>
+        <input name="location" placeholder="Np. Rzeszów, sala / plener" type="text"/>
+</label>
+<label>
         Opisz wydarzenie
 
-        <textarea
-          name="message"
-          rows="5"
-          placeholder="Napisz, jak wygląda wydarzenie, jaki jest wiek dzieci, jakie atrakcje Cię interesują i czego potrzebujesz..."
-        ></textarea>
-      </label>
-
-
-      <label class="checkbox">
-
-        <input
-          type="checkbox"
-          required
-        >
-
-        <span>
+        <textarea name="message" placeholder="Napisz, jak wygląda wydarzenie, jaki jest wiek dzieci, jakie atrakcje Cię interesują i czego potrzebujesz..." rows="5"></textarea>
+</label>
+<label class="checkbox">
+<input required="" type="checkbox"/>
+<span>
           Wyrażam zgodę na kontakt w sprawie zapytania.
         </span>
-
-      </label>
-
-
-      <button
-        class="btn btn-pink full"
-        type="submit"
-      >
+</label>
+<button class="btn btn-pink full" type="submit">
         Wyślij zapytanie
       </button>
-
-
-      <p
-        class="form-status"
-        aria-live="polite"
-      ></p>
-
-    </form>
-
-  </div>
-
+<p aria-live="polite" class="form-status"></p>
+</form>
 </div>
-  <script src="js/app.js"></script>
+</div>
+<script src="js/app.js"></script>
 </body>
 </html>

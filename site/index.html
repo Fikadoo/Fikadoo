@@ -236,7 +236,7 @@
 
   <article class="offer-card mint">
     <span>🎯</span>
-    <h3>Zabawy i konkursy</h3>
+    <h3>Gry i konkursy</h3>
     <p>Zabawy ruchowe, integracyjne i drużynowe.</p>
   </article>
 
@@ -310,7 +310,7 @@
         <div class="section-head"><h2>Jak to działa?</h2></div>
         <div class="steps-grid">
           <div class="step"><span class="step-no">1</span><div class="step-icon">☎️</div><h3>Kontakt</h3><p>Napisz lub zadzwoń. Poznamy Twoje potrzeby i termin.</p></div>
-          <div class="step"><span class="step-no pink-bg">2</span><div class="step-icon">📋</div><h3>Wybór pakietu</h3><p>Wybierasz pakiet dopasowany do liczby dzieci i rodzaju imprezy.</p></div>
+          <div class="step"><span class="step-no pink-bg">2</span><div class="step-icon">📋</div><h3>Wybór pakietu</h3><p>Wybierasz rodzaj wydarzenia, atrakcje i czas trwania animacji.</p></div>
           <div class="step"><span class="step-no yellow-bg">3</span><div class="step-icon">🎉</div><h3>Świetna zabawa</h3><p>Przyjeżdżamy, bawimy, angażujemy i tworzymy niezapomniane chwile.</p></div>
         </div>
       </div>
@@ -340,29 +340,249 @@
       </div>
     </section>
 
-    <section id="pakiety" class="section section-soft">
+    <section id="pakiety" class="section section-soft event-packages-section">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Wybierz wariant</span>
+        <div class="section-head package-section-head">
+          <span class="eyebrow">Wybierz pakiet</span>
           <h2>Pakiety dopasowane do Twojej imprezy</h2>
+          <p>Wybierz rodzaj wydarzenia i czas trwania animacji. Każdy pakiet możemy dopasować do Twoich potrzeb.</p>
         </div>
-        <div class="packages-grid">
-          <article class="package-card">
-            <h3>Mini</h3><p class="package-sub">Idealny na kameralne spotkania</p><div class="price">750 zł</div><small>do 10 dzieci</small>
-            <ul><li>2 godziny animacji</li><li>Podstawowe zabawy i gry</li><li>Muzyka i nagłośnienie</li></ul>
-            <button class="btn btn-outline js-package" type="button" data-package="Mini">Wybieram Mini</button>
+
+        <div class="event-packages-grid">
+
+          <article class="event-package-card package-pink" data-package-card data-package="Urodziny">
+            <div class="package-emoji">🎂</div>
+            <h3>Urodziny</h3>
+            <p class="package-sub">Idealny pakiet na niezapomniane urodziny dla dzieci!</p>
+            <ul>
+              <li>Animacje i gry</li>
+              <li>Malowanie twarzy / tatuaże</li>
+              <li>Modelowanie balonów</li>
+              <li>Mini Disco</li>
+            </ul>
+            <div class="duration-picker" aria-label="Wybierz czas animacji">
+              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
+              <div class="duration-options">
+                <button type="button" class="duration-option" data-hours="1">1h</button>
+                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
+                <button type="button" class="duration-option" data-hours="3">3h</button>
+                <button type="button" class="duration-option" data-hours="4">4h</button>
+              </div>
+            </div>
+            <button class="package-cta js-event-package" type="button" data-package="Urodziny">Wybieram pakiet →</button>
           </article>
-          <article class="package-card featured">
-            <span class="popular">Najpopularniejszy</span>
-            <h3>Hopla</h3><p class="package-sub">Najczęściej wybierany pakiet</p><div class="price">1200 zł</div><small>do 20 dzieci</small>
-            <ul><li>3 godziny animacji</li><li>Autorskie zabawy i konkursy</li><li>Malowanie twarzy</li><li>Bańki mydlane</li><li>Sprzęt, rekwizyty i muzyka</li></ul>
-            <button class="btn btn-pink js-package" type="button" data-package="Hopla">Wybieram Hopla</button>
+
+          <article class="event-package-card package-yellow" data-package-card data-package="Wesela">
+            <div class="package-emoji">💍</div>
+            <h3>Wesela</h3>
+            <p class="package-sub">Zabawa dla dzieci i więcej spokoju dla rodziców.</p>
+            <ul>
+              <li>Kącik animacji dla dzieci</li>
+              <li>Gry i konkursy</li>
+              <li>Mini Disco</li>
+              <li>Maskotki</li>
+            </ul>
+            <div class="duration-picker" aria-label="Wybierz czas animacji">
+              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
+              <div class="duration-options">
+                <button type="button" class="duration-option" data-hours="1">1h</button>
+                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
+                <button type="button" class="duration-option" data-hours="3">3h</button>
+                <button type="button" class="duration-option" data-hours="4">4h</button>
+              </div>
+            </div>
+            <button class="package-cta js-event-package" type="button" data-package="Wesela">Wybieram pakiet →</button>
           </article>
-          <article class="package-card">
-            <h3>Mega Hopla</h3><p class="package-sub">Dla dużych imprez i wyjątkowych okazji</p><div class="price">1800 zł</div><small>do 30 dzieci</small>
-            <ul><li>4 godziny animacji</li><li>Malowanie twarzy i brokaty</li><li>Wata cukrowa</li><li>Maskotka na żywo</li><li>Sprzęt, rekwizyty i muzyka</li></ul>
-            <button class="btn btn-outline js-package" type="button" data-package="Mega Hopla">Wybieram Mega Hopla</button>
+
+          <article class="event-package-card package-mint" data-package-card data-package="Komunie / Chrzciny">
+            <div class="package-emoji">⛪</div>
+            <h3>Komunie / Chrzciny</h3>
+            <p class="package-sub">Delikatne i dopasowane animacje dla najmłodszych.</p>
+            <ul>
+              <li>Spokojne zabawy i gry</li>
+              <li>Malowanie twarzy / tatuaże</li>
+              <li>Modelowanie balonów</li>
+              <li>Bańki mydlane</li>
+            </ul>
+            <div class="duration-picker" aria-label="Wybierz czas animacji">
+              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
+              <div class="duration-options">
+                <button type="button" class="duration-option" data-hours="1">1h</button>
+                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
+                <button type="button" class="duration-option" data-hours="3">3h</button>
+                <button type="button" class="duration-option" data-hours="4">4h</button>
+              </div>
+            </div>
+            <button class="package-cta js-event-package" type="button" data-package="Komunie / Chrzciny">Wybieram pakiet →</button>
           </article>
+
+          <article class="event-package-card package-gold" data-package-card data-package="Festyny">
+            <div class="package-emoji">🎪</div>
+            <h3>Festyny</h3>
+            <p class="package-sub">Duże wydarzenia, mnóstwo atrakcji i dobrej energii.</p>
+            <ul>
+              <li>Gry i konkursy</li>
+              <li>Bańki mydlane</li>
+              <li>Piana Party</li>
+              <li>Maskotki</li>
+            </ul>
+            <div class="duration-picker" aria-label="Wybierz czas animacji">
+              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
+              <div class="duration-options">
+                <button type="button" class="duration-option" data-hours="1">1h</button>
+                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
+                <button type="button" class="duration-option" data-hours="3">3h</button>
+                <button type="button" class="duration-option" data-hours="4">4h</button>
+              </div>
+            </div>
+            <button class="package-cta js-event-package" type="button" data-package="Festyny">Wybieram pakiet →</button>
+          </article>
+
+          <article class="event-package-card package-purple" data-package-card data-package="Halloween">
+            <div class="package-emoji">🎃</div>
+            <h3>Halloween</h3>
+            <p class="package-sub">Strasznie fajne animacje, zabawy i konkursy!</p>
+            <ul>
+              <li>Tematyczne zabawy</li>
+              <li>Malowanie twarzy</li>
+              <li>Gry i konkursy</li>
+              <li>Mini Disco</li>
+            </ul>
+            <div class="duration-picker" aria-label="Wybierz czas animacji">
+              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
+              <div class="duration-options">
+                <button type="button" class="duration-option" data-hours="1">1h</button>
+                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
+                <button type="button" class="duration-option" data-hours="3">3h</button>
+                <button type="button" class="duration-option" data-hours="4">4h</button>
+              </div>
+            </div>
+            <button class="package-cta js-event-package" type="button" data-package="Halloween">Wybieram pakiet →</button>
+          </article>
+
+          <article class="event-package-card package-blue" data-package-card data-package="Karnawały">
+            <div class="package-emoji">🎭</div>
+            <h3>Karnawały</h3>
+            <p class="package-sub">Kolorowe animacje pełne tańca i zabawy.</p>
+            <ul>
+              <li>Mini Disco</li>
+              <li>Gry i konkursy</li>
+              <li>Modelowanie balonów</li>
+              <li>Maskotki</li>
+            </ul>
+            <div class="duration-picker" aria-label="Wybierz czas animacji">
+              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
+              <div class="duration-options">
+                <button type="button" class="duration-option" data-hours="1">1h</button>
+                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
+                <button type="button" class="duration-option" data-hours="3">3h</button>
+                <button type="button" class="duration-option" data-hours="4">4h</button>
+              </div>
+            </div>
+            <button class="package-cta js-event-package" type="button" data-package="Karnawały">Wybieram pakiet →</button>
+          </article>
+
+          <article class="event-package-card package-pink" data-package-card data-package="Dni Dziecka">
+            <div class="package-emoji">🧒</div>
+            <h3>Dni Dziecka</h3>
+            <p class="package-sub">Wyjątkowe atrakcje dla najmłodszych!</p>
+            <ul>
+              <li>Mini Disco</li>
+              <li>Gry i konkursy</li>
+              <li>Malowanie twarzy</li>
+              <li>Bańki mydlane</li>
+            </ul>
+            <div class="duration-picker" aria-label="Wybierz czas animacji">
+              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
+              <div class="duration-options">
+                <button type="button" class="duration-option" data-hours="1">1h</button>
+                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
+                <button type="button" class="duration-option" data-hours="3">3h</button>
+                <button type="button" class="duration-option" data-hours="4">4h</button>
+              </div>
+            </div>
+            <button class="package-cta js-event-package" type="button" data-package="Dni Dziecka">Wybieram pakiet →</button>
+          </article>
+
+          <article class="event-package-card package-lilac" data-package-card data-package="Dożynki / Dni Miasta">
+            <div class="package-emoji">🌾</div>
+            <h3>Dożynki / Dni Miasta</h3>
+            <p class="package-sub">Animacje i atrakcje przygotowane na duże wydarzenia plenerowe.</p>
+            <ul>
+              <li>Gry i konkursy</li>
+              <li>Bańki mydlane</li>
+              <li>Piana Party</li>
+              <li>Maskotki</li>
+            </ul>
+            <div class="duration-picker" aria-label="Wybierz czas animacji">
+              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
+              <div class="duration-options">
+                <button type="button" class="duration-option" data-hours="1">1h</button>
+                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
+                <button type="button" class="duration-option" data-hours="3">3h</button>
+                <button type="button" class="duration-option" data-hours="4">4h</button>
+              </div>
+            </div>
+            <button class="package-cta js-event-package" type="button" data-package="Dożynki / Dni Miasta">Wybieram pakiet →</button>
+          </article>
+
+          <article class="event-package-card package-blue" data-package-card data-package="Imprezy firmowe / Eventy specjalne">
+            <div class="package-emoji">💼</div>
+            <h3>Imprezy firmowe / Eventy specjalne</h3>
+            <p class="package-sub">Integracja i świetna zabawa dla pracowników i ich dzieci.</p>
+            <ul>
+              <li>Gry i konkursy</li>
+              <li>Mini Disco</li>
+              <li>Bańki mydlane</li>
+              <li>Piana Party</li>
+            </ul>
+            <div class="duration-picker" aria-label="Wybierz czas animacji">
+              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
+              <div class="duration-options">
+                <button type="button" class="duration-option" data-hours="1">1h</button>
+                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
+                <button type="button" class="duration-option" data-hours="3">3h</button>
+                <button type="button" class="duration-option" data-hours="4">4h</button>
+              </div>
+            </div>
+            <button class="package-cta js-event-package" type="button" data-package="Imprezy firmowe / Eventy specjalne">Wybieram pakiet →</button>
+          </article>
+
+          <article class="event-package-card package-custom" data-package-card data-package="Inne wydarzenie">
+            <div class="package-emoji">➕</div>
+            <h3>I wiele innych!</h3>
+            <p class="package-sub">Organizujesz inne wydarzenie? Dopasujemy ofertę do Twoich potrzeb.</p>
+            <ul>
+              <li>Indywidualny scenariusz</li>
+              <li>Atrakcje do wyboru</li>
+              <li>Dostosowanie do wieku</li>
+              <li>Elastyczna oferta</li>
+            </ul>
+            <div class="duration-picker" aria-label="Wybierz czas animacji">
+              <span class="duration-label">🕒 Wybierz ilość godzin:</span>
+              <div class="duration-options">
+                <button type="button" class="duration-option" data-hours="1">1h</button>
+                <button type="button" class="duration-option is-active" data-hours="2">2h</button>
+                <button type="button" class="duration-option" data-hours="3">3h</button>
+                <button type="button" class="duration-option" data-hours="4">4h</button>
+              </div>
+            </div>
+            <button class="package-cta js-custom-package" type="button">Zapytaj o wycenę →</button>
+          </article>
+
+        </div>
+
+        <div class="package-custom-note">
+          <div class="package-custom-note-icon">🗓️⚙️</div>
+          <div class="package-custom-note-copy">
+            <h3>Plan animacji możemy dowolnie zmienić!</h3>
+            <p>
+              Każdy pakiet to propozycja — możemy dodać lub usunąć atrakcje, zmienić czas trwania animacji
+              albo ustalić indywidualny plan dopasowany do Twoich oczekiwań. Skontaktuj się z nami,
+              a przygotujemy ofertę specjalnie dla Ciebie.
+            </p>
+          </div>
+          <button class="btn btn-blue js-open-booking" type="button" data-source="Personalizacja pakietu">Skontaktuj się z nami →</button>
         </div>
       </div>
     </section>
@@ -457,11 +677,12 @@
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="packageTitle">
       <button class="modal-close js-close-modal" type="button" aria-label="Zamknij">×</button>
       <span class="eyebrow">Wybrany pakiet</span>
-      <h2 id="packageTitle">Pakiet <span id="selectedPackageName">Hopla</span></h2>
+      <h2 id="packageTitle"><span id="selectedPackageName">Urodziny</span></h2>
       <div id="packageDetails" class="package-details"></div>
       <form class="inquiry-form" data-form-type="package">
-        <input type="hidden" name="source" value="Wybór pakietu" />
-        <input type="hidden" name="package" id="packageInput" value="Hopla" />
+        <input type="hidden" name="source" value="Wybór pakietu wydarzenia" />
+        <input type="hidden" name="package" id="packageInput" value="Urodziny" />
+        <input type="hidden" name="duration" id="packageDurationInput" value="2 godziny" />
         <div class="form-grid two">
           <label>Imię i nazwisko<input type="text" name="name" required /></label>
           <label>Telefon<input type="tel" name="phone" required /></label>
@@ -532,6 +753,13 @@
         type="hidden"
         name="package"
         value=""
+      >
+
+      <input
+        type="hidden"
+        name="duration"
+        id="customDurationInput"
+        value="2 godziny"
       >
 
 

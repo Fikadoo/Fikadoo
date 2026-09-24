@@ -2099,3 +2099,742 @@ body.modal-open {
     font-size: 13px;
   }
 }
+
+/* =====================================================
+   FIKADOO — DOPRACOWANA WERSJA TABLET + MOBILE
+   Desktop powyżej 980px pozostaje bez zmian.
+===================================================== */
+
+.nav-mobile-cta,
+.mobile-swipe-hint,
+.mobile-gallery-hint {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .container {
+    width: min(100% - 32px, 760px);
+  }
+
+  .section {
+    padding: 68px 0;
+  }
+
+  /* HEADER */
+  .site-header {
+    box-shadow: 0 8px 28px rgba(16, 42, 86, 0.06);
+  }
+
+  .nav-wrap {
+    height: 82px;
+    gap: 12px;
+  }
+
+  .brand-logo {
+    width: 158px;
+    max-height: 72px;
+  }
+
+  .nav-toggle {
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--ink);
+    font-size: 25px;
+    line-height: 1;
+    box-shadow: 0 6px 18px rgba(16, 42, 86, 0.08);
+    cursor: pointer;
+  }
+
+  .main-nav {
+    left: 16px;
+    right: 16px;
+    top: 76px;
+    z-index: 60;
+    gap: 4px;
+    padding: 14px;
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(16, 42, 86, 0.16);
+  }
+
+  .main-nav a {
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 15px;
+  }
+
+  .main-nav a:hover {
+    background: #f6faff;
+  }
+
+  .main-nav .nav-mobile-cta {
+    display: inline-flex;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 8px;
+  }
+
+  /* HERO */
+  .hero {
+    padding-top: 46px;
+  }
+
+  .hero-grid {
+    gap: 34px;
+  }
+
+  .hero-copy {
+    text-align: center;
+  }
+
+  .hero-copy .eyebrow {
+    justify-content: center;
+    max-width: 100%;
+    line-height: 1.5;
+  }
+
+  .hero h1 {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(42px, 8vw, 58px);
+  }
+
+  .hero p {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-badges {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-badges div {
+    min-width: 0;
+    padding: 14px 10px;
+  }
+
+  .hero-final-collage {
+    margin-top: 0;
+  }
+
+  .hero-final-collage-image {
+    width: min(100%, 680px);
+    margin-inline: auto;
+  }
+
+  /* OFERTA / TELETURNIEJE */
+  .offer-grid {
+    gap: 14px;
+  }
+
+  .event-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .event-grid .wide-event-card,
+  .event-grid .more-card {
+    grid-column: span 2;
+  }
+
+  .attractions-group .offer-grid,
+  .quiz-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .attractions-group .offer-card {
+    height: auto;
+    min-height: 190px;
+  }
+
+  /* PAKIETY — tablet 2 kolumny */
+  .event-packages-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 16px;
+  }
+
+  .package-price-badge {
+    top: -12px;
+    left: -8px;
+  }
+
+  /* GALERIA */
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .gallery-grid img {
+    height: 185px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --radius: 20px;
+  }
+
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+
+  .section-head {
+    margin-bottom: 28px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(28px, 8vw, 34px);
+    line-height: 1.08;
+    letter-spacing: -0.8px;
+  }
+
+  .section-head p {
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  /* HEADER TELEFON */
+  .nav-wrap {
+    height: 72px;
+  }
+
+  .brand-logo {
+    width: 136px;
+    max-height: 62px;
+  }
+
+  .nav-toggle {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    font-size: 23px;
+  }
+
+  .main-nav {
+    top: 68px;
+    left: 12px;
+    right: 12px;
+    max-height: calc(100dvh - 84px);
+    overflow-y: auto;
+  }
+
+  /* HERO TELEFON */
+  .hero {
+    padding-top: 32px;
+    padding-bottom: 44px;
+  }
+
+  .hero-grid {
+    gap: 24px;
+  }
+
+  .hero-copy .eyebrow {
+    display: inline-flex;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .hero h1 {
+    font-size: clamp(35px, 10.3vw, 43px);
+    line-height: 1.01;
+    letter-spacing: -1.6px;
+    margin-bottom: 16px;
+  }
+
+  .hero p {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 22px 0;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    min-height: 50px;
+  }
+
+  .hero-badges {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    margin-top: 22px;
+  }
+
+  .hero-badges div {
+    padding: 11px 7px;
+    border-radius: 15px;
+  }
+
+  .hero-badges b {
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  .hero-badges span {
+    font-size: 9px;
+    line-height: 1.25;
+  }
+
+  .hero-final-collage {
+    padding-top: 0;
+  }
+
+  .hero-final-collage-image {
+    width: 100%;
+    border-radius: 24px;
+  }
+
+  /* TYTUŁY GRUP */
+  .offer-group + .offer-group {
+    margin-top: 42px;
+  }
+
+  .offer-group-title {
+    gap: 12px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+
+  .offer-group-title > span {
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
+    border-radius: 14px;
+    font-size: 22px;
+  }
+
+  .offer-group-title small {
+    font-size: 11px;
+  }
+
+  .offer-group-title h3 {
+    font-size: 21px;
+    line-height: 1.15;
+  }
+
+  /* OBSŁUGUJEMY — 2 W RZĘDZIE */
+  .event-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .event-grid .offer-card {
+    min-height: 122px;
+    padding: 16px 10px;
+    border-radius: 18px;
+  }
+
+  .event-grid .offer-card > span {
+    font-size: 30px;
+  }
+
+  .event-grid .offer-card h3 {
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  .event-grid .wide-event-card,
+  .event-grid .more-card {
+    grid-column: span 2;
+    min-height: 142px;
+  }
+
+  .event-grid .wide-event-card p,
+  .event-grid .more-card p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .more-card-cta {
+    font-size: 13px;
+  }
+
+  /* ATRAKCJE — 2 W RZĘDZIE */
+  .attractions-group {
+    padding-top: 36px;
+  }
+
+  .attractions-group .offer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .attractions-group .offer-card {
+    min-height: 178px;
+    height: auto;
+    padding: 16px 12px;
+    border-radius: 18px;
+  }
+
+  .attractions-group .offer-card > span,
+  .attractions-group .offer-card .bubble-icon {
+    font-size: 28px;
+  }
+
+  .attractions-group .offer-card h3 {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .attractions-group .offer-card p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .bubble-icon,
+  .bubble-icon img {
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+  }
+
+  /* TELETURNIEJE — 2x2 */
+  .quiz-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .quiz-grid .offer-card {
+    min-height: 175px;
+    padding: 16px 12px;
+    border-radius: 18px;
+  }
+
+  .quiz-grid .offer-card > span {
+    font-size: 30px;
+  }
+
+  .quiz-grid .offer-card h3 {
+    font-size: 17px;
+  }
+
+  .quiz-grid .offer-card p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  /* PAKIETY — mobilny slider */
+  .event-packages-section {
+    overflow: hidden;
+  }
+
+  .mobile-swipe-hint,
+  .mobile-gallery-hint {
+    display: block;
+    margin: -8px 0 13px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    text-align: right;
+  }
+
+  .event-packages-grid {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 20px 12px 18px;
+    margin: 0 -12px;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .event-packages-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .event-package-card {
+    flex: 0 0 min(86vw, 345px);
+    scroll-snap-align: start;
+    min-height: auto;
+    padding: 24px 18px 18px;
+    border-radius: 22px;
+    overflow: visible;
+  }
+
+  .package-price-badge {
+    top: -13px;
+    left: 10px;
+    right: auto;
+    padding: 9px 13px;
+    font-size: 14px;
+  }
+
+  .package-emoji {
+    margin-top: 3px;
+    font-size: 40px;
+  }
+
+  .event-package-card h3 {
+    font-size: 23px;
+  }
+
+  .event-package-card ul {
+    margin-bottom: 18px;
+  }
+
+  .event-package-card li {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .duration-label {
+    font-size: 12px;
+  }
+
+  .duration-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+  }
+
+  .duration-option {
+    min-width: 0;
+    min-height: 42px;
+    padding: 8px 4px;
+    font-size: 13px;
+  }
+
+  .package-cta {
+    min-height: 48px;
+    font-size: 14px;
+  }
+
+  .package-price-note {
+    margin-top: 18px;
+  }
+
+  .package-custom-note {
+    margin-top: 16px;
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  /* JAK TO DZIAŁA / DLACZEGO MY / OPINIE */
+  .steps-grid,
+  .why-grid,
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .step,
+  .why-grid > div,
+  .reviews-grid blockquote {
+    border-radius: 20px;
+  }
+
+  /* GALERIA — swipe, jedno duże zdjęcie na ekran */
+  .gallery-section {
+    overflow: hidden;
+  }
+
+  .gallery-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 12px 16px;
+    margin: 0 -12px;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .gallery-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-grid img {
+    flex: 0 0 78%;
+    height: 225px;
+    border-radius: 22px;
+    scroll-snap-align: start;
+  }
+
+  /* CTA */
+  .cta-box {
+    padding: 26px 20px;
+    gap: 18px;
+    border-radius: 24px;
+    text-align: center;
+    align-items: stretch;
+  }
+
+  .cta-box h2 {
+    font-size: 29px;
+  }
+
+  .cta-box .btn {
+    width: 100%;
+    min-height: 50px;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+  }
+
+  .footer-grid {
+    gap: 22px;
+  }
+
+  .footer-logo {
+    justify-content: center;
+  }
+
+  .footer-brand-logo {
+    width: 190px;
+    margin-inline: auto;
+  }
+
+  /* MODALE / FORMULARZE */
+  .modal {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .modal-dialog {
+    width: 100%;
+    max-width: none;
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+    padding: 26px 18px 22px;
+    border-radius: 26px 26px 18px 18px;
+  }
+
+  .modal-dialog h2 {
+    padding-right: 38px;
+    font-size: 27px;
+    line-height: 1.1;
+  }
+
+  .modal-intro {
+    font-size: 14px;
+  }
+
+  .form-grid.two {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .inquiry-form input,
+  .inquiry-form select,
+  .inquiry-form textarea {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  .inquiry-form textarea {
+    min-height: 120px;
+  }
+
+  .inquiry-form .btn.full {
+    min-height: 50px;
+  }
+}
+
+@media (max-width: 390px) {
+  .container {
+    width: calc(100% - 20px);
+  }
+
+  .brand-logo {
+    width: 126px;
+  }
+
+  .hero h1 {
+    font-size: 35px;
+  }
+
+  .hero-badges {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-badges div {
+    padding: 11px 12px;
+  }
+
+  .hero-badges b {
+    font-size: 13px;
+  }
+
+  .hero-badges span {
+    font-size: 11px;
+  }
+
+  .event-grid,
+  .attractions-group .offer-grid,
+  .quiz-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .event-grid .offer-card h3,
+  .attractions-group .offer-card h3,
+  .quiz-grid .offer-card h3 {
+    overflow-wrap: anywhere;
+  }
+
+  .event-package-card {
+    flex-basis: 89vw;
+  }
+
+  .gallery-grid img {
+    flex-basis: 84%;
+  }
+}
+
+@media (max-width: 340px) {
+  .event-grid,
+  .attractions-group .offer-grid,
+  .quiz-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-grid .wide-event-card,
+  .event-grid .more-card {
+    grid-column: auto;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+}

@@ -1971,3 +1971,32 @@ body.modal-open {
     max-width: 100%;
   }
 }
+
+
+/* ===== FIKADOO: INTERAKTYWNE KAFELKI IMPREZ ===== */
+
+.event-card-button {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  outline: none;
+}
+
+.event-card-button:focus-visible {
+  border-color: var(--blue);
+  box-shadow:
+    0 0 0 4px rgba(25, 140, 255, 0.14),
+    0 16px 34px rgba(16, 42, 86, 0.12);
+}
+
+.event-card-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(16, 42, 86, 0.12);
+}
+
+.custom-event-type-field[hidden] {
+  display: none !important;
+}

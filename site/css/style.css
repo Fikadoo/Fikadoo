@@ -2000,3 +2000,75 @@ body.modal-open {
 .custom-event-type-field[hidden] {
   display: none !important;
 }
+
+/* ===== FIKADOO CENY ORIENTACYJNE ===== */
+
+.event-package-card {
+  position: relative;
+}
+
+.package-price-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  padding: 7px 11px;
+  border: 1.5px solid var(--package-accent);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--package-accent);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 900;
+  white-space: nowrap;
+  box-shadow: 0 6px 15px rgba(16, 42, 86, 0.08);
+}
+
+@media (max-width: 640px) {
+  .package-price-badge {
+    top: 12px;
+    right: 12px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+/* ===== FIKADOO GALERIA 5 ZDJĘĆ ===== */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+.gallery-grid img {
+  display: block;
+  width: 100%;
+  height: 205px;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 10px 28px rgba(16, 42, 86, 0.10);
+}
+
+@media (max-width: 980px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery-grid img {
+    height: 190px;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .gallery-grid img {
+    height: 150px;
+    border-radius: 20px;
+  }
+}

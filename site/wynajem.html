@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Wynajem sprzętu i atrakcji Fikadoo: piana party, wata cukrowa, fotobudka 360 oraz maszyna do dymu i baniek." />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <title>Wynajem sprzętu i atrakcji – Fikadoo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html#start" class="logo" aria-label="Fikadoo – strona główna">
+        <img src="assets/logo.png" alt="Fikadoo" class="brand-logo" />
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false">☰</button>
+
+      <nav class="main-nav">
+        <a href="index.html#oferta">Oferta</a>
+        <a href="index.html#pakiety">Pakiety</a>
+        <a href="index.html#galeria">Galeria</a>
+        <a href="index.html#onas">O nas</a>
+        <a href="index.html#opinie">Opinie</a>
+        <a class="nav-active" href="wynajem.html">Wynajem</a>
+        <a href="index.html#kontakt">Kontakt</a>
+        <button class="btn btn-pink nav-mobile-cta js-open-rental-general" type="button">📅 Zapytaj o wycenę</button>
+      </nav>
+
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        type="button"
+        aria-label="Włącz tryb ciemny"
+        aria-pressed="false"
+        title="Tryb ciemny"
+      >
+        <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+      </button>
+
+      <button class="btn btn-pink js-open-rental-general" type="button">📅 Zapytaj o wycenę</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="rental-hero section" id="wynajem">
+      <div class="container rental-hero-inner">
+        <span class="eyebrow">🎪 Wynajem atrakcji Fikadoo</span>
+        <h1>Sprzęt, który robi <span>wrażenie</span> na każdej imprezie</h1>
+        <p>
+          Wybierz atrakcję, zdecyduj czy potrzebujesz samego urządzenia czy pełnej obsługi
+          i wyślij szybkie zapytanie o dostępność oraz dokładną wycenę.
+        </p>
+        <div class="rental-hero-badges">
+          <span>✓ Opcja bez obsługi</span>
+          <span>✓ Opcja z obsługą</span>
+          <span>✓ Indywidualna wycena</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft rental-products-section">
+      <div class="container">
+        <div class="section-head rental-section-head">
+          <span class="eyebrow">Wybierz sprzęt</span>
+          <h2>Co możesz wynająć?</h2>
+          <p>Kliknij wariant, który Cię interesuje, a następnie zapytaj o wycenę.</p>
+        </div>
+
+        <div class="rental-grid">
+          <article class="rental-card" data-rental-card data-equipment="Piana Party" data-price="od 800 zł">
+            <div class="rental-photo-wrap">
+              <img src="assets/wynajem-piana.jpg" alt="Maszyna do Piana Party Fikadoo" class="rental-photo" />
+            </div>
+            <div class="rental-card-content">
+              <span class="rental-kicker">Duże wydarzenia • plener</span>
+              <h3>Piana Party</h3>
+              <p>Ogromna dawka radości i niezapomniana zabawa na urodziny, festyny i wydarzenia plenerowe.</p>
+              <div class="rental-options" aria-label="Wybierz wariant wynajmu Piana Party">
+                <button class="rental-option is-active" type="button" data-mode="Bez obsługi">
+                  <span class="rental-option-icon">📦</span>
+                  <span><b>Bez obsługi</b><small>Wynajem samego urządzenia</small></span>
+                </button>
+                <button class="rental-option" type="button" data-mode="Z obsługą">
+                  <span class="rental-option-icon">👥</span>
+                  <span><b>Z obsługą</b><small>Kompleksowa usługa z operatorem</small></span>
+                </button>
+              </div>
+              <div class="rental-card-bottom">
+                <div class="rental-price"><small>Cena</small><strong>od 800 zł</strong></div>
+                <button class="btn btn-blue rental-quote-btn" type="button">Zapytaj o wycenę →</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="rental-card" data-rental-card data-equipment="Maszyna do waty cukrowej" data-price="od 150 zł">
+            <div class="rental-photo-wrap">
+              <img src="assets/wynajem-wata.jpg" alt="Maszyna do waty cukrowej Fikadoo" class="rental-photo" />
+            </div>
+            <div class="rental-card-content">
+              <span class="rental-kicker">Słodka atrakcja</span>
+              <h3>Maszyna do waty cukrowej</h3>
+              <p>Słodka atrakcja dla dzieci i dorosłych. Idealna na urodziny, pikniki, wesela i imprezy firmowe.</p>
+              <div class="rental-options" aria-label="Wybierz wariant wynajmu maszyny do waty cukrowej">
+                <button class="rental-option is-active" type="button" data-mode="Bez obsługi">
+                  <span class="rental-option-icon">📦</span>
+                  <span><b>Bez obsługi</b><small>Wynajem samego urządzenia</small></span>
+                </button>
+                <button class="rental-option" type="button" data-mode="Z obsługą">
+                  <span class="rental-option-icon">👥</span>
+                  <span><b>Z obsługą</b><small>Kompleksowa usługa z operatorem</small></span>
+                </button>
+              </div>
+              <div class="rental-card-bottom">
+                <div class="rental-price"><small>Cena</small><strong>od 150 zł</strong></div>
+                <button class="btn btn-blue rental-quote-btn" type="button">Zapytaj o wycenę →</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="rental-card" data-rental-card data-equipment="Fotobudka 360" data-price="od 600 zł">
+            <div class="rental-photo-wrap">
+              <img src="assets/wynajem-360.jpg" alt="Fotobudka 360 Fikadoo" class="rental-photo" />
+            </div>
+            <div class="rental-card-content">
+              <span class="rental-kicker">Efekt WOW • filmy 360°</span>
+              <h3>Fotobudka 360</h3>
+              <p>Stwórz wyjątkowe, dynamiczne filmy w 360°. Nowoczesna atrakcja, która robi ogromne wrażenie.</p>
+              <div class="rental-options" aria-label="Wybierz wariant wynajmu fotobudki 360">
+                <button class="rental-option is-active" type="button" data-mode="Bez obsługi">
+                  <span class="rental-option-icon">📦</span>
+                  <span><b>Bez obsługi</b><small>Wynajem samego urządzenia</small></span>
+                </button>
+                <button class="rental-option" type="button" data-mode="Z obsługą">
+                  <span class="rental-option-icon">👥</span>
+                  <span><b>Z obsługą</b><small>Kompleksowa usługa z operatorem</small></span>
+                </button>
+              </div>
+              <div class="rental-card-bottom">
+                <div class="rental-price"><small>Cena</small><strong>od 600 zł</strong></div>
+                <button class="btn btn-blue rental-quote-btn" type="button">Zapytaj o wycenę →</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="rental-card" data-rental-card data-equipment="Maszyna do dymu i baniek" data-price="od 200 zł">
+            <div class="rental-photo-wrap">
+              <img src="assets/wynajem-dym-banki.jpg" alt="Maszyna do dymu i baniek Fikadoo" class="rental-photo" />
+            </div>
+            <div class="rental-card-content">
+              <span class="rental-kicker">Efekty specjalne</span>
+              <h3>Maszyna do dymu i baniek</h3>
+              <p>Niezwykły efekt dymu i setek baniek, który tworzy magiczną atmosferę i zachwyca uczestników.</p>
+              <div class="rental-options" aria-label="Wybierz wariant wynajmu maszyny do dymu i baniek">
+                <button class="rental-option is-active" type="button" data-mode="Bez obsługi">
+                  <span class="rental-option-icon">📦</span>
+                  <span><b>Bez obsługi</b><small>Wynajem samego urządzenia</small></span>
+                </button>
+                <button class="rental-option" type="button" data-mode="Z obsługą">
+                  <span class="rental-option-icon">👥</span>
+                  <span><b>Z obsługą</b><small>Kompleksowa usługa z operatorem</small></span>
+                </button>
+              </div>
+              <div class="rental-card-bottom">
+                <div class="rental-price"><small>Cena</small><strong>od 200 zł</strong></div>
+                <button class="btn btn-blue rental-quote-btn" type="button">Zapytaj o wycenę →</button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <aside class="rental-info-box">
+          <div class="rental-info-icon">i</div>
+          <div>
+            <h3>Ważne informacje</h3>
+            <p>
+              Podane ceny są cenami od. Ostateczny koszt wynajmu zależy od czasu trwania imprezy,
+              lokalizacji oraz wybranej opcji (bez obsługi lub z obsługą). Skontaktuj się z nami,
+              aby otrzymać indywidualną wycenę dopasowaną do Twoich potrzeb.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <div class="container cta-box">
+        <div>
+          <span class="eyebrow light">Masz pytania?</span>
+          <h2>Dobierzemy sprzęt do Twojej imprezy</h2>
+        </div>
+        <button class="btn btn-yellow js-open-rental-general" type="button">Zapytaj o wynajem →</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="logo footer-logo"><img alt="Fikadoo" class="brand-logo footer-brand-logo" src="assets/logo.png" /></div>
+      <p>Tworzymy niezapomniane chwile pełne energii, śmiechu i dziecięcej radości.</p>
+      <div><b>Kontakt</b><br />📞 791 839 120<br />✉️ klakbartosz@wp.pl</div>
+      <div><b>Obsługujemy</b><br />Rzeszów, Wrocław, Poznań i okolice</div>
+    </div>
+  </footer>
+
+  <div class="modal" id="rentalModal" aria-hidden="true">
+    <div class="modal-backdrop js-close-modal"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="rentalModalTitle">
+      <button class="modal-close js-close-modal" type="button" aria-label="Zamknij">×</button>
+      <span class="eyebrow">🎪 Wynajem Fikadoo</span>
+      <h2 id="rentalModalTitle">Zapytaj o wycenę</h2>
+      <p class="modal-intro" id="rentalModalIntro">Podaj kilka szczegółów, a przygotujemy indywidualną wycenę.</p>
+
+      <form class="inquiry-form" data-form-type="rental">
+        <input type="hidden" name="source" value="Wynajem sprzętu" />
+        <input type="hidden" name="package" id="rentalPackageInput" value="Wynajem sprzętu" />
+        <input type="hidden" name="event_type" value="Wynajem sprzętu / atrakcji" />
+
+        <div class="rental-selected-summary" id="rentalSelectedSummary">Wybierz sprzęt na stronie.</div>
+
+        <div class="form-grid two">
+          <label>Imię i nazwisko<input autocomplete="name" name="name" required type="text" placeholder="Np. Anna Kowalska" /></label>
+          <label>Telefon<input autocomplete="tel" name="phone" required type="tel" placeholder="Np. 600 123 456" /></label>
+        </div>
+
+        <label>E-mail<input autocomplete="email" name="email" required type="email" placeholder="twoj@email.pl" /></label>
+
+        <div class="form-grid two">
+          <label>Data wydarzenia<input name="date" required type="date" /></label>
+          <label>Godzina<input name="time" required type="time" /></label>
+        </div>
+
+        <div class="form-grid two">
+          <label>Planowany czas wynajmu
+            <select name="duration">
+              <option value="Do ustalenia">Do ustalenia</option>
+              <option>1 godzina</option>
+              <option>2 godziny</option>
+              <option>3 godziny</option>
+              <option>4 godziny</option>
+              <option>5+ godzin</option>
+              <option>Cały dzień</option>
+            </select>
+          </label>
+          <label>Miejsce wydarzenia<input name="location" type="text" placeholder="Np. Rzeszów / plener / sala" /></label>
+        </div>
+
+        <label>Dodatkowe informacje<textarea name="message" rows="4" placeholder="Napisz np. jaki to rodzaj imprezy, ile osób przewidujesz i czego potrzebujesz..."></textarea></label>
+
+        <label class="checkbox"><input required type="checkbox" /> <span>Wyrażam zgodę na kontakt w sprawie zapytania.</span></label>
+        <button class="btn btn-pink full" type="submit">Wyślij zapytanie o wycenę</button>
+        <p class="form-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/wynajem.js"></script>
+</body>
+</html>

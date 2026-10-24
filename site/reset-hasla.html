@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Cache-Control" content="no-store">
+<title>Ustaw nowe hasło — Fikadoo</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#fff1f7,#f1f8ff 48%,#fcf5ff);color:#182943;min-height:100vh;display:grid;place-items:center;padding:24px}
+main{background:white;max-width:480px;width:100%;border:1px solid #dce8f4;border-radius:24px;padding:32px;box-shadow:0 18px 60px #18325519}
+.logo{text-align:center;font-size:34px;font-weight:900;letter-spacing:-1px}.logo .pink{color:#ff5797}.logo .blue{color:#278df2}.star{color:#ffc83f;font-size:40px;vertical-align:middle}
+h1{font-size:25px;letter-spacing:-.5px;margin:22px 0 8px}p{line-height:1.55;color:#566881}label{display:block;font-weight:650;margin:18px 0 6px}
+input{display:block;width:100%;font:inherit;padding:13px;border:1px solid #b7c9e1;border-radius:12px;outline-offset:3px}
+button{background:#248af3;color:white;border:0;border-radius:12px;padding:14px 16px;font:inherit;font-weight:750;width:100%;margin-top:20px;cursor:pointer}button:disabled{opacity:.55;cursor:wait}
+#message{padding:12px 14px;margin-top:16px;border-radius:10px;display:none;white-space:pre-wrap;line-height:1.5}
+#message.error{display:block;background:#fff0f2;color:#9a2341}#message.success{display:block;background:#ecfbf4;color:#176747}
+a{color:#0878d2}.footer{display:block;text-align:center;font-size:13px;margin-top:20px;color:#69788b}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+<div class="logo"><span class="star">★</span> <span class="pink">Fika</span><span class="blue">doo</span></div>
+<h1>Ustaw nowe hasło</h1>
+<p>To bezpieczna strona zmiany hasła administratora Fikadoo. Otwórz ją wyłącznie przez świeży link z wiadomości resetującej.</p>
+<p id="status">Sprawdzam link…</p>
+<form id="reset" hidden>
+<label for="password">Nowe hasło</label>
+<input id="password" type="password" minlength="12" required autocomplete="new-password" placeholder="Co najmniej 12 znaków">
+<label for="confirm">Powtórz nowe hasło</label>
+<input id="confirm" type="password" minlength="12" required autocomplete="new-password">
+<button id="save" type="submit">Zapisz nowe hasło</button>
+</form>
+<div id="message" role="status" aria-live="polite"></div>
+<a class="footer" href="./index.html">Powrót do strony Fikadoo</a>
+</main>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.57.0';
+const status = document.getElementById('status');
+const form = document.getElementById('reset');
+const message = document.getElementById('message');
+const button = document.getElementById('save');
+function show(text, kind='error') {message.textContent=text;message.className=kind;}
+const frag=new URLSearchParams(location.hash.startsWith('#')?location.hash.slice(1):location.hash);
+// Remove sensitive access tokens from the address bar before anything else is displayed.
+if(location.hash)history.replaceState(null,'',location.pathname);
+const sb=createClient('https://unsxjhdpujpdjgswgurl.supabase.co','sb_publishable_08sRSSz12rhzF5OUtQTY_w_QogZObbW',{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
+const access=frag.get('access_token');
+const refresh=frag.get('refresh_token');
+if(frag.get('error') || frag.get('error_description')){
+ status.textContent='Link jest nieprawidłowy lub wygasł.';
+ show('Wróć do Fikadoo i poproś o nowy link resetujący.');
+}else if(frag.get('type')!=='recovery'||!access||!refresh){
+ status.textContent='Nie znaleziono poprawnego linku resetującego.';
+ show('Nie otwieraj tej strony ręcznie. W Fikadoo wybierz „Nie pamiętasz hasła?” i kliknij link z otrzymanego e-maila.');
+}else{
+ try{
+  const {error:sessionError}=await sb.auth.setSession({access_token:access,refresh_token:refresh});
+  if(sessionError)throw sessionError;
+  const {data,error:userError}=await sb.auth.getUser();
+  if(userError||!data.user)throw (userError||new Error('Brak zweryfikowanego konta'));
+  status.textContent='Link zweryfikowany. Wpisz nowe hasło poniżej.';
+  form.hidden=false;
+ }catch(e){status.textContent='Nie udało się zweryfikować linku.';show('Link mógł wygasnąć lub został już wykorzystany. Poproś o nowy link resetujący.');}
+}
+form.addEventListener('submit',async(ev)=>{
+ ev.preventDefault();
+ const pass=document.getElementById('password').value;
+ const confirm=document.getElementById('confirm').value;
+ if(pass.length<12||!/[a-z]/.test(pass)||!/[A-Z]/.test(pass)||!/[0-9]/.test(pass)){
+  show('Hasło musi mieć minimum 12 znaków, małą literę, wielką literę i cyfrę.');return;
+ }
+ if(pass!==confirm){show('Hasła muszą być identyczne.');return;}
+ button.disabled=true;message.style.display='none';
+ try{
+  const {error}=await sb.auth.updateUser({password:pass});
+  if(error)throw error;
+  await sb.auth.signOut({scope:'local'});
+  form.hidden=true;status.textContent='Hasło zostało zmienione.';
+  show('Gotowe! Otwórz aplikację Fikadoo i zaloguj się nowym hasłem.','success');
+ }catch(e){show('Nie udało się zmienić hasła. Link mógł wygasnąć. Spróbuj ponownie, korzystając z nowego linku.');button.disabled=false;}
+});
+</script>
+</body></html>
